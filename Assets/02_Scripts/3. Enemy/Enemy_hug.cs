@@ -19,6 +19,8 @@ public class Enemy_hug : MonoBehaviour
 	private bool isfirst = true;
 	//어 그정도의 바운더안에 들어오면 
 
+
+	private EventParam eventParam;
 	private void Start()
 	{
 		ani = GetComponent<Animator>();
@@ -56,13 +58,14 @@ public class Enemy_hug : MonoBehaviour
 		{
 			playerObject.transform.position = leftHand.transform.position;
 		}
-
-		//하다가 일정 시간 이상 안맞았을때 플레이를 그만 해주고
-		//아니면 계속 플레이해준다.
-		//맞았으면 멈춰주고 플레이어는 버둥된다.
-		//그리고 플레이어를 가운데에 배치하고 따라가게한다.
-		//그거 그대로 플레이어를 올려주고
-		//그 후 hp를 깍는다.
+		else if(ani.GetCurrentAnimatorStateInfo(0).IsName("Idle") && huging)
+		{
+			Debug.Log("?");
+			eventParam.intParam = 200; // 원하는 정도의 데미지 받기
+			eventParam.stringParam = "PLAYER";
+			EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지 입었다는 이벤트 신호 보내기
+			huging = false;
+		}
 	}
 
 	private void OnTriggerStay(Collider other)
@@ -70,6 +73,14 @@ public class Enemy_hug : MonoBehaviour
 		if (huging && isfirst && other.CompareTag("Player"))
 		{
 			isfirst = false;
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if(other.CompareTag("Player"))
+		{
+
 		}
 	}
 

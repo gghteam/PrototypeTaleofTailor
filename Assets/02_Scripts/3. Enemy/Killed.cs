@@ -14,6 +14,6 @@ public class Killed : FsmCondition
 
 	public override bool IsSatisfied(FsmState curr, FsmState next)
 	{
-		return true && !(curr is EnemyDying);
+		return false && !(curr is EnemyDying);
 	}
 }

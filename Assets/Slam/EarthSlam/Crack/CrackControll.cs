@@ -155,7 +155,7 @@ public class CrackControll : MonoBehaviour
 
     IEnumerator Coroutine_CrackClose()
     {
-        _RockEmerge.SetTrigger("Disappear");
+        //_RockEmerge.SetTrigger("Disappear");
         foreach (var i in crackControlls)
         {
             i.Close();

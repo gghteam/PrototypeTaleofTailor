@@ -48,7 +48,7 @@ public class NeedleItem : ItemManager
         eventParam.intParam = needleCount;
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
         eventParam.intParam = attackPower;
-        //EventManager.TriggerEvent("PLUS_ATTACKPOWER", eventParam);
+        EventManager.TriggerEvent("PLUS_ATTACKPOWER", eventParam);
         NeedleUseAnim();
     }
 

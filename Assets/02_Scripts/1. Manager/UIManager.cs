@@ -15,4 +15,8 @@ public class UIManager : MonoSingleton<UIManager>
         ui.SetActive(false);
     }
     
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

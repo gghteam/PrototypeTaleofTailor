@@ -57,9 +57,6 @@ public class PlayerClothesButton : ItemManager
     {
         if (collision.collider.CompareTag("BOSS"))
         {
-            eventParam.intParam = 200; // 원하는 정도의 데미지 받기
-            eventParam.stringParam = "PLAYER";
-            EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지 입었다는 이벤트 신호 보내기
             enemyVector = collision.transform.position; // 적의 위치 받기
         }
         if (collision.collider.CompareTag("CLOTHESBUTTON")) // 떨어진 단추 주웠을 때

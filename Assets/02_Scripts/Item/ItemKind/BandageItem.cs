@@ -11,6 +11,7 @@ public class BandageItem : ItemManager
 
     EventParam eventParam = new EventParam();
 
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -19,9 +20,11 @@ public class BandageItem : ItemManager
         }
     }
 
+
+
     protected override void GetItem()
     {
-        // 프로토타입에는 없음
+
     }
 
     protected override void UseItem()
@@ -54,7 +57,7 @@ public class BandageItem : ItemManager
         item.SetActive(true);
         baseWeapon.SetActive(false);
         eventParam.itemParam = Item.BANDAGE;
-        EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
+        EventManager.TriggerEvent("ITEMUSEANIM", eventParam);
         Invoke("BandageStop", useTime);
     }
     void BandageStop()

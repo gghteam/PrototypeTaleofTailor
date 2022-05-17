@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerAnim : Character
 {
     EventParam eventParam = new EventParam();
+    private bool isItem = false;
+
     private void Awake()
     {
         ani = GetComponent<Animator>();
@@ -14,57 +16,24 @@ public class PlayerAnim : Character
     private void Start()
     {
         EventManager.StartListening("ITEMUSEANIM", ItemUseAnim);
-        EventManager.StartListening("ITEMSTOPANIM", ItemStopAnim);
     }
     private void OnDestroy()
     {
         EventManager.StopListening("ITEMSTOPANIM", ItemUseAnim);
-        EventManager.StopListening("ITEMUSEANIM", ItemStopAnim);
     }
 
     // 일단 HoldItem 하나로 대체
     void ItemUseAnim(EventParam eventParam)
     {
-        switch (eventParam.itemParam)
-        {
-            case Item.NEEDLE:
-                {
-                    ani.SetBool("IsNeedleUse", true);
-                }
-                break;
-            case Item.BANDAGE:
-                {
-                    ani.SetBool("IsBandageUse", true);
-                }
-                break;
-            case Item.CLOTHES_BUTTON:
-                {
-                    ani.SetBool("IsClothesButtonUse", true);
-                }
-                break;
-        }
+        isItem = true;
+        ani.SetBool("IsItem", isItem);
+        ani.SetInteger("ItemAnim", (int)eventParam.itemParam);
     }
 
-    void ItemStopAnim(EventParam eventParam)
+    public void IsItemChange(int value)
     {
-        switch (eventParam.itemParam)
-        {
-            case Item.NEEDLE:
-                {
-                    ani.SetBool("IsNeedleUse", false);
-                }
-                break;
-            case Item.BANDAGE:
-                {
-                    ani.SetBool("IsBandageUse", false);
-                }
-                break;
-            case Item.CLOTHES_BUTTON:
-                {
-                    ani.SetBool("IsClothesButtonUse", false);
-                }
-                break;
-        }
+        isItem = value == 0 ? false : true;
+        ani.SetBool("IsItem", isItem);
     }
 
 

@@ -19,6 +19,8 @@ public class Enemy_hug : MonoBehaviour
 	private bool isfirst = true;
 	//어 그정도의 바운더안에 들어오면 
 
+	EventParam eventParam;
+
 	private void Start()
 	{
 		ani = GetComponent<Animator>();
@@ -50,7 +52,9 @@ public class Enemy_hug : MonoBehaviour
 		{
 			isfirst = true;
 			playerObject.transform.position = new Vector3(playerObject.transform.position.x, 1, playerObject.transform.position.z);
-			//데미지 달게하고
+			eventParam.intParam = 200;
+			eventParam.stringParam = "PLAYER";
+			EventManager.TriggerEvent("DAMAGE", eventParam);
 		}
 		else if (!isfirst)
 		{

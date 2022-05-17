@@ -34,6 +34,7 @@ public class EnemyAttack : FsmState
     private readonly int parrying = Animator.StringToHash("parrying");
     private readonly int attackCnt = Animator.StringToHash("AttackCount");
 
+    EventParam eventParam;
     void Start()
     {
         fsmCore = GetComponent<FsmCore>();
@@ -146,7 +147,9 @@ public class EnemyAttack : FsmState
                 {
                     player.FailedParrying();
                     ParryingChange(0);
-                    Debug.Log("플레이어 대미지 주기");
+                    eventParam.intParam = 200;
+                    eventParam.stringParam = "PLAYER";
+                    EventManager.TriggerEvent("DAMAGE", eventParam);
                     PlayerDamageChange(1);
                 }
             }
@@ -154,7 +157,9 @@ public class EnemyAttack : FsmState
             {
                 player.FailedParrying();
                 ParryingChange(0);
-                Debug.Log("플레이어 대미지 주기");
+                eventParam.intParam = 200;
+                eventParam.stringParam = "PLAYER";
+                EventManager.TriggerEvent("DAMAGE", eventParam);
                 PlayerDamageChange(1);
 ;            }
         }

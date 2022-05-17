@@ -1050,6 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 70
   attackObject: {fileID: 779605915}
+  attackParticle: {fileID: 3301401221971236571, guid: 88ae9f83452c88b4a88099af42d5f573, type: 3}
   attackState: 0
 --- !u!114 &728121959
 MonoBehaviour:
@@ -1069,6 +1070,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1
+  cameraObject: {fileID: 0}
 --- !u!114 &728121960
 MonoBehaviour:
   m_ObjectHideFlags: 0

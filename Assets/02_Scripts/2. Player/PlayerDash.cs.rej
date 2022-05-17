@@ -1,0 +1,13 @@
+diff a/Assets/02_Scripts/2. Player/PlayerDash.cs b/Assets/02_Scripts/2. Player/PlayerDash.cs	(rejected hunks)
+@@ -3,7 +3,11 @@
+ using UnityEngine;
+ public class PlayerDash : Character
+ {
++<<<<<<< HEAD
+ 	//[Header("?�???�피??)]
++=======
++	[Header("?�???�피??)]
++>>>>>>> origin/Newkjp
+ 	[SerializeField]
+ 	private float smoothTime = 0.2f;
+ 

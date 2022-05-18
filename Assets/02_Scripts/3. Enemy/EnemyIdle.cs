@@ -19,6 +19,9 @@ public class EnemyIdle : FsmState
     [SerializeField]
     private GameObject canvas;
 
+    [SerializeField]
+    private SoundSet soundSet;
+
     private void Start()
     {
         fsmCore = GetComponent<FsmCore>();
@@ -34,6 +37,7 @@ public class EnemyIdle : FsmState
         if(isFollow() == true)
         {
             canvas.SetActive(true);
+            soundSet.SrartBGM();
             fsmCore.ChangeState(chaseState);
         }
     }

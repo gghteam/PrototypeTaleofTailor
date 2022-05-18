@@ -25,17 +25,22 @@ public class Jump_Attack : FsmState
 
     [SerializeField] CrackControll _CrackPrefab;
     Vector3 direction;
+    Vector3 originPos;
 
     public LayerMask layer;
     public float distance;
     public Vector3 cubeScale;
 
     EventParam eventParam = new EventParam();
+
+    [SerializeField]
+    private Transform camera;
     private void Start()
     {
         animator = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();
         chaseState = GetComponent<EnemyIdle>();
+        originPos = camera.localPosition;
     }
 
     private void Update()
@@ -130,6 +135,7 @@ public class Jump_Attack : FsmState
         if(hitColliders.Length > 0)
         {
             Debug.Log("¤»±ïÈû");
+            StartCoroutine(Shake(0.5f, 0.15f));
             eventParam.intParam = 2000;
             eventParam.stringParam = "PLAYER";
             EventManager.TriggerEvent("DAMAGE", eventParam);
@@ -140,5 +146,19 @@ public class Jump_Attack : FsmState
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + transform.forward * distance, cubeScale);
+    }
+
+    public IEnumerator Shake(float _amount, float _duration)
+    {
+        float timer = 0;
+        while (timer <= _duration)
+        {
+            camera.localPosition = (Vector3)Random.insideUnitCircle * _amount + camera.localPosition;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        camera.localPosition = originPos;
+
     }
 }

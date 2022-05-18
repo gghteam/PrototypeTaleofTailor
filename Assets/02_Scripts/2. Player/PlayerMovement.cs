@@ -31,6 +31,10 @@ public class PlayerMovement : Character
     private Vector3 dashDirection;
     private bool isMove = true;
 
+    private readonly int isAttack = Animator.StringToHash("IsAttack");
+    private readonly int isMove = Animator.StringToHash("IsMove");
+    private readonly int isRun = Animator.StringToHash("IsRun");
+
     private void Start()
     {
         //Player 움직임을 위해 들음
@@ -53,7 +57,7 @@ public class PlayerMovement : Character
         moveDirection += cameraObject.right * inputX;
         //vector를 정규화함(길이를 1로 만들어 방향만 남김)
         moveDirection.Normalize();
-        if (!ani.GetBool("IsAttack"))
+        if (!ani.GetBool(isAttack))
         {
             if (moveDirection.sqrMagnitude > 0)
             {
@@ -61,23 +65,27 @@ public class PlayerMovement : Character
                 moveDirection.y = 0;
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    //방향에 Run_Speed를 곱함
-                    moveDirection *= runMovementSpeed;
-                    ani.SetBool("IsMove", false);
-                    ani.SetBool("IsRun", true);
+                    if (SteminaManager.Instance.CheckStemina(.005f))
+                    {
+                        //방향에 Run_Speed를 곱함
+                        moveDirection *= runMovementSpeed;
+                        ani.SetBool(isMove, false);
+                        ani.SetBool(isRun, true);
+                        SteminaManager.Instance.MinusStemina(.005f);
+                    }
                 }
                 else
                 {
                     //방향에 Speed를 곱함
                     moveDirection *= movementSpeed;
-                    ani.SetBool("IsMove", true);
-                    ani.SetBool("IsRun", false);
+                    ani.SetBool(isMove, true);
+                    ani.SetBool(isRun, false);
                 }
             }
             else
             {
-                ani.SetBool("IsMove", false);
-                ani.SetBool("IsRun", false);
+                ani.SetBool(isMove, false);
+                ani.SetBool(isRun, false);
             }
         }
 
@@ -85,7 +93,7 @@ public class PlayerMovement : Character
         //moveDirection *= movementSpeed;
 
         //normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
-        if(!ani.GetBool("IsAttack"))
+        if(!ani.GetBool(isAttack))
 		{
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             //이동

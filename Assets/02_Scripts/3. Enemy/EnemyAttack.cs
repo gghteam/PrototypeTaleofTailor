@@ -14,12 +14,10 @@ public class EnemyAttack : FsmState
     [SerializeField]
     private EnemyDataSO enemyData = null;
 
-    private int attackLayer = 1 << 6;
+    private int attackLayer = 1 << 9;
 
     private bool isAttack = false;
     private bool isPlayerDamage = false;
-
-    private int attackCount = 0;
 
     private float timer = 0f;
 
@@ -31,7 +29,11 @@ public class EnemyAttack : FsmState
 
     private readonly int attack = Animator.StringToHash("attack");
     private readonly int parrying = Animator.StringToHash("parrying");
-    private readonly int attackCnt = Animator.StringToHash("AttackCount");
+    //private readonly int attackCnt = Animator.StringToHash("AttackCount");
+    private readonly int isMove = Animator.StringToHash("IsMove");
+    private readonly int isIn = Animator.StringToHash("isIn");
+
+    private readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
     EventParam eventParam;
     void Start()
@@ -44,12 +46,11 @@ public class EnemyAttack : FsmState
         timer = enemyData.attackDelay;
     }
 
-
     public override void OnStateEnter()
     {
-        ani.SetBool("IsMove", false);
+        ani.SetBool(isMove, false);
         StopAllCoroutines();
-        Reset();
+        //Reset();
         timer = enemyData.attackDelay;
     }
 
@@ -57,11 +58,17 @@ public class EnemyAttack : FsmState
     {
         if (!ani.GetBool(parrying))
         {
-            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
+            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
+            //ani.SetFloat(attackCnt, attackCount);
+            ani.SetBool(isIn, hitColl != null);
+            //ani.SetBool(attack, isAttack);
 
-            ani.SetFloat(attackCnt, attackCount);
-
-            Attack();
+            if (!isAttack)
+            {
+                ani.SetTrigger("Attack");
+                AttackChange(1);
+                Attack();
+            }
         }
 
         /*
@@ -90,14 +97,14 @@ public class EnemyAttack : FsmState
     /// </summary>
     private void Attack()
     {
-        attackCount = (attackCount + 1) % 2;
-        AttackChange(1);
-       // Debug.Log("ENEMY ATTACK");
-        ani.SetTrigger(attack);
+        //attackCount = (attackCount + 1) % 2;
+        //AttackChange(1);
+        // Debug.Log("ENEMY ATTACK");
 
-        if (isAttack)
+        if (!isAttack)
         {
-            foreach(var hitObj in hitColl)
+            AttackChange(1);
+            foreach (var hitObj in hitColl)
             {
                 if (hitObj.CompareTag("Player"))
                 {
@@ -105,7 +112,7 @@ public class EnemyAttack : FsmState
                 }
             }
         }
-        Debug.Log("SPeed");
+        //Debug.Log("SPeed");
     }
 
     /// <summary>
@@ -114,7 +121,7 @@ public class EnemyAttack : FsmState
     /// <returns></returns>
     private IEnumerator AttackCoroutine(GameObject hitObj)
     {
-        yield return new WaitForSeconds(.5f);
+        yield return waitForSeconds05;
 
         if (!isPlayerDamage)
         {
@@ -147,9 +154,9 @@ public class EnemyAttack : FsmState
                 eventParam.stringParam = "PLAYER";
                 EventManager.TriggerEvent("DAMAGE", eventParam);
                 PlayerDamageChange(1);
-;            }
+            }
         }
-        fsmCore.ChangeState(chaseState);
+        //fsmCore.ChangeState(chaseState);
     }
 
     /// <summary>
@@ -158,7 +165,7 @@ public class EnemyAttack : FsmState
     /// <param name="value"></param>
     private void ParryingChange(int value)
     {
-        ani.SetBool(parrying, value == 0 ? false : true);
+        ani.SetBool(parrying, value != 0);
     }
 
     /// <summary>
@@ -167,7 +174,7 @@ public class EnemyAttack : FsmState
     /// <param name="value"></param>
     private void AttackChange(int value)
     {
-        isAttack = value == 0 ? false : true;
+        isAttack = value != 0;
     }
 
     /// <summary>
@@ -176,7 +183,7 @@ public class EnemyAttack : FsmState
     /// <param name="value"></param>
     private void PlayerDamageChange(int value)
     {
-        isPlayerDamage = value == 0 ? false : true;
+        isPlayerDamage = value != 0;
     }
 
     public void Reset()

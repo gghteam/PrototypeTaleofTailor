@@ -153,8 +153,6 @@ public class FsmCore : MonoBehaviour {
 		//선택한 규칙이 있다면
 		if (chosenTransition != null)
 		{
-
-
 			//현재 상태를 선택한 규칙에 다음 상태로 저장
 			current = chosenTransition.StateEntityOfNext;
 

@@ -19,6 +19,7 @@ public class EnemyAttack : FsmState
 
     private bool isAttack = false;
     private bool isPlayerDamage = false;
+    private bool isPlay = false;
 
     private float timer = 0f;
 
@@ -28,9 +29,7 @@ public class EnemyAttack : FsmState
     private FsmCore fsmCore;
     private EnemyIdle chaseState;
 
-    private readonly int attack = Animator.StringToHash("attack");
     private readonly int parrying = Animator.StringToHash("parrying");
-    //private readonly int attackCnt = Animator.StringToHash("AttackCount");
     private readonly int isMove = Animator.StringToHash("IsMove");
     private readonly int isIn = Animator.StringToHash("isIn");
     private readonly int attackTrigger = Animator.StringToHash("Attack");
@@ -50,27 +49,41 @@ public class EnemyAttack : FsmState
 
     public override void OnStateEnter()
     {
-        ani.SetBool(isMove, false);
+        //ani.SetBool(isMove, false);
         StopAllCoroutines();
         //Reset();
         timer = enemyData.attackDelay;
+        isPlay = true;
+    }
+
+    public override void OnStateLeave()
+    {
+        StopAllCoroutines();
+        isPlay = false;
     }
 
     void Update()
     {
-        if (!ani.GetBool(parrying))
+        if (isPlay)
         {
-            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer).FirstOrDefault();
-            //ani.SetFloat(attackCnt, attackCount);
-            ani.SetBool(isIn, hitColl != null);
-            //ani.SetBool(attack, isAttack);
-
-            if (!isAttack)
+            if (!ani.GetBool(parrying))
             {
-                ani.SetTrigger(attackTrigger);
-                //AttackChange(1);
-                Attack();
+                hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer).FirstOrDefault();
+                //ani.SetFloat(attackCnt, attackCount);
+                ani.SetBool(isIn, hitColl != null);
+                //ani.SetBool(attack, isAttack);
+
+                if (!isAttack)
+                {
+                    ani.SetTrigger(attackTrigger);
+                    //AttackChange(1);
+                    Attack();
+                }
             }
+        }
+        else
+        {
+            fsmCore.ChangeState(chaseState);
         }
 
         /*

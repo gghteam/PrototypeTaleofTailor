@@ -6,6 +6,10 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    Slider bgmSlider;
+    [SerializeField]
+    Slider sfxSlider;
     public bool isSetting = false;
     public Image steminaBar;
     public GameObject bar;
@@ -38,6 +42,14 @@ public class UIManager : MonoBehaviour
         steminaBar.fillAmount = SteminaManager.Instance.Stemina / SteminaManager.Instance.MAX_STEMINA;
     }
 
+    public float GetBgmVolume()
+    {
+        return bgmSlider.value;
+    }
+    public float GetSfxVolume()
+    {
+        return sfxSlider.value;
+    }
     public void UseSteminaFailedEffect()
     {
         bar.transform.DOShakePosition(2);

@@ -59,7 +59,7 @@ public class PlayerMovement : Character
 					//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
 					moveDirection += cameraObject.right * inputX;
 					moveDirection *= DashSpeed;
-					Debug.Log(moveDirection);
+
 				}
 				isFirst = false;
 			}
@@ -121,7 +121,7 @@ public class PlayerMovement : Character
 			rigidbody.velocity = projectedVelocity;
 		}
 
-		//transform.LookAt(transform.position + moveDirection);
+		transform.LookAt(transform.position + moveDirection);
 	}
 
 	/// <summary>

@@ -10,7 +10,7 @@ public class PlayerClothesButton : ItemManager
     [SerializeField, Header("단추")]
     GameObject[] clothesButton;
 
-    int danchuIndex = 4;    // 현재 목숨 단추
+    int danchuIndex = 3;    // 현재 목숨 단추
     int clothesButtonItemCount = 0;    // 주운 단추 갯수
 
     Vector3 enemyVector = Vector3.zero;    // Enemy의 위치

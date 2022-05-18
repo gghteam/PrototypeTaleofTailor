@@ -30,7 +30,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                         instance = temp.AddComponent<T>();
                     }
 
-                    DontDestroyOnLoad(Instance);
+                   // DontDestroyOnLoad(Instance);
                 }
             }
             return instance;

@@ -29,6 +29,8 @@ public class Jump_Attack : FsmState
     public LayerMask layer;
     public float distance;
     public Vector3 cubeScale;
+
+    EventParam eventParam = new EventParam();
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -125,11 +127,12 @@ public class Jump_Attack : FsmState
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward * distance, cubeScale / 2, Quaternion.identity, layer);
 
-        int i = 0;
-        while (i < hitColliders.Length)
+        if(hitColliders.Length > 0)
         {
-            Debug.Log("Hit : " + hitColliders[i].name);
-            i++;
+            Debug.Log("¤»±ïÈû");
+            eventParam.intParam = 2000;
+            eventParam.stringParam = "PLAYER";
+            EventManager.TriggerEvent("DAMAGE", eventParam);
         }
     }
 

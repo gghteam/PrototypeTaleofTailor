@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01_Scenes/Start.unity
+    guid: 052a12963cd5b6e48a66c670a9e87721
+  - enabled: 1
     path: Assets/KidRoom/ROOM_BOY/Pirate_Kid'sRoom.unity
     guid: 8b5552c3a23715a41a7ef58b2dc347c2
   - enabled: 1
     path: Assets/01_Scenes/Player_Scene.unity
     guid: 6299e259b494ee94581f8f91d0c0523d
+  - enabled: 1
+    path: Assets/01_Scenes/DeadScene.unity
+    guid: 8f804a48c0686144eb510e77c033958a
   m_configObjects: {}

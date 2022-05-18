@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+
+public class SoundManager : MonoSingleton<SoundManager>
 {
     AudioSource[] _audioSources = new AudioSource[(int)Sound.MAXCOUNT];
 
@@ -13,4 +14,27 @@ public class SoundManager : MonoBehaviour
     Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
 
+    float bgmVolume = 1;
+    float sfxVolume = 1;
+
+    void Start()
+    {
+        bgmVolume = PlayerPrefs.GetFloat("BGMVOLUME", 1);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVOLUME", 1);
+    }
+    void Update()
+    {
+        bgmVolume = UIManager.Instance.BgmSoundBolume();
+        sfxVolume = UIManager.Instance.SfxSoundBolume();
+        UpdateVolume();
+    }
+
+    void UpdateVolume()
+    {
+        bgmSource.volume = bgmVolume;
+        sfxSource.volume = sfxVolume;
+
+        PlayerPrefs.SetFloat("BGMVOLUME", bgmVolume);
+        PlayerPrefs.SetFloat("SFXVOLUME", sfxVolume);
+    }
 }

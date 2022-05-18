@@ -4599,10 +4599,6 @@ PrefabInstance:
       value: SM_Room_Puzzle (1)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -4722,9 +4718,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.1926516
+  m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: -0, y: 0.60632604, z: 0}
+  m_Center: {x: -0, y: 0.6, z: 0}
 --- !u!54 &289970354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4872,13 +4868,17 @@ MonoBehaviour:
       Priority: 30
       Not: 0
     - Next: {fileID: 289970356}
-      Cond: {fileID: 289970358}
+      Cond: {fileID: 289970366}
       Priority: 20
-      Not: 0
+      Not: 1
   - State: {fileID: 289970359}
     Transitions: []
   - State: {fileID: 289970356}
-    Transitions: []
+    Transitions:
+    - Next: {fileID: 289970360}
+      Cond: {fileID: 289970366}
+      Priority: 0
+      Not: 1
   - State: {fileID: 289970363}
     Transitions: []
 --- !u!114 &289970363
@@ -4922,6 +4922,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bee4d4f0bf8ed844b78f5d6957c74c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &289970366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289970352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f478fa5198cae594faae2acde16aaafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 10
+  Player: {fileID: 359546423}
 --- !u!1 &291563345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5021,10 +5035,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
-    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -5626,7 +5636,7 @@ GameObject:
   - component: {fileID: 359546434}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5653,7 +5663,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359546422}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
   m_Name: 
@@ -21825,10 +21835,6 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -22472,10 +22478,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
-    - target: {fileID: 100000, guid: dab06bf80872faa4daab0bd57a80b261, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: dab06bf80872faa4daab0bd57a80b261, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -23707,10 +23709,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
-    - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -30246,10 +30244,6 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_Name
       value: SM_Room_Puzzle (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_IsActive

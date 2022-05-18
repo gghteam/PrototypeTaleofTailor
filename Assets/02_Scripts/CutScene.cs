@@ -53,7 +53,7 @@ public class CutScene : MonoBehaviour
             panel.color += new Color(0, 0, 0, Time.deltaTime / 2);
             if(panel.color.a >= 1)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("Player_Scene");
             }
         }
     }

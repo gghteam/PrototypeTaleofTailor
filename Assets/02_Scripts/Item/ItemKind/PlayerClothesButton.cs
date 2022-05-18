@@ -10,7 +10,7 @@ public class PlayerClothesButton : ItemManager
     [SerializeField, Header("단추")]
     GameObject[] clothesButton;
 
-    int danchuIndex = 4;    // 현재 목숨 단추
+    int danchuIndex = 3;    // 현재 목숨 단추
     int clothesButtonItemCount = 0;    // 주운 단추 갯수
 
     Vector3 enemyVector = Vector3.zero;    // Enemy의 위치
@@ -38,12 +38,14 @@ public class PlayerClothesButton : ItemManager
     // 아이템 사용
     protected override void UseItem()
     {
+        if (isUsing) return;
         if (clothesButtonItemCount > 0) // 갯수가 0이 아니면 사용
         {
+            isUsing = true;
             clothesButtonItemCount--;
             ClothesButtonCount();
             eventParam.itemParam = Item.CLOTHES_BUTTON;
-            EventManager.TriggerEvent("ITEMANIMPLAY", eventParam);
+            ClothesUseAnim();
             // 아이템이 이제 없다면 이미지 끄기
             if (clothesButtonItemCount >= 0)
             {
@@ -52,7 +54,14 @@ public class PlayerClothesButton : ItemManager
             }
         }
     }
-
+    void ClothesUseAnim()
+    {
+        item.SetActive(true);
+        baseWeapon.SetActive(false);
+        eventParam.itemParam = Item.CLOTHES_BUTTON;
+        EventManager.TriggerEvent("ITEMUSEANIM", eventParam);
+        Invoke("ClothesButtonStop", useTime);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("BOSS"))
@@ -124,5 +133,12 @@ public class PlayerClothesButton : ItemManager
             other.gameObject.SetActive(false);
             GetItem();
         }
+    }
+
+    void ClothesButtonStop()
+    {
+        baseWeapon.SetActive(true);
+        item.SetActive(false);
+        isUsing = false;
     }
 }

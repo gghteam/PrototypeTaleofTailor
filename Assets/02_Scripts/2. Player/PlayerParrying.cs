@@ -10,8 +10,8 @@ public class PlayerParrying : Character
     [SerializeField, Header("패링 성공시에 얻는 스테미나 양")]
     private int parringSuccessStemina = 2;
 
-    [SerializeField, Header("패링 키")]
-    private KeyCode parryingKeyCode = KeyCode.Return;
+    //[SerializeField, Header("패링 키")]
+    //private bool parryingKeyCode;
     [SerializeField, Header("패링 딜레이")]
     private float parryingDelay = .5f;
 
@@ -26,7 +26,7 @@ public class PlayerParrying : Character
     private readonly int parrying = Animator.StringToHash("isParrying");
     void Start()
     {
-        timer = 0f;
+        timer = parryingDelay;
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class PlayerParrying : Character
 
         if (timer >= parryingDelay)
         {
-            if (Input.GetKeyDown(parryingKeyCode))
+            if (Input.GetMouseButtonDown(1))
             {
                 if (SteminaManager.Instance.CheckStemina(parriyngStemina))
                 {
@@ -45,6 +45,8 @@ public class PlayerParrying : Character
                     Parrying();
                     timer = 0f;
                 }
+                else
+                    UIManager.Instance.UseSteminaFailedEffect();
             }
         }
     }

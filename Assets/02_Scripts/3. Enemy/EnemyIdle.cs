@@ -10,6 +10,15 @@ public class EnemyIdle : FsmState
     private FsmCore fsmCore;
     private Chase chaseState;
 
+    [SerializeField, Header("근접 거리")]
+    float contactDistance;
+
+    [SerializeField, Header("쫓아가는 타겟(플레이어)")]
+    Transform target;
+
+    [SerializeField]
+    private GameObject canvas;
+
     private void Start()
     {
         fsmCore = GetComponent<FsmCore>();
@@ -17,17 +26,20 @@ public class EnemyIdle : FsmState
     }
     public override void OnStateEnter()
     {
-        random = Random.Range(3, 5);
-        time = 0;
     }
 
     private void Update()
     {
-        time += Time.deltaTime;
 
-        if(time >= random)
+        if(isFollow() == true)
         {
+            canvas.SetActive(true);
             fsmCore.ChangeState(chaseState);
         }
+    }
+
+    bool isFollow()
+    {
+        return Vector3.Distance(transform.position, target.position) < contactDistance;
     }
 }

@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc4b3b887bc0fd489e093277495c4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNum: 0
+  sceneNum: 1
   text: {fileID: 720924385}
 --- !u!4 &936637576
 Transform:
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 945360030}
   - component: {fileID: 945360032}
   - component: {fileID: 945360031}
+  - component: {fileID: 945360033}
   m_Layer: 5
   m_Name: Text (1)
   m_TagString: Untagged
@@ -475,6 +476,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945360029}
   m_CullTransparentMesh: 1
+--- !u!114 &945360033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945360029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.509434, g: 0.29249197, b: 0.01153434, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1104489316
 GameObject:
   m_ObjectHideFlags: 0

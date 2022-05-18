@@ -38,6 +38,7 @@ public class NeedleItem : ItemManager
         if (isUsing) return;
         if (needleCount > 0)
         {
+            isUsing = true;
             needleCount--;
         }
         if (needleCount <= 0)
@@ -54,7 +55,6 @@ public class NeedleItem : ItemManager
 
     void NeedleUseAnim()
     {
-        isUsing = true;
         item.SetActive(true);
         baseWeapon.SetActive(false);
         eventParam.itemParam = Item.NEEDLE;
@@ -64,8 +64,6 @@ public class NeedleItem : ItemManager
 
     void NeedleStop()
     {
-        eventParam.itemParam = Item.NEEDLE;
-        EventManager.TriggerEvent("ITEMSTOPANIM", eventParam);
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;

@@ -3834,6 +3834,10 @@ PrefabInstance:
       value: SM_Room_Puzzle (1)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -4259,6 +4263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
+    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -4857,6 +4865,7 @@ GameObject:
   - component: {fileID: 359546424}
   - component: {fileID: 359546433}
   - component: {fileID: 359546432}
+  - component: {fileID: 359546434}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -4886,7 +4895,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359546422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f075570f80935f49a5e7a56a81533f4, type: 3}
   m_Name: 
@@ -5054,6 +5063,20 @@ MonoBehaviour:
   parryingKeyCode: 32
   parryingDelay: 0.5
   viewAngle: 60
+--- !u!114 &359546434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359546422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098ec145f8e58684e949b135db28e417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 10
+  dashtime: 1
 --- !u!1 &361548719
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,6 +8046,10 @@ PrefabInstance:
     - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+      propertyPath: m_TagString
+      value: BOSS
       objectReference: {fileID: 0}
     - target: {fileID: 100082, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_IsActive
@@ -16365,6 +16392,10 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -16853,6 +16884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
+    - target: {fileID: 100000, guid: dab06bf80872faa4daab0bd57a80b261, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: dab06bf80872faa4daab0bd57a80b261, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -17731,6 +17766,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
+    - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -23953,6 +23992,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_Name
       value: SM_Room_Puzzle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_IsActive

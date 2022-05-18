@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Hug : MonoBehaviour
+public enum PlayerState
 {
-    
+	None,
+	Groggy
 }

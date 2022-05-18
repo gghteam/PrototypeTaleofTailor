@@ -4855,14 +4855,9 @@ GameObject:
   - component: {fileID: 359546426}
   - component: {fileID: 359546425}
   - component: {fileID: 359546424}
-<<<<<<< HEAD
-  - component: {fileID: 359546432}
-  m_Layer: 0
-=======
   - component: {fileID: 359546433}
   - component: {fileID: 359546432}
   m_Layer: 6
->>>>>>> b60676ff15bc0c251092e0ea96198d64da17895e
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5024,13 +5019,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359546422}
-<<<<<<< HEAD
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2a05fa7a41aa147adf77211f8c7b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-=======
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee375e01377944b4b89efd018761149d, type: 3}
@@ -5066,7 +5054,6 @@ MonoBehaviour:
   parryingKeyCode: 32
   parryingDelay: 0.5
   viewAngle: 60
->>>>>>> b60676ff15bc0c251092e0ea96198d64da17895e
 --- !u!1 &361548719
 GameObject:
   m_ObjectHideFlags: 0

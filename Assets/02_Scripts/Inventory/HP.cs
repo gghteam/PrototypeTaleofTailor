@@ -42,7 +42,14 @@ public class HP : MonoBehaviour
     Image[] clothesButtonImage;
     [SerializeField]
     Image halfButtonImage;
+    [SerializeField]
+    private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    [SerializeField]
+    private Image damageImage;
+    [SerializeField]
+    private float flashSpeed = 5f;
 
+    bool damaged = false;
     bool isDead = false;
     bool isHalf = false;
     bool isDamage = false;
@@ -70,6 +77,16 @@ public class HP : MonoBehaviour
     {
         // 데미지 입히기
         UpdateSlider();
+
+        if (damaged)
+        {
+            damageImage.color = flashColour;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        damaged = false;
     }
 
     // 단추 리셋
@@ -87,6 +104,7 @@ public class HP : MonoBehaviour
 
             playerHP -= eventParam.intParam;
             Invoke("SliderHit", 0.5f);
+            damaged = true;
 
             if (playerHP <= 0) isDead = true;
             else isDead = false;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class SteminaManager : MonoSingleton<SteminaManager>
+public class SteminaManager : MonoBehaviour
 {
     [Serializable]
     public struct DoShakeField
@@ -45,6 +45,20 @@ public class SteminaManager : MonoSingleton<SteminaManager>
 
     // 있을 필요가 있나?
     private bool recovering = true;
+
+    private static SteminaManager instance = null;
+
+    public static SteminaManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<SteminaManager>();
+            }
+            return instance;
+        }
+    }
 
     private void Start()
     {

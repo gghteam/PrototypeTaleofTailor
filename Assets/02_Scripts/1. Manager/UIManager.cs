@@ -4,11 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class UIManager : MonoSingleton<UIManager>
+public class UIManager : MonoBehaviour
 {
     public bool isSetting = false;
     public Image steminaBar;
     public GameObject bar;
+
+    private static UIManager instance = null;
+
+    public static UIManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType<UIManager>();
+            }
+            return instance;
+        }
+    }
 
     public void UiOpen(GameObject ui)
     {

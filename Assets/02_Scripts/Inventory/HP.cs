@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HP : MonoBehaviour
 {
@@ -96,6 +97,8 @@ public class HP : MonoBehaviour
             bossHP -= eventParam.intParam;
             if (bossHP <= 0)
             {
+                // º¸½º Á×À½
+                Debug.LogError("º¸½º Á×À½");
                 bossHpSlider.gameObject.SetActive(false);
             }
         }
@@ -146,8 +149,15 @@ public class HP : MonoBehaviour
     void MinusClothesButton(int minus)
     {
         danchuCount -= minus; // ´ÜÃß ¼ö »©±â
-        if (danchuCount <= 0) Debug.Log("Á×À½");
-        else ClothesButtonOnOff(danchuCount);
+        if (danchuCount <= 0)
+        {
+            SceneManager.LoadScene("DeadScene");
+        }
+        else
+        {
+        ClothesButtonOnOff(danchuCount);
+        }
+        
     }
     void PlusClothesButton(EventParam eventParam)
     {
@@ -162,9 +172,10 @@ public class HP : MonoBehaviour
         isHalf = index % 2 == 0 ? false : true;
         if (index % 2 != 0) cIndex = (index - 1) / 2 - 1;
         else cIndex = index / 2 - 1;
+
         //ÀüºÎ ²ô±â
-        for (int i = 0; i < 4; i++)
-            clothesButtonImage[i].gameObject.SetActive(false);
+        for (int i = 0; i < maxDanchuCount/2; i++)
+            clothesButtonImage[i].gameObject.SetActive(false);  
         //ÀÎµ¦½º±îÁö¸¸ Å°±â
         for (int i = 0; i < cIndex + 1; i++)
             clothesButtonImage[i].gameObject.SetActive(true);

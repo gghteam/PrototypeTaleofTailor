@@ -37,7 +37,6 @@ public class Enemy_hug : MonoBehaviour
 		Hug();
 	}
 
-
 	private void Hug()
 	{
 		if (ani.GetBool("IsHug") && (ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.4f && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f))
@@ -52,13 +51,10 @@ public class Enemy_hug : MonoBehaviour
 		{
 			isfirst = true;
 			playerObject.transform.position = new Vector3(playerObject.transform.position.x, 1, playerObject.transform.position.z);
-			eventParam.intParam = 200;
-			eventParam.stringParam = "PLAYER";
-			EventManager.TriggerEvent("DAMAGE", eventParam);
 		}
 		else if (!isfirst)
 		{
-			playerObject.transform.position = leftHand.transform.position;
+			playerObject.transform.position = leftHand.transform.position - new Vector3(0,1.5f,0);
 		}
 
 		//하다가 일정 시간 이상 안맞았을때 플레이를 그만 해주고
@@ -77,6 +73,16 @@ public class Enemy_hug : MonoBehaviour
 		}
 	}
 
+	private void OnTriggerExit(Collider other)
+	{
+		if(huging && other.CompareTag("Player"))
+		{
+			huging = false;
+			eventParam.intParam = 200;
+			eventParam.stringParam = "PLAYER";
+			EventManager.TriggerEvent("DAMAGE", eventParam);
+		}
+	}
 
 	private float a()
 	{

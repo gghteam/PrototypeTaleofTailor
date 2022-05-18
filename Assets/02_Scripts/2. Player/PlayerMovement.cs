@@ -42,16 +42,37 @@ public class PlayerMovement : Character
 
 	public void Update()
 	{
+
 		if (isDash)
 		{
-			Dash();
-			return;
+			if (isFirst)
+			{
+				if (inputX == 0 && inputZ == 0)
+				{
+					moveDirection = cameraObject.forward;
+					moveDirection *= DashSpeed;
+				}
+				else
+				{
+					//캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
+					moveDirection = cameraObject.forward * inputZ;
+					//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
+					moveDirection += cameraObject.right * inputX;
+					moveDirection *= DashSpeed;
+					Debug.Log(moveDirection);
+				}
+				isFirst = false;
+			}
 		}
-		//캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
-		moveDirection = cameraObject.forward * inputZ;
-		//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
-		moveDirection += cameraObject.right * inputX;
-		//vector를 정규화함(길이를 1로 만들어 방향만 남김)
+		else
+		{
+			//캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
+			moveDirection = cameraObject.forward * inputZ;
+			//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
+			moveDirection += cameraObject.right * inputX;
+			//vector를 정규화함(길이를 1로 만들어 방향만 남김)
+		}
+
 		moveDirection.Normalize();
 		if (!ani.GetBool("IsAttack"))
 		{
@@ -65,6 +86,14 @@ public class PlayerMovement : Character
 					moveDirection *= runMovementSpeed;
 					ani.SetBool("IsMove", false);
 					ani.SetBool("IsRun", true);
+				}
+				else if (isDash)
+				{
+					Debug.Log("?");
+					moveDirection *= DashSpeed;
+					ani.SetBool("IsMove", false);
+					ani.SetBool("IsRun", false);
+					ani.SetBool("IsDash", true);
 				}
 				else
 				{
@@ -92,7 +121,7 @@ public class PlayerMovement : Character
 			rigidbody.velocity = projectedVelocity;
 		}
 
-		transform.LookAt(transform.position + moveDirection);
+		//transform.LookAt(transform.position + moveDirection);
 	}
 
 	/// <summary>
@@ -144,34 +173,5 @@ public class PlayerMovement : Character
 		isDash = eventParam.boolParam;
 		DashSpeed = eventParam.intParam;
 		isFirst = eventParam.boolParam2;
-	}
-
-	private void Dash()
-	{
-		Debug.Log(inputX);
-		Debug.Log(inputZ);
-		if (isFirst)
-		{
-			if (inputX == 0 && inputZ == 0)
-			{
-				Debug.Log("?");
-				moveDirection = cameraObject.forward;
-				moveDirection *= DashSpeed;
-			}
-			else
-			{
-				//캐릭터 앞(inputZ = 1) 또는 뒤(inputZ = -1)를 vector에 저장
-				moveDirection = cameraObject.forward * inputZ;
-				//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
-				moveDirection += cameraObject.right * inputX;
-				moveDirection *= DashSpeed;
-			}
-		}
-			//vector를 정규화함(길이를 1로 만들어 방향만 남김)
-			moveDirection.Normalize();
-			isFirst = false;
-		Vector3 Velocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-		//이동
-		rigidbody.velocity = Velocity;
 	}
 }

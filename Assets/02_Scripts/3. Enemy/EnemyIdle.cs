@@ -16,6 +16,9 @@ public class EnemyIdle : FsmState
     [SerializeField, Header("ÂÑ¾Æ°¡´Â Å¸°Ù(ÇÃ·¹ÀÌ¾î)")]
     Transform target;
 
+    [SerializeField]
+    private GameObject canvas;
+
     private void Start()
     {
         fsmCore = GetComponent<FsmCore>();
@@ -30,6 +33,7 @@ public class EnemyIdle : FsmState
 
         if(isFollow() == true)
         {
+            canvas.SetActive(true);
             fsmCore.ChangeState(chaseState);
         }
     }

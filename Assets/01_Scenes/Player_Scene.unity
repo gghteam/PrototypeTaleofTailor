@@ -4846,12 +4846,8 @@ GameObject:
   - component: {fileID: 359546424}
   - component: {fileID: 359546433}
   - component: {fileID: 359546432}
-<<<<<<< HEAD
-  m_Layer: 9
-=======
   - component: {fileID: 359546434}
   m_Layer: 6
->>>>>>> main
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

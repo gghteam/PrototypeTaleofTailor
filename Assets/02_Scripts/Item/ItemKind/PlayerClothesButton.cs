@@ -110,7 +110,7 @@ public class PlayerClothesButton : ItemManager
         {
             danchuIndex = (danchuIndex - 1) / 2 - 1;
         }
-        clothesButton[danchuIndex].transform.localPosition = new Vector3(buttonPos.x * buttonDistance, 0.5f, buttonPos.z * buttonDistance);
+        clothesButton[danchuIndex].transform.localPosition = new Vector3(buttonPos.x * buttonDistance, 0.2f, buttonPos.z * buttonDistance);
         clothesButton[danchuIndex].gameObject.SetActive(true);
     }
 

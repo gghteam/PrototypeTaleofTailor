@@ -37,7 +37,6 @@ public class PlayerAnim : Character
         IsUsingItem();
         ani.SetInteger(hashItemIndex, (int)eventParam.itemParam);
         ani.SetBool(hashItem, isItem);
-        Debug.Log((int)eventParam.itemParam);
     }
 
     public void IsItemChange(int value)

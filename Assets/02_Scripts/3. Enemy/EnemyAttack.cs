@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyAttack : FsmState
 {
@@ -21,7 +22,7 @@ public class EnemyAttack : FsmState
 
     private float timer = 0f;
 
-    private Collider[] hitColl;
+    private Collider hitColl;
     private Animator ani;
 
     private FsmCore fsmCore;
@@ -32,6 +33,7 @@ public class EnemyAttack : FsmState
     //private readonly int attackCnt = Animator.StringToHash("AttackCount");
     private readonly int isMove = Animator.StringToHash("IsMove");
     private readonly int isIn = Animator.StringToHash("isIn");
+    private readonly int attackTrigger = Animator.StringToHash("Attack");
 
     private readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
@@ -41,7 +43,7 @@ public class EnemyAttack : FsmState
         ani = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();
         chaseState = GetComponent<EnemyIdle>();
-        Reset();
+        //Reset();
 
         timer = enemyData.attackDelay;
     }
@@ -58,15 +60,15 @@ public class EnemyAttack : FsmState
     {
         if (!ani.GetBool(parrying))
         {
-            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
+            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer).FirstOrDefault();
             //ani.SetFloat(attackCnt, attackCount);
             ani.SetBool(isIn, hitColl != null);
             //ani.SetBool(attack, isAttack);
 
             if (!isAttack)
             {
-                ani.SetTrigger("Attack");
-                AttackChange(1);
+                ani.SetTrigger(attackTrigger);
+                //AttackChange(1);
                 Attack();
             }
         }
@@ -104,11 +106,11 @@ public class EnemyAttack : FsmState
         if (!isAttack)
         {
             AttackChange(1);
-            foreach (var hitObj in hitColl)
+            if (hitColl != null)
             {
-                if (hitObj.CompareTag("Player"))
+                if (hitColl.CompareTag("Player"))
                 {
-                    StartCoroutine(AttackCoroutine(hitObj.gameObject));
+                    StartCoroutine(AttackCoroutine(hitColl.gameObject));
                 }
             }
         }

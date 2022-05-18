@@ -32,6 +32,7 @@ public class BandageItem : ItemManager
         if (isUsing) return;
         if (bandageCount > 0)
         {
+            isUsing = true;
             bandageCount--;
         }
         if (bandageCount <= 0)
@@ -53,7 +54,6 @@ public class BandageItem : ItemManager
     }
     void BandageUseAnim()
     {
-        isUsing = true;
         item.SetActive(true);
         baseWeapon.SetActive(false);
         eventParam.itemParam = Item.BANDAGE;

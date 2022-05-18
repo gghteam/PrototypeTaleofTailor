@@ -30,6 +30,9 @@ public class PlayerDash : Character
 	private bool dashbool = false;
 	private EventParam eventParam;
 
+
+	private bool testBool = false;
+
 	private void Start()
 	{
 		EventManager.StartListening("INPUT", getInput);
@@ -53,20 +56,27 @@ public class PlayerDash : Character
 
 		Debug.DrawLine(transform.position, dashVec);
 	}
+	RaycastHit ray;
 	private void Dash()
 	{
 		if (firstbool)
 		{
-			RaycastHit ray;
 
-			Vector3 dir = (transform.localRotation * Vector3.forward);
+			Vector3 dir = (transform.localRotation * Vector3.forward).normalized;
 
 			dashVec = new Vector3(dir.x * DashDistance + transform.position.x, transform.position.y, dir.z * DashDistance + transform.position.z);
-			if (Physics.Raycast(transform.position, dashVec, out ray, DashDistance,layer))
+			// Physics.BoxCast (레이저를 발사할 위치, 사각형의 각 좌표의 절판 크기, 발사 방향, 충돌 결과, 회전 각도, 최대 거리)
+
+			if (Physics.BoxCast(transform.position, new Vector3(DashDistance,DashDistance,DashDistance), dir, out ray, Quaternion.identity, layer))
 			{
-				float vec = (transform.position - ray.point).magnitude;
-				dashVec = new Vector3(input.x * vec + transform.position.x, transform.position.y, input.y * vec + transform.position.z);
+				testBool = true;
+				Gizmos.color = Color.red;
+				float vec = (transform.position-ray.point).magnitude;
+				dashVec = new Vector3(dir.x * vec + transform.position.x, transform.position.y, dir.z * vec + transform.position.z);
+				Debug.Log(dashVec);
 			}
+
+
 			firstbool = false;
 		}
 

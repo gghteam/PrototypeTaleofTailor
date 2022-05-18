@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc4b3b887bc0fd489e093277495c4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNum: 0
+  sceneNum: 1
   text: {fileID: 720924385}
 --- !u!4 &936637576
 Transform:

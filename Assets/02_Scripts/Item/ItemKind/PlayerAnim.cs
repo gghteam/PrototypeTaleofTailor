@@ -8,6 +8,8 @@ public class PlayerAnim : Character
 {
     EventParam eventParam = new EventParam();
     private bool isItem = false;
+    private readonly int hashItem = Animator.StringToHash("IsItem");
+    private readonly int hashItemIndex = Animator.StringToHash("ItemAnim");
 
     private void Awake()
     {
@@ -22,18 +24,27 @@ public class PlayerAnim : Character
         EventManager.StopListening("ITEMUSEANIM", ItemUseAnim);
     }
 
+    void IsUsingItem()
+    {
+        eventParam.boolParam = !isItem;
+        EventManager.TriggerEvent("ISMOVE", eventParam);
+    }
+
     // 일단 HoldItem 하나로 대체
     void ItemUseAnim(EventParam eventParam)
     {
         isItem = true;
-        ani.SetBool("IsItem", isItem);
-        ani.SetInteger("ItemAnim", (int)eventParam.itemParam);
+        IsUsingItem();
+        ani.SetInteger(hashItemIndex, (int)eventParam.itemParam);
+        ani.SetBool(hashItem, isItem);
+        Debug.Log((int)eventParam.itemParam);
     }
 
     public void IsItemChange(int value)
     {
         isItem = value == 0 ? false : true;
-        ani.SetBool("IsItem", isItem);
+        IsUsingItem();
+        ani.SetBool(hashItem, isItem);
     }
 
 

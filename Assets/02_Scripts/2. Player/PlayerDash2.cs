@@ -20,6 +20,7 @@ public class PlayerDash2 : Character
         {
             eventParam.intParam = (int)smoothTime;
             eventParam.boolParam = true;
+            eventParam.boolParam2 = true;
             EventManager.TriggerEvent("ISDASH", eventParam);
             StartCoroutine(StartDash());
         }

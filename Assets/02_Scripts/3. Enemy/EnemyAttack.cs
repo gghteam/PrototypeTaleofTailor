@@ -24,7 +24,6 @@ public class EnemyAttack : FsmState
     private float timer = 0f;
 
     private Collider[] hitColl;
-    [SerializeField]
     private Animator ani;
 
     private FsmCore fsmCore;
@@ -37,6 +36,7 @@ public class EnemyAttack : FsmState
     EventParam eventParam;
     void Start()
     {
+        ani = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();
         chaseState = GetComponent<EnemyIdle>();
         Reset();
@@ -57,25 +57,12 @@ public class EnemyAttack : FsmState
     {
         if (!ani.GetBool(parrying))
         {
-
             hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 2.2f, 0), enemyData.attackRange, attackLayer);
 
             ani.SetFloat(attackCnt, attackCount);
 
             Attack();
         }
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    if (timer >= enemyData.attackDelay)
-        //    {
-        //        if (!isAttack)
-        //        {
-        //            Attack();
-        //            timer = 0;
-        //        }
-        //    }
-        //}
 
         /*
         if (timer >= enemyData.attackDelay)
@@ -118,7 +105,6 @@ public class EnemyAttack : FsmState
                 }
             }
         }
-        fsmCore.ChangeState(chaseState);
         Debug.Log("SPeed");
     }
 
@@ -163,6 +149,7 @@ public class EnemyAttack : FsmState
                 PlayerDamageChange(1);
 ;            }
         }
+        fsmCore.ChangeState(chaseState);
     }
 
     /// <summary>

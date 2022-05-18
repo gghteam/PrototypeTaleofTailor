@@ -26,6 +26,11 @@ public class Jump_Attack : FsmState
     [SerializeField] CrackControll _CrackPrefab;
     Vector3 direction;
 
+    public LayerMask layer;
+    public float distance;
+    public Vector3 cubeScale;
+
+    EventParam eventParam = new EventParam();
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -55,13 +60,19 @@ public class Jump_Attack : FsmState
             currentTime += Time.deltaTime;
             transform.LookAt(targetPos.transform);
 
-            if (currentTime <= time)
+            if (currentTime <= time * 0.6f)
             {
                 transform.position = MathParabola.Parabola(temp, targetPos.transform.position - dir * 2.5f, 3.5f, currentTime / time);
+                target = targetPos.transform.position;
+                dir = (target - transform.position).normalized;
+            }
+            else if(currentTime <= time)
+            {
+                transform.position = MathParabola.Parabola(temp, target - dir * 2.5f, 3.5f, currentTime / time);
             }
             else
             {
-                Vector3 pos = targetPos.transform.position - dir * 2.5f;
+                Vector3 pos = target - dir * 2.5f;
                 //pos.y = 0;
                 transform.position = pos;
                 isPlay = false;
@@ -82,7 +93,6 @@ public class Jump_Attack : FsmState
         Debug.Log("六六六");
         temp = transform.position;
         target = targetPos.transform.position;
-        Debug.Log(target);
         dir = (target - transform.position).normalized;
 
         currentTime = 0;
@@ -99,7 +109,7 @@ public class Jump_Attack : FsmState
         Debug.Log("集釭塭!");
     }
 
-    private void AnimationCallback_SlamEffect()
+    public void AnimationCallback_SlamEffect()
     {
         direction = transform.forward;
         Debug.Log("蕾斬醞");
@@ -108,5 +118,27 @@ public class Jump_Attack : FsmState
         CrackControll crackControll = Instantiate(_CrackPrefab, pos, Quaternion.identity);
         crackControll.transform.forward = direction;
         crackControll.Open(15);
+        MyCollisions();
+    }
+
+    public void MyCollisions()
+    {
+        Debug.Log("MyCOllision");
+
+        Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward * distance, cubeScale / 2, Quaternion.identity, layer);
+
+        if(hitColliders.Length > 0)
+        {
+            Debug.Log("六梧��");
+            eventParam.intParam = 2000;
+            eventParam.stringParam = "PLAYER";
+            EventManager.TriggerEvent("DAMAGE", eventParam);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + transform.forward * distance, cubeScale);
     }
 }

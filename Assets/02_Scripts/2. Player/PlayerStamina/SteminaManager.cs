@@ -7,18 +7,6 @@ using DG.Tweening;
 
 public class SteminaManager : MonoBehaviour
 {
-    // 간이 싱글톤
-    public static SteminaManager Instance = null;
-
-    // 디버깅용. 삭제 예정
-    //public Text text = null;
-
-    public Image intImage = null;
-    public Image floatImage = null;
-
-
-    public GameObject steminaBar = null;
-
     [Serializable]
     public struct DoShakeField
     {
@@ -36,10 +24,15 @@ public class SteminaManager : MonoBehaviour
     public DoShakeField shakeField;
 
     private float stemina = 5f;
-    private const float MAX_STEMINA = 5f;
+    public readonly float MAX_STEMINA = 5f;
     public float Stemina
     {
         get { return stemina; }
+        private set
+        {
+            stemina = value;
+            UIManager.Instance.SteminaBarValue();
+        }
     }
 
     [SerializeField, Header("스테미나 재생 속도 조절 값, 높을 수록 느려짐")]
@@ -50,58 +43,31 @@ public class SteminaManager : MonoBehaviour
     [SerializeField, Header("스테미나 빼는 값")]
     private float minusSteminaValue = 1f;
 
-    [SerializeField, Header("더하는 키")]
-    private KeyCode plusKeyCode = KeyCode.F;
-    [SerializeField, Header("빼는 키")]
-    private KeyCode minusKeyCode = KeyCode.D;
-
     // 있을 필요가 있나?
     private bool recovering = true;
 
-    void Awake()
+    private static SteminaManager instance = null;
+
+    public static SteminaManager Instance
     {
-        if(Instance != null)
+        get
         {
-            Debug.LogError("Multiple SteminaManager is running!");
+            if (instance == null)
+            {
+                instance = FindObjectOfType<SteminaManager>();
+            }
+            return instance;
         }
-        Instance = this;
     }
 
     private void Start()
     {
-        stemina = 0;
+        Stemina = MAX_STEMINA;
     }
 
     void Update()
     {
         SteminaRecovering();
-
-        // 디버깅 용. 삭제 예정
-        //text.text = string.Format("{0:F2}", stemina);
-
-        intImage.fillAmount = (int)stemina / MAX_STEMINA;
-        floatImage.fillAmount = (float)stemina / MAX_STEMINA;
-
-        if (Input.GetKeyDown(minusKeyCode))
-        {
-            if (CheckStemina(minusSteminaValue))
-            {
-                MinusStemina(1f);
-            }
-            else
-            {
-                MinusStemianFailedEffect();
-            }
-        }
-
-        if (Input.GetKeyDown(plusKeyCode))
-            PlusStemina(plusSteminaValue);
-    }
-
-    private void MinusStemianFailedEffect()
-    {
-        // TODO : 스테미나바 흔들기
-        steminaBar.transform.DOShakePosition(shakeField.duration, shakeField.strength, shakeField.vibrato, shakeField.randomness);
     }
 
     /// <summary>
@@ -111,7 +77,7 @@ public class SteminaManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckStemina(float value)
     {
-        if (stemina > value)
+        if (Stemina > value)
             return true;
         else
             return false;
@@ -119,55 +85,15 @@ public class SteminaManager : MonoBehaviour
 
     public void MinusStemina(float value)
     {
-        stemina -= value;
+        Stemina -= value;
         StartCoroutine(SteminaRecoveringDelayCoroutine());
-        //StartCoroutine(MinusSteminaCoroutine(value));
     }
 
-    /// <summary>
-    /// 스테미나 줄어드는 애니메니션을 넣어주는 코루틴.
-    /// 삭제 예정
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    IEnumerator MinusSteminaCoroutine(float input)
-    {
-        float value = input;
-        recovering = false;
-        while(input > 0)
-        {
-            input -= Time.deltaTime;
-            stemina -= Time.deltaTime;
-            //yield return new WaitForSeconds(.0001f);
-            yield return null;
-        }
-        recovering = true;
-    }
     public void PlusStemina(float input)
     {
-        float value = Mathf.Min(input, MAX_STEMINA - stemina);
-        stemina += value;
+        float value = Mathf.Min(input, MAX_STEMINA - Stemina);
+        Stemina += value;
         //StartCoroutine(PlusSteminaCoroutine(input));
-    }
-
-    /// <summary>
-    /// 스테미나 늘어나는 애니메이션을 넣어주는 코루틴.
-    /// 삭제 예정
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    IEnumerator PlusSteminaCoroutine(float input)
-    {
-        float value = input;
-        recovering = false;
-        while (input > 0)
-        {
-            input -= Time.deltaTime;
-            stemina += Time.deltaTime;
-            //yield return new WaitForSeconds(.0001f);
-            yield return null;
-        }
-        recovering = true;
     }
 
     /// <summary>
@@ -178,11 +104,11 @@ public class SteminaManager : MonoBehaviour
         // 스테미나 재생중 && 스테미나가 최대 스테미나보다 낮을 때
         if (recovering && (stemina <= MAX_STEMINA))
         {
-            stemina += Time.deltaTime / steminaRecoveringDelay;
+            Stemina += Time.deltaTime / steminaRecoveringDelay;
         }
 
-        if (stemina > MAX_STEMINA)
-            stemina = MAX_STEMINA;
+        if (Stemina > MAX_STEMINA)
+            Stemina = MAX_STEMINA;
     }
 
     /// <summary>

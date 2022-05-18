@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : Character
@@ -13,6 +11,9 @@ public class PlayerAttack : Character
 
     [SerializeField]
     private PlayerAttackState attackState;
+
+    [SerializeField]
+    private SoundSet vfXSet;
 
     public float PlayerDamage { get { return playerDamage; } }
 
@@ -76,18 +77,21 @@ public class PlayerAttack : Character
         {
             if (EndAnimationDone("Attack1", 0.8897059f))
             {
+                StartSound();
                 attack = false;
                 ani.SetBool("NextAttack", attack);
                 ani.SetBool("IsAttack", true);
             }
             else if (EndAnimationDone("Attack2", 0.5833334f))
             {
+                StartSound();
                 attack = false;
                 ani.SetBool("NextAttack", attack);
                 ani.SetBool("IsAttack", true);
             }
             else if(EndAnimationDone("Attack3", 0.75f))
 			{
+                StartSound();
                 attack = false;
                 ani.SetBool("NextAttack", attack);
                 ani.SetBool("IsAttack", true);
@@ -128,5 +132,14 @@ public class PlayerAttack : Character
     private void OnParticle(bool On)
 	{
         attackParticle.gameObject.SetActive(On);
+    }
+
+
+    private void StartSound()
+    {
+        if (ani.GetBool("NextAttack"))
+        {
+            vfXSet.SrartBGM();
+        }
     }
 }

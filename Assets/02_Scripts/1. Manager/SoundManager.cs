@@ -24,8 +24,8 @@ public class SoundManager : MonoSingleton<SoundManager>
     }
     void Update()
     {
-        bgmVolume = UIManager.Instance.BgmSoundBolume();
-        sfxVolume = UIManager.Instance.SfxSoundBolume();
+        //bgmVolume = UIManager.Instance.BgmSoundBolume();
+        //sfxVolume = UIManager.Instance.SfxSoundBolume();
         UpdateVolume();
     }
 

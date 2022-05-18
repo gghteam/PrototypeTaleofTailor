@@ -39,11 +39,15 @@ public class PlayerDash : Character
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && dashbool == false)
 		{
-			dashbool = true;
-			firstbool = true;
-			eventParam.boolParam = true;
-			EventManager.TriggerEvent("ISDASH", eventParam);
-			ani.SetBool("IsDash", dashbool);
+            if (SteminaManager.Instance.CheckStemina(1))
+            {
+				dashbool = true;
+				firstbool = true;
+				eventParam.boolParam = true;
+				EventManager.TriggerEvent("ISDASH", eventParam);
+				ani.SetBool("IsDash", dashbool);
+				SteminaManager.Instance.MinusStemina(1);
+			}
 		}
 
 		if (dashbool)

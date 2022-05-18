@@ -12,6 +12,9 @@ public class PlayerDash2 : Character
     [SerializeField]
     private float dashtime = 0f;
 
+    [SerializeField]
+    private Collider hitCollider;
+
     private EventParam eventParam;
 
     private void Update()
@@ -29,7 +32,9 @@ public class PlayerDash2 : Character
 
     private IEnumerator StartDash()
     {
+        hitCollider.enabled = false;
         yield return new WaitForSeconds(dashtime);
+        hitCollider.enabled = true;
         eventParam.boolParam = false;
         eventParam.boolParam2 = false;
         EventManager.TriggerEvent("ISDASH", eventParam);

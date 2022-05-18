@@ -3990,7 +3990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1320243fc61d50948997fcc6dc4bd54a, type: 2}
-  ani: {fileID: 289970355}
 --- !u!114 &289970357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,6 +4097,10 @@ MonoBehaviour:
     - Next: {fileID: 289970359}
       Cond: {fileID: 289970358}
       Priority: 10
+      Not: 0
+    - Next: {fileID: 289970356}
+      Cond: {fileID: 289970358}
+      Priority: 20
       Not: 0
   - State: {fileID: 289970359}
     Transitions: []
@@ -5019,14 +5022,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359546422}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee375e01377944b4b89efd018761149d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intImage: {fileID: 0}
-  floatImage: {fileID: 0}
-  steminaBar: {fileID: 0}
   shakeField:
     duration: 0
     strength: 0
@@ -5035,8 +5035,6 @@ MonoBehaviour:
   steminaRecoveringDelay: 3
   plusSteminaValue: 2
   minusSteminaValue: 1
-  plusKeyCode: 102
-  minusKeyCode: 100
 --- !u!114 &359546433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,15 +5042,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359546422}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8a06745ab1901f46b6246615dfda902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parriyngStemina: 1
   parringSuccessStemina: 2
-  parryingKeyCode: 32
-  parryingDelay: 0.5
+  parryingDelay: 1.5
   viewAngle: 60
 --- !u!1 &361548719
 GameObject:
@@ -8860,6 +8857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSetting: 0
+  steminaBar: {fileID: 1863115810}
+  bar: {fileID: 1936240298}
 --- !u!1 &772270187
 GameObject:
   m_ObjectHideFlags: 0
@@ -16927,14 +16926,14 @@ RectTransform:
   m_GameObject: {fileID: 1863115808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0001802, y: 1.0001802, z: 1.0001802}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 291563346}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -122.00003, y: -10.5}
+  m_AnchoredPosition: {x: -118, y: -4.1}
   m_SizeDelta: {x: 330, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1863115810

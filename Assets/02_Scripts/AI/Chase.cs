@@ -20,6 +20,8 @@ public class Chase : FsmState
     private Vector3 lastKnownLoc;
     private NavMeshAgent agent;
 
+    private readonly int isMove = Animator.StringToHash("IsMove");
+    private readonly string walk = "walk";
     void Awake()
     {
         //ani = GetComponent<Animator>();
@@ -29,8 +31,13 @@ public class Chase : FsmState
     void Update()
     {
         agent.destination = lastKnownLoc = target.position;
-        //animator.SetBool("chasing", true);
 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(walk))
+            ChangeStop(false);
+        else
+            ChangeStop(true);
+
+        //animator.SetBool("chasing", true);
         /*
         if (isFollow())
         {
@@ -43,9 +50,14 @@ public class Chase : FsmState
         */
     }
 
+    public void ChangeStop(bool value)
+    {
+        agent.isStopped = value;
+    }
+
     public override void OnStateEnter()
     {
-        animator.SetBool("IsMove", true);
+        animator.SetBool(isMove, true);
     }
 
     public override void OnStateLeave()

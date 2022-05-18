@@ -8,8 +8,8 @@ public class Chase : FsmState
     //[SerializeField, Header("추격 속도")]
     //float chaseSpeed;
 
-    [SerializeField, Header("근접 거리")]
-    float contactDistance;
+    //[SerializeField, Header("근접 거리")]
+    //float contactDistance;
 
     [SerializeField, Header("쫓아가는 타겟(플레이어)")]
     Transform target;
@@ -28,19 +28,19 @@ public class Chase : FsmState
 
     void Update()
     {
+        agent.destination = lastKnownLoc = target.position;
+        //animator.SetBool("chasing", true);
+
+        /*
         if (isFollow())
         {
-        agent.destination = lastKnownLoc = target.position;
             //ani.SetBool("chasing", true);
         }
         //else
         {
             //ani.SetBool("chasing", false);
         }
-    }
-    bool isFollow()
-    {
-        return Vector3.Distance(transform.position, target.position) < contactDistance;
+        */
     }
 
     public override void OnStateEnter()

@@ -15,6 +15,6 @@ public class PlayerInRange : FsmCondition
 		//float ischeck = Vector3.Distance(transform.position, Player.position);
 		//Debug.Log((transform.position - Player.position).sqrMagnitude);
 		//return (transform.position - Player.position).sqrMagnitude >= Range;
-		return (transform.position - Player.position).sqrMagnitude <= Range * Range;
+		return (transform.position - Player.position).sqrMagnitude >= Range;
 	}
 }

@@ -19,7 +19,7 @@ public class PlayerAnim : Character
     }
     private void OnDestroy()
     {
-        EventManager.StopListening("ITEMSTOPANIM", ItemUseAnim);
+        EventManager.StopListening("ITEMUSEANIM", ItemUseAnim);
     }
 
     // 일단 HoldItem 하나로 대체

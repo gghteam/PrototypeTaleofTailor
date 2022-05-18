@@ -58,13 +58,19 @@ public class Jump_Attack : FsmState
             currentTime += Time.deltaTime;
             transform.LookAt(targetPos.transform);
 
-            if (currentTime <= time)
+            if (currentTime <= time * 0.6f)
             {
                 transform.position = MathParabola.Parabola(temp, targetPos.transform.position - dir * 2.5f, 3.5f, currentTime / time);
+                target = targetPos.transform.position;
+                dir = (target - transform.position).normalized;
+            }
+            else if(currentTime <= time)
+            {
+                transform.position = MathParabola.Parabola(temp, target - dir * 2.5f, 3.5f, currentTime / time);
             }
             else
             {
-                Vector3 pos = targetPos.transform.position - dir * 2.5f;
+                Vector3 pos = target - dir * 2.5f;
                 //pos.y = 0;
                 transform.position = pos;
                 isPlay = false;
@@ -85,7 +91,6 @@ public class Jump_Attack : FsmState
         Debug.Log("¤»¤»¤»");
         temp = transform.position;
         target = targetPos.transform.position;
-        Debug.Log(target);
         dir = (target - transform.position).normalized;
 
         currentTime = 0;
@@ -116,6 +121,7 @@ public class Jump_Attack : FsmState
 
     public void MyCollisions()
     {
+        Debug.Log("MyCOllision");
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward * distance, cubeScale / 2, Quaternion.identity, layer);
 

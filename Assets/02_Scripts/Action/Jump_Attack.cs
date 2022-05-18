@@ -26,6 +26,9 @@ public class Jump_Attack : FsmState
     [SerializeField] CrackControll _CrackPrefab;
     Vector3 direction;
 
+    public LayerMask layer;
+    public float distance;
+    public Vector3 cubeScale;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -99,7 +102,7 @@ public class Jump_Attack : FsmState
         Debug.Log("떠나라!");
     }
 
-    private void AnimationCallback_SlamEffect()
+    public void AnimationCallback_SlamEffect()
     {
         direction = transform.forward;
         Debug.Log("접근중");
@@ -108,5 +111,25 @@ public class Jump_Attack : FsmState
         CrackControll crackControll = Instantiate(_CrackPrefab, pos, Quaternion.identity);
         crackControll.transform.forward = direction;
         crackControll.Open(15);
+        MyCollisions();
+    }
+
+    public void MyCollisions()
+    {
+
+        Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward * distance, cubeScale / 2, Quaternion.identity, layer);
+
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            Debug.Log("Hit : " + hitColliders[i].name);
+            i++;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + transform.forward * distance, cubeScale);
     }
 }

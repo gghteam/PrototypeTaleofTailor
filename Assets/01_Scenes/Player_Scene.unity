@@ -263,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105864e087378ce42a5795a38add445a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VFXaudioSource: {fileID: 2146600}
 --- !u!1 &15761458
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,6 +7450,49 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6ff2f430e9b9e5f4c90a1e8530ae4dd0, type: 3}
+--- !u!1 &499723356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499723358}
+  - component: {fileID: 499723357}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499723357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499723356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29df7c78adee6ae41863b857cc4df905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &499723358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499723356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.923274, y: 2.097291, z: 21.439274}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505833866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 8edb468459d3b524893b59beb300bff0, type: 3}
@@ -12113,6 +12155,7 @@ MonoBehaviour:
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   damageImage: {fileID: 432502736}
   flashSpeed: 5
+  killed: {fileID: 289970365}
   bloodParticle: {fileID: 1634568577}
 --- !u!4 &769877126
 Transform:

@@ -101,7 +101,6 @@ public class HP : MonoBehaviour
         if (isDead) return;
         if (eventParam.stringParam == "PLAYER")
         {
-
             playerHP -= eventParam.intParam;
             Invoke("SliderHit", 0.5f);
             damaged = true;
@@ -109,8 +108,8 @@ public class HP : MonoBehaviour
         }
         else if (eventParam.stringParam == "BOSS")
         {
-                Debug.Log("º¸½º ¾ÆÇÄ");
             bossHP -= eventParam.intParam;
+            Debug.Log(bossHP);
             if (bossHP <= 0)
             {
                 // º¸½º Á×À½
@@ -196,7 +195,7 @@ public class HP : MonoBehaviour
 
         //ÀüºÎ ²ô±â
         for (int i = 0; i < maxDanchuCount/2; i++)
-            clothesButtonImage[i].gameObject.SetActive(false);  
+            clothesButtonImage[i].gameObject.SetActive(false);
         //ÀÎµ¦½º±îÁö¸¸ Å°±â
         for (int i = 0; i < cIndex + 1; i++)
             clothesButtonImage[i].gameObject.SetActive(true);

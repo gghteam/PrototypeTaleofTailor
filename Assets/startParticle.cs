@@ -13,7 +13,7 @@ public class startParticle : MonoBehaviour
 
 	private void Start()
 	{
-		EventManager.StartListening("DAMAGE", Particle);
+		EventManager.StartListening("AttackParticle", Particle);
 		particle.Stop();
 	}
 

@@ -101,7 +101,6 @@ public class HP : MonoBehaviour
         if (isDead) return;
         if (eventParam.stringParam == "PLAYER")
         {
-
             playerHP -= eventParam.intParam;
             Invoke("SliderHit", 0.5f);
             damaged = true;
@@ -109,8 +108,8 @@ public class HP : MonoBehaviour
         }
         else if (eventParam.stringParam == "BOSS")
         {
-                Debug.Log("º¸½º ¾ÆÇÄ");
             bossHP -= eventParam.intParam;
+            Debug.Log(bossHP);
             if (bossHP <= 0)
             {
                 // º¸½º Á×À½

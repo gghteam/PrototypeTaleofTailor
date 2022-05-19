@@ -12109,6 +12109,7 @@ MonoBehaviour:
   - {fileID: 1443267465}
   - {fileID: 1662370865}
   - {fileID: 1273172425}
+  textObject: {fileID: 55814442}
   halfButtonImage: {fileID: 69730397}
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   damageImage: {fileID: 432502736}

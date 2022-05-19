@@ -9,7 +9,7 @@ public class PlayerAnim : Character
     EventParam eventParam = new EventParam();
     private bool isItem = false;
     private readonly int hashItem = Animator.StringToHash("IsItem");
-    private readonly int hashItemIndex = Animator.StringToHash("ItemAnim");
+    private readonly int hashItemIndex = Animator.StringToHash("ItemIndex");
 
     private void Awake()
     {
@@ -30,12 +30,11 @@ public class PlayerAnim : Character
         EventManager.TriggerEvent("ISMOVE", eventParam);
     }
 
-    // 일단 HoldItem 하나로 대체
     void ItemUseAnim(EventParam eventParam)
     {
         isItem = true;
         IsUsingItem();
-        ani.SetInteger(hashItemIndex, (int)eventParam.itemParam);
+        ani.SetFloat(hashItemIndex, (float)eventParam.itemParam);
         ani.SetBool(hashItem, isItem);
     }
 

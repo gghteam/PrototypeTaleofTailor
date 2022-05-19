@@ -119,6 +119,7 @@ public class PlayerAttack : Character
     void PlusAttackPower(EventParam ep)
     {
         playerDamage += ep.intParam;
+        Debug.Log($"°ø°Ý·Â : { playerDamage}");
     }
     bool StartAnimationDone(string animationname, float exittime)
     {

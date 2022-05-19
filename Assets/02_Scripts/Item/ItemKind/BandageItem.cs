@@ -41,7 +41,7 @@ public class BandageItem : ItemManager
         }
         eventParam.itemParam = Item.BANDAGE;
         eventParam.intParam = bandageCount;
-        //SteminaManager.Instance.PlusStemina(plusStemina);
+        SteminaManager.Instance.PlusStemina(plusStemina);
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
         BandageUseAnim();
     }

@@ -195,7 +195,7 @@ public class HP : MonoBehaviour
 
         //전부 끄기
         for (int i = 0; i < maxDanchuCount/2; i++)
-            clothesButtonImage[i].gameObject.SetActive(false);  
+            clothesButtonImage[i].gameObject.SetActive(false);
         //인덱스까지만 키기
         for (int i = 0; i < cIndex + 1; i++)
             clothesButtonImage[i].gameObject.SetActive(true);

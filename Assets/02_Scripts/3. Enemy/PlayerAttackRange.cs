@@ -10,6 +10,6 @@ public class PlayerAttackRange : FsmCondition
 
 	public override bool IsSatisfied(FsmState curr, FsmState next)
 	{
-		return (transform.position - Player.position).sqrMagnitude >= Range;
+		return Vector3.Distance(Player.position, transform.position) > Range;
 	}
 }

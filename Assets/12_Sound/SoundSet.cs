@@ -7,10 +7,6 @@ public class SoundSet : MonoBehaviour
     [SerializeField]
     private AudioSource BGMaudioSource;
 
-	private void Start()
-	{
-        EventManager.StartListening("Start", StartBM);
-	}
 	private void Update()
     {
         BGMaudioSource.volume = UIManager.Instance.GetBgmVolume();
@@ -18,11 +14,6 @@ public class SoundSet : MonoBehaviour
 
     public void SrartBGM()
     {
-        BGMaudioSource.Play();
-    }
-
-    public void StartBM(EventParam eventParam)
-	{
         BGMaudioSource.Play();
     }
 }

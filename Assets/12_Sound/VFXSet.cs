@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class VFXSet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private AudioSource VFXaudioSource;
+
+    private void Start()
     {
-        
+        EventManager.StartListening("Start", StartBM);
+    }
+    private void Update()
+    {
+        VFXaudioSource.volume = UIManager.Instance.GetSfxVolume();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SrartBGM()
     {
-        
+        VFXaudioSource.Play();
+    }
+
+    public void StartBM(EventParam eventParam)
+    {
+        VFXaudioSource.Play();
     }
 }

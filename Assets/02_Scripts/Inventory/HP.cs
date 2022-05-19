@@ -48,6 +48,8 @@ public class HP : MonoBehaviour
     private Image damageImage;
     [SerializeField]
     private float flashSpeed = 5f;
+    [SerializeField]
+    private Killed killed;
 
     bool damaged = false;
     bool isDead = false;
@@ -113,7 +115,8 @@ public class HP : MonoBehaviour
             if (bossHP <= 0)
             {
                 // º¸½º Á×À½
-                Debug.LogError("º¸½º Á×À½");
+                Debug.Log("º¸½º Á×À½");
+                killed.Dead = true;
                 bossHpSlider.gameObject.SetActive(false);
             }
         }

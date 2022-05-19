@@ -260,10 +260,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2146599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2fb833f86d64664e8a733de732bcde4, type: 3}
+  m_Script: {fileID: 11500000, guid: 105864e087378ce42a5795a38add445a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMaudioSource: {fileID: 2146600}
+  VFXaudioSource: {fileID: 2146600}
 --- !u!1 &15761458
 GameObject:
   m_ObjectHideFlags: 0
@@ -4932,6 +4932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 289970355}
   renderer: {fileID: 307366059}
+  sound: {fileID: 450655062}
 --- !u!114 &289970364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5727,7 +5728,7 @@ MonoBehaviour:
   attackObject: {fileID: 64462296}
   attackParticle: {fileID: 630729208}
   attackState: 0
-  vfXSet: {fileID: 2146602}
+  vfXSet: {fileID: 0}
 --- !u!114 &359546426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12107,6 +12108,7 @@ MonoBehaviour:
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   damageImage: {fileID: 432502736}
   flashSpeed: 5
+  killed: {fileID: 289970365}
 --- !u!4 &769877126
 Transform:
   m_ObjectHideFlags: 0

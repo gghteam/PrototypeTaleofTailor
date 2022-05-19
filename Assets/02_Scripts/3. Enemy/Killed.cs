@@ -12,8 +12,16 @@ public class Killed : FsmCondition
 		set { dead = value; }
 	}
 
-	public override bool IsSatisfied(FsmState curr, FsmState next)
+    private void Update()
+    {
+        if(dead)
+        {
+			Debug.Log("dead == true");
+        }
+    }
+
+    public override bool IsSatisfied(FsmState curr, FsmState next)
 	{
-		return false && !(curr is EnemyDying);
+		return dead && !(curr is EnemyDying);
 	}
 }

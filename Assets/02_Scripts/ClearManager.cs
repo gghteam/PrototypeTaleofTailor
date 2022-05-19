@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ClearManager : MonoBehaviour
 {
+
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void LoadGame()
     {
         SceneManager.LoadScene("Start");

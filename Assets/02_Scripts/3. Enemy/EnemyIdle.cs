@@ -36,9 +36,11 @@ public class EnemyIdle : FsmState
 
         if(isFollow() == true)
         {
+            if (UIManager.Instance.IsSound) return;
             canvas.SetActive(true);
             soundSet.SrartBGM();
             fsmCore.ChangeState(chaseState);
+            UIManager.Instance.IsSound = true;
         }
     }
 

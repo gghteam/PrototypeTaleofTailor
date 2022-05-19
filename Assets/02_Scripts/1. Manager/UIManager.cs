@@ -13,6 +13,18 @@ public class UIManager : MonoBehaviour
     public bool isSetting = false;
     public Image steminaBar;
     public GameObject bar;
+    private bool isSound;
+    public bool IsSound
+    {
+        get
+        {
+            return isSound;
+        }
+        set
+        {
+            isSound = value;
+        }
+    }
 
     private static UIManager instance = null;
 

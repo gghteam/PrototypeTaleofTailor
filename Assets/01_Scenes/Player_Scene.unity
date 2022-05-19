@@ -12113,7 +12113,7 @@ MonoBehaviour:
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   damageImage: {fileID: 432502736}
   flashSpeed: 5
-  bloodParticle: {fileID: 1634568577}
+  killed: {fileID: 289970365}
 --- !u!4 &769877126
 Transform:
   m_ObjectHideFlags: 0

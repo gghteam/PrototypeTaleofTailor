@@ -879,7 +879,7 @@ BlendTree:
   m_Name: ItemAnim
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 9c6aa939056d90e4cadb254ecfff66cc, type: 2}
+    m_Motion: {fileID: 7400000, guid: d45b5054d01cd7a4c985ad757363579d, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -887,7 +887,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: a46b020be569e894b9575cb9d450fa1a, type: 2}
+    m_Motion: {fileID: 7400000, guid: 9221e0b4319e757418fcc0daa60c595b, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -895,7 +895,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 4776c8eae98b4f44ab8566367a37b838, type: 2}
+    m_Motion: {fileID: 7400000, guid: f45f68c76f0d8bf47a40bcd64ab3ec11, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

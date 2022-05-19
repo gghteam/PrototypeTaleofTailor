@@ -29,12 +29,14 @@ public class PlayerMovement : Character
 	private float DashSpeed = 1;
 	private bool isFirst = false;
 	//private Vector3 dashDirection;
+	private bool isMove = true;
 
 	private void Start()
 	{
 		//Player 움직임을 위해 들음
 		EventManager.StartListening("PLAYER_MOVEMENT", SetMovement);
 		EventManager.StartListening("ISDASH", IsDash);
+		EventManager.StartListening("ISMOVE", IsMove);
 		//계속 호출 하는 것을 방지(최적화)
 		cameraObject = Camera.main.transform;
 		myTransform = transform;
@@ -42,7 +44,7 @@ public class PlayerMovement : Character
 
 	public void Update()
 	{
-
+		if (!isMove) return;
 		if (isDash)
 		{
 			if (isFirst)
@@ -173,5 +175,9 @@ public class PlayerMovement : Character
 		isDash = eventParam.boolParam;
 		DashSpeed = eventParam.intParam;
 		isFirst = eventParam.boolParam2;
+	}
+	private void IsMove(EventParam eventParam)
+	{
+		isMove = eventParam.boolParam;
 	}
 }

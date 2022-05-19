@@ -106,12 +106,10 @@ public class HP : MonoBehaviour
             Invoke("SliderHit", 0.5f);
             damaged = true;
 
-            if (playerHP <= 0) isDead = true;
-            else isDead = false;
-            if (isDead) Dead();
         }
         else if (eventParam.stringParam == "BOSS")
         {
+                Debug.Log("º¸½º ¾ÆÇÄ");
             bossHP -= eventParam.intParam;
             if (bossHP <= 0)
             {
@@ -138,7 +136,12 @@ public class HP : MonoBehaviour
             {
                 isDamage = false;
                 whiteSlider.fillAmount = playerHpSlider.fillAmount;
+                if (playerHpSlider.fillAmount <= 0) isDead = true;
+                else isDead = false;
+                if (isDead) Dead();
             }
+
+            
         }
 
     }

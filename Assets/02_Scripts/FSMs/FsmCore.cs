@@ -126,6 +126,7 @@ public class FsmCore : MonoBehaviour {
 				(chosenTransition == null || tr.Priority > chosenTransition.Priority) &&
 				(tr.Cond != null && (tr.Not ^ tr.Cond.IsSatisfied(current != null ? current.State : null, tr.Next))))
 
+				
 				//선택할 규칙을 변경
 				chosenTransition = tr;
 		}

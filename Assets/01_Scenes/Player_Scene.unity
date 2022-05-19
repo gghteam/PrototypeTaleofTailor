@@ -3257,7 +3257,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 164013213}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.37
   m_Height: 1.98
   m_Direction: 1
@@ -4994,7 +4994,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -5021,7 +5021,15 @@ MonoBehaviour:
     Not: 0
   States:
   - State: {fileID: 289970364}
-    Transitions: []
+    Transitions:
+    - Next: {fileID: 289970356}
+      Cond: {fileID: 289970366}
+      Priority: 10
+      Not: 1
+    - Next: {fileID: 289970360}
+      Cond: {fileID: 289970367}
+      Priority: 20
+      Not: 0
   - State: {fileID: 289970360}
     Transitions:
     - Next: {fileID: 289970359}
@@ -5031,15 +5039,15 @@ MonoBehaviour:
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
       Priority: 20
-      Not: 1
+      Not: 0
   - State: {fileID: 289970359}
     Transitions: []
   - State: {fileID: 289970356}
     Transitions:
     - Next: {fileID: 289970360}
       Cond: {fileID: 289970366}
-      Priority: 0
-      Not: 1
+      Priority: 10
+      Not: 0
   - State: {fileID: 289970363}
     Transitions: []
 --- !u!114 &289970363
@@ -5068,7 +5076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e68ce0813277914abfa364e0da41402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDistance: 10
+  contactDistance: 5
   target: {fileID: 359546423}
   canvas: {fileID: 1788759936}
   soundSet: {fileID: 450655064}
@@ -5096,7 +5104,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478fa5198cae594faae2acde16aaafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 10
+  Range: 3
+  Player: {fileID: 359546423}
+--- !u!114 &289970367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289970352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87552a7f6d9fd874d93a508ccebc731b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 20
   Player: {fileID: 359546423}
 --- !u!1 &291563345
 GameObject:
@@ -5968,8 +5990,6 @@ MonoBehaviour:
     randomness: 0
     vibrato: 0
   steminaRecoveringDelay: 3
-  plusSteminaValue: 2
-  minusSteminaValue: 1
 --- !u!114 &359546433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12161,8 +12181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b63f18de9f67a4cbd1c46e0146594f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
+  bgmSlider: {fileID: 655439123}
+  sfxSlider: {fileID: 339810036}
   isSetting: 0
   steminaBar: {fileID: 1936240300}
   bar: {fileID: 291563345}

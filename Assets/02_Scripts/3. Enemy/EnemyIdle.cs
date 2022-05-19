@@ -9,6 +9,9 @@ public class EnemyIdle : FsmState
 
     private FsmCore fsmCore;
     private Chase chaseState;
+    private Animator ani;
+
+    private readonly int isMove = Animator.StringToHash("IsMove");
 
     [SerializeField, Header("근접 거리")]
     float contactDistance;
@@ -26,14 +29,18 @@ public class EnemyIdle : FsmState
     {
         fsmCore = GetComponent<FsmCore>();
         chaseState = GetComponent<Chase>();
+        ani = GetComponent<Animator>();
     }
     public override void OnStateEnter()
     {
+        if (ani == null)
+            ani = GetComponent<Animator>();
+        ani.SetBool(isMove, false);
+        Debug.Log("IDLE 상태");
     }
 
     private void Update()
     {
-
         if(isFollow() == true)
         {
             canvas.SetActive(true);

@@ -30,10 +30,11 @@ public class Chase : FsmState
 
     void Update()
     {
-        agent.destination = lastKnownLoc = target.position;
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(walk))
+        if (animator.GetBool(isMove))
+        {
             ChangeStop(false);
+            agent.destination = lastKnownLoc = target.position;
+        }
         else
             ChangeStop(true);
 
@@ -58,11 +59,15 @@ public class Chase : FsmState
     public override void OnStateEnter()
     {
         animator.SetBool(isMove, true);
+        agent.destination = lastKnownLoc = target.position;
+        Debug.Log("Chase 진입");
     }
 
     public override void OnStateLeave()
     {
+        this.GetComponent<Chase>().enabled = false;
         agent.ResetPath();
+        Debug.Log("Chase 떠나기");
     }
 
     public Vector3 GetLastKnownPlayerLocation()

@@ -4,9 +4,16 @@ using System;
 
 public class EventManager : MonoBehaviour
 {
-    private static Dictionary<string, Action<EventParam>> eventDictionary = new Dictionary<string, Action<EventParam>>();
+	private static Dictionary<string, Action<EventParam>> eventDictionary = new Dictionary<string, Action<EventParam>>();
 
-    public static void StartListening(string eventName, Action<EventParam> listener)
+
+	private void Awake()
+	{
+        DontDestroyOnLoad(this.gameObject);
+	}
+
+
+	public static void StartListening(string eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -37,6 +44,7 @@ public class EventManager : MonoBehaviour
     public static void TriggerEvent(string eventName, EventParam eventParam)
     {
         Action<EventParam> thisEvent;
+
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(eventParam);

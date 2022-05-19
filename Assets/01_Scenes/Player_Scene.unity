@@ -10247,6 +10247,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+      propertyPath: m_TagString
+      value: BOSS
+      objectReference: {fileID: 0}
     - target: {fileID: 100082, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12240,8 +12244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b63f18de9f67a4cbd1c46e0146594f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
+  bgmSlider: {fileID: 655439123}
+  sfxSlider: {fileID: 339810036}
   isSetting: 0
   steminaBar: {fileID: 1936240300}
   bar: {fileID: 291563345}

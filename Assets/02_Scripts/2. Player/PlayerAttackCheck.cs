@@ -27,8 +27,8 @@ public class PlayerAttackCheck : MonoBehaviour
             eventParam.intParam = (int)playerAttack.PlayerDamage;
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
-            EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지
-        }
+			EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지
+		}
     }
 
     private void Re(EventParam eventParam)

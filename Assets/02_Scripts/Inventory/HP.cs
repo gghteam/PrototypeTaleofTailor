@@ -112,6 +112,7 @@ public class HP : MonoBehaviour
         }
         else if (eventParam.stringParam == "BOSS")
         {
+            EventManager.TriggerEvent("AttackParticle", eventParam);
             bossHP -= eventParam.intParam;
             Debug.Log(bossHP);
             if (bossHP <= 0)

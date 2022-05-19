@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerClothesButton : ItemManager
@@ -38,21 +36,18 @@ public class PlayerClothesButton : ItemManager
     // 아이템 사용
     protected override void UseItem()
     {
-        if (isUsing) return;
-        if (clothesButtonItemCount > 0) // 갯수가 0이 아니면 사용
+        if (clothesButtonItemCount > 0)
         {
             isUsing = true;
             clothesButtonItemCount--;
             ClothesButtonCount();
-            eventParam.itemParam = Item.CLOTHES_BUTTON;
-            ClothesUseAnim();
-            // 아이템이 이제 없다면 이미지 끄기
-            if (clothesButtonItemCount >= 0)
-            {
-                ItemZero();
-                EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
-            }
         }
+        if (clothesButtonItemCount <= 0)
+        {
+            ItemZero();
+        }
+        EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
+        ClothesUseAnim();
     }
     void ClothesUseAnim()
     {
@@ -67,11 +62,6 @@ public class PlayerClothesButton : ItemManager
         if (collision.collider.CompareTag("BOSS"))
         {
             enemyVector = collision.transform.position; // 적의 위치 받기
-        }
-        if (collision.collider.CompareTag("CLOTHESBUTTON")) // 떨어진 단추 주웠을 때
-        {
-            collision.gameObject.SetActive(false);  // 주운 단추 안보이게 하기
-            GetItem();
         }
     }
     void ClothesButtonCount()
@@ -117,6 +107,7 @@ public class PlayerClothesButton : ItemManager
     protected override void GetItem()
     {
         clothesButtonItemCount++;
+            Debug.Log(clothesButtonItemCount);
         ClothesButtonCount();
         ClothesButtonOnOff(true); // 단추 아이템 창 이미지 키기
     }
@@ -131,6 +122,7 @@ public class PlayerClothesButton : ItemManager
         if (other.CompareTag("CLOTHESBUTTON"))
         {
             other.gameObject.SetActive(false);
+            Debug.Log("as0");
             GetItem();
         }
     }

@@ -17,9 +17,9 @@ public class PlayerAttackCheck : MonoBehaviour
             isfirst = true;
             eventParam.intParam = (int)playerAttack.PlayerDamage;
 
-            eventParam.intParam = 200; // 원하는 정도의 데미지 받기
-            eventParam.stringParam = "PLAYER";
-            EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지 입
+            //eventParam.intParam = 200; // 원하는 정도의 데미지 받기
+            eventParam.stringParam = "BOSS";
+            EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지
         }
     }
 

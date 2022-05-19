@@ -12157,10 +12157,7 @@ MonoBehaviour:
   damageImage: {fileID: 432502736}
   flashSpeed: 5
   killed: {fileID: 289970365}
-<<<<<<< HEAD
-=======
   bloodParticle: {fileID: 1634568577}
->>>>>>> origin/kdh
 --- !u!4 &769877126
 Transform:
   m_ObjectHideFlags: 0

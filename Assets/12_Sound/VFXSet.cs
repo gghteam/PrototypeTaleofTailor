@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class VFXSet : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource VFXaudioSource;
+    private static AudioSource VFXaudioSource;
 
-    private void Start()
+
+	private void Awake()
+	{
+        VFXaudioSource = GetComponent<AudioSource>();
+	}
+	private void Start()
     {
         EventManager.StartListening("Start", StartBM);
     }

@@ -41,6 +41,8 @@ public class HP : MonoBehaviour
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
+    GameObject textObject;
+    [SerializeField]
     Image halfButtonImage;
     [SerializeField]
     private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -118,6 +120,7 @@ public class HP : MonoBehaviour
                 Debug.Log("º¸½º Á×À½");
                 killed.Dead = true;
                 bossHpSlider.gameObject.SetActive(false);
+                textObject.SetActive(false);
             }
         }
 

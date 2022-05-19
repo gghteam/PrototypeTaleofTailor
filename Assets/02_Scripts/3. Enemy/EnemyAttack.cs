@@ -15,7 +15,10 @@ public class EnemyAttack : FsmState
     [SerializeField]
     private EnemyDataSO enemyData = null;
 
-    private int attackLayer = 1 << 9;
+    [SerializeField]
+    private Collider[] colliders;
+
+    private int attackLayer = 1 << 10;
 
     private bool isAttack = false;
     private bool isPlayerDamage = false;
@@ -23,6 +26,7 @@ public class EnemyAttack : FsmState
 
     private float timer = 0f;
 
+    private Collider[] hitColls;
     private Collider hitColl;
     private Animator ani;
 
@@ -31,8 +35,9 @@ public class EnemyAttack : FsmState
 
     private readonly int parrying = Animator.StringToHash("parrying");
     private readonly int isMove = Animator.StringToHash("IsMove");
-    private readonly int isIn = Animator.StringToHash("isIn");
-    private readonly int attackTrigger = Animator.StringToHash("Attack");
+    //private readonly int isIn = Animator.StringToHash("isIn");
+    //private readonly int attackTrigger = Animator.StringToHash("Attack");
+    private readonly int attack = Animator.StringToHash("Attack");
 
     private readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
@@ -49,7 +54,13 @@ public class EnemyAttack : FsmState
 
     public override void OnStateEnter()
     {
-        //ani.SetBool(isMove, false);
+        this.GetComponent<EnemyIdle>().enabled = false;
+        this.GetComponent<Chase>().enabled = false;
+        isAttack = false;
+        ani.SetBool(isMove, false);
+        ani.SetBool(parrying, false);
+        ani.SetBool(attack, true);
+        //ani.SetTrigger(attackTrigger);
         StopAllCoroutines();
         //Reset();
         timer = enemyData.attackDelay;
@@ -60,30 +71,66 @@ public class EnemyAttack : FsmState
     {
         StopAllCoroutines();
         isPlay = false;
+        ani.SetBool(isMove, true);
+        ani.SetBool(attack, false);
+        this.GetComponent<EnemyAttack>().enabled = false;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), enemyData.attackRange);
     }
 
     void Update()
     {
         if (isPlay)
         {
+            if(hitColl != null)
+            {
+                //transform.Rotate(hitColl.transform.position);
+                transform.LookAt(hitColl.transform);
+            }
+            
+            hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
+            foreach(Collider coll in hitColls)
+            {
+                if (coll.CompareTag("Player"))
+                {
+                    hitColl = coll;
+                }
+            }
+            Debug.Log(hitColl);
+            //ani.SetBool(isIn, hitColl != null);
+            timer += Time.deltaTime;
+            //ani.SetBool(attack, isAttack);
             if (!ani.GetBool(parrying))
             {
-                hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer).FirstOrDefault();
                 //ani.SetFloat(attackCnt, attackCount);
-                ani.SetBool(isIn, hitColl != null);
                 //ani.SetBool(attack, isAttack);
 
-                if (!isAttack)
+                //if (!ani.GetBool(isIn))
+                //{
+                //    fsmCore.ChangeState(chaseState);
+                //}
+
+                if (timer >= enemyData.attackDelay)
                 {
-                    ani.SetTrigger(attackTrigger);
-                    //AttackChange(1);
-                    Attack();
+                    //if (!isAttack)
+                    //{
+                    //    //ani.SetTrigger(attackTrigger);
+                    //    //AttackChange(1);
+                    //    Attack();
+                    //}
+                    //Attack();
                 }
             }
         }
-        else
+
+        if (!isPlay)
         {
             fsmCore.ChangeState(chaseState);
+            this.GetComponent<EnemyAttack>().enabled = false;
         }
 
         /*
@@ -97,6 +144,31 @@ public class EnemyAttack : FsmState
             }
         }
         */
+    }
+
+    private void Damage()
+    {
+        if(hitColl != null)
+        {
+            if (hitColl.CompareTag("Player"))
+            {
+                PlayerParrying player = hitColl.GetComponent<PlayerParrying>();
+                bool isParrying = player.IsParrying;
+                if (isParrying)
+                {
+                    ParryingAction();
+                    player.SuccessParrying();
+                    ani.SetTrigger(parrying);
+                }
+                else
+                {
+                    eventParam.intParam = 30;
+                    eventParam.stringParam = "PLAYER";
+                    EventManager.TriggerEvent("DAMAGE", eventParam);
+                }
+                PlayerDamageChange(0);
+            }
+        }
     }
 
     /// <summary>
@@ -116,15 +188,23 @@ public class EnemyAttack : FsmState
         //AttackChange(1);
         // Debug.Log("ENEMY ATTACK");
 
-        if (!isAttack)
+        //if (!isAttack)
+        //{
+        //    AttackChange(1);
+        //    if (hitColl != null)
+        //    {
+        //        if (hitColl.CompareTag("Player"))
+        //        {
+        //            StartCoroutine(AttackCoroutine(hitColl.gameObject));
+        //        }
+        //    }
+        //}
+
+        if (hitColl != null)
         {
-            AttackChange(1);
-            if (hitColl != null)
+            if (hitColl.CompareTag("Player"))
             {
-                if (hitColl.CompareTag("Player"))
-                {
-                    StartCoroutine(AttackCoroutine(hitColl.gameObject));
-                }
+                StartCoroutine(AttackCoroutine(hitColl.gameObject));
             }
         }
         //Debug.Log("SPeed");
@@ -155,9 +235,9 @@ public class EnemyAttack : FsmState
                 {
                     player.FailedParrying();
                     ParryingChange(0);
-                    eventParam.intParam = 200;
-                    eventParam.stringParam = "PLAYER";
-                    EventManager.TriggerEvent("DAMAGE", eventParam);
+                    //eventParam.intParam = 200;
+                    //eventParam.stringParam = "PLAYER";
+                    //EventManager.TriggerEvent("DAMAGE", eventParam);
                     PlayerDamageChange(1);
                 }
             }
@@ -165,13 +245,14 @@ public class EnemyAttack : FsmState
             {
                 player.FailedParrying();
                 ParryingChange(0);
-                eventParam.intParam = 200;
-                eventParam.stringParam = "PLAYER";
-                EventManager.TriggerEvent("DAMAGE", eventParam);
+                //eventParam.intParam = 200;
+                //eventParam.stringParam = "PLAYER";
+                //EventManager.TriggerEvent("DAMAGE", eventParam);
                 PlayerDamageChange(1);
             }
         }
-        //fsmCore.ChangeState(chaseState);
+        isPlay = false;
+        fsmCore.ChangeState(chaseState);
     }
 
     /// <summary>
@@ -206,5 +287,28 @@ public class EnemyAttack : FsmState
         PlayerDamageChange(0);
         AttackChange(0);
         ParryingChange(0);
+    }
+
+    private void ColliderEnabledChange(int value)
+    {
+        foreach(Collider coll in colliders)
+        {
+            coll.enabled = value != 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("플레이어한테 닿음");
+            if (!isPlayerDamage)
+            {
+                Debug.Log("데미지 정상 처리");
+                PlayerDamageChange(1);
+                Damage();
+            }
+        }
     }
 }

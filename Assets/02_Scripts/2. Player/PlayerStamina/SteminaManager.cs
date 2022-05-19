@@ -38,10 +38,10 @@ public class SteminaManager : MonoBehaviour
     [SerializeField, Header("스테미나 재생 속도 조절 값, 높을 수록 느려짐")]
     private float steminaRecoveringDelay = 3f;
 
-    [SerializeField, Header("스테미나 더하는 값")]
-    private float plusSteminaValue = 2f;
-    [SerializeField, Header("스테미나 빼는 값")]
-    private float minusSteminaValue = 1f;
+    //[SerializeField, Header("스테미나 더하는 값")]
+    //private float plusSteminaValue = 2f;
+    //[SerializeField, Header("스테미나 빼는 값")]
+    //private float minusSteminaValue = 1f;
 
     // 있을 필요가 있나?
     private bool recovering = true;
@@ -86,6 +86,7 @@ public class SteminaManager : MonoBehaviour
     public void MinusStemina(float value)
     {
         Stemina -= value;
+        Debug.Log($"stemina {stemina}");
         StartCoroutine(SteminaRecoveringDelayCoroutine());
     }
 

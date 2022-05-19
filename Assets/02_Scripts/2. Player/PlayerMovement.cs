@@ -84,10 +84,15 @@ public class PlayerMovement : Character
 				moveDirection.y = 0;
 				if (Input.GetKey(KeyCode.LeftShift))
 				{
-					//방향에 Run_Speed를 곱함
-					moveDirection *= runMovementSpeed;
-					ani.SetBool("IsMove", false);
-					ani.SetBool("IsRun", true);
+                    if (SteminaManager.Instance.CheckStemina(0.01f))
+                    {
+						SteminaManager.Instance.MinusStemina(0.01f);
+						//방향에 Run_Speed를 곱함
+						moveDirection *= runMovementSpeed;
+						ani.SetBool("IsMove", false);
+						ani.SetBool("IsRun", true);
+					}
+					
 				}
 				else if (isDash)
 				{

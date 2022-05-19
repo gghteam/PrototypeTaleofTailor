@@ -39,6 +39,7 @@ public class Jump_Attack : FsmState
 
     private readonly int isMove = Animator.StringToHash("IsMove");
     private readonly int jumpAttack = Animator.StringToHash("JumpAttack");
+    private readonly int attack = Animator.StringToHash("Attack");
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -109,6 +110,7 @@ public class Jump_Attack : FsmState
         isStart = true;
         isPlay = true;
         animator.SetBool(isMove, false);
+        animator.SetBool(attack, false);
         animator.SetTrigger(jumpAttack);
     }
 

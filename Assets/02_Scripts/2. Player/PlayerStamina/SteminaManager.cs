@@ -86,6 +86,7 @@ public class SteminaManager : MonoBehaviour
     public void MinusStemina(float value)
     {
         Stemina -= value;
+        Debug.Log($"stemina {stemina}");
         StartCoroutine(SteminaRecoveringDelayCoroutine());
     }
 

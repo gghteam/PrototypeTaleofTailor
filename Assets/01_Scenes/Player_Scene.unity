@@ -2612,6 +2612,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125136710}
   m_CullTransparentMesh: 1
+--- !u!1 &148226532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100066, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+  m_PrefabInstance: {fileID: 707132539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &148226534
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148226532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &150498103
 GameObject:
   m_ObjectHideFlags: 0
@@ -4790,6 +4808,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1320243fc61d50948997fcc6dc4bd54a, type: 2}
+  colliders:
+  - {fileID: 1010627592}
+  - {fileID: 148226534}
 --- !u!114 &289970357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4980,7 +5001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478fa5198cae594faae2acde16aaafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  Range: 2.5
   Player: {fileID: 359546423}
 --- !u!4 &289970367 stripped
 Transform:
@@ -5701,7 +5722,7 @@ GameObject:
   - component: {fileID: 359546424}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10223,6 +10244,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_Name
       value: TeddyBear (5)
@@ -12157,8 +12186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15448eab865cd134cbf200c7feebf6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayerHP: 3000
-  playerHP: 3000
+  maxPlayerHP: 300
+  playerHP: 300
   maxBossHP: 3000
   bossHP: 3000
   sliderSpeed: 3
@@ -12234,7 +12263,7 @@ MonoBehaviour:
   bgmSlider: {fileID: 655439123}
   sfxSlider: {fileID: 339810036}
   isSetting: 0
-  steminaBar: {fileID: 1936240300}
+  steminaBar: {fileID: 1863115810}
   bar: {fileID: 291563345}
 --- !u!1 &772270187
 GameObject:
@@ -14522,6 +14551,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 240a7100b3ba59b4d81ed0dfe4c16c0c, type: 3}
   m_PrefabInstance: {fileID: 989486777}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1010627590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100032, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+  m_PrefabInstance: {fileID: 707132539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1010627592
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010627590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1042971540
 GameObject:
   m_ObjectHideFlags: 0

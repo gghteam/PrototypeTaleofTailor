@@ -48,6 +48,8 @@ public class HP : MonoBehaviour
     private Image damageImage;
     [SerializeField]
     private float flashSpeed = 5f;
+    [SerializeField]
+    private ParticleSystem bloodParticle;
 
     bool damaged = false;
     bool isDead = false;
@@ -60,6 +62,8 @@ public class HP : MonoBehaviour
     {
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StartListening("DAMAGE", DamageSlider);
+        EventManager.StartListening("DAMAGE", BloodEffect);
+        bloodParticle.Pause();
     }
     private void Start()
     {
@@ -217,6 +221,13 @@ public class HP : MonoBehaviour
         playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxPlayerHP; // HP도 초기화
         isDead = false;
+    }
+
+
+    void BloodEffect(EventParam eventParam)
+	{
+        Debug.Log("?");
+        bloodParticle.Play();
     }
 
 }

@@ -29,11 +29,16 @@ public class PlayerDash2 : Character
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && !eventParam.boolParam && !ani.GetBool("IsAttack"))
 		{
-			eventParam.intParam = (int)smoothTime;
-			eventParam.boolParam = true;
-			eventParam.boolParam2 = true;
-			EventManager.TriggerEvent("ISDASH", eventParam);
-			StartCoroutine(StartDash());
+			if (SteminaManager.Instance.CheckStemina(1))
+			{
+				SteminaManager.Instance.MinusStemina(1);
+				eventParam.intParam = (int)smoothTime;
+				eventParam.boolParam = true;
+				eventParam.boolParam2 = true;
+				EventManager.TriggerEvent("ISDASH", eventParam);
+				StartCoroutine(StartDash());
+			}
+
 		}
 	}
 

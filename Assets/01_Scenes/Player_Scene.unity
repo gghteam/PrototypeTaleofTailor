@@ -5235,7 +5235,7 @@ MonoBehaviour:
     Transitions:
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
-      Priority: 0
+      Priority: 20
       Not: 1
   - State: {fileID: 289970356}
     Transitions:

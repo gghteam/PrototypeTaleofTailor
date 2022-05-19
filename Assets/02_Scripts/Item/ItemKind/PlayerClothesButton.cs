@@ -18,6 +18,7 @@ public class PlayerClothesButton : ItemManager
     private void Start()
     {
         // 죽었을 때 이벤트 받기 ( 단추 떨구기 )
+        clothesButtonItemCount = 0;
         EventManager.StartListening("DEAD", DropClothesButton);
     }
     private void OnDestroy()
@@ -41,13 +42,13 @@ public class PlayerClothesButton : ItemManager
             isUsing = true;
             clothesButtonItemCount--;
             ClothesButtonCount();
+        EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
+        ClothesUseAnim();
         }
         if (clothesButtonItemCount <= 0)
         {
             ItemZero();
         }
-        EventManager.TriggerEvent("PLUSCLOTHESBUTTON", eventParam); // 단추 회복
-        ClothesUseAnim();
     }
     void ClothesUseAnim()
     {
@@ -107,7 +108,6 @@ public class PlayerClothesButton : ItemManager
     protected override void GetItem()
     {
         clothesButtonItemCount++;
-            Debug.Log(clothesButtonItemCount);
         ClothesButtonCount();
         ClothesButtonOnOff(true); // 단추 아이템 창 이미지 키기
     }
@@ -122,7 +122,6 @@ public class PlayerClothesButton : ItemManager
         if (other.CompareTag("CLOTHESBUTTON"))
         {
             other.gameObject.SetActive(false);
-            Debug.Log("as0");
             GetItem();
         }
     }

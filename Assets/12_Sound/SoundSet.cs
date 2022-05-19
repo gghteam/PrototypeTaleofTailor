@@ -7,7 +7,7 @@ public class SoundSet : MonoBehaviour
     [SerializeField]
     private AudioSource BGMaudioSource;
 
-    private void Update()
+	private void Update()
     {
         BGMaudioSource.volume = UIManager.Instance.GetBgmVolume();
     }

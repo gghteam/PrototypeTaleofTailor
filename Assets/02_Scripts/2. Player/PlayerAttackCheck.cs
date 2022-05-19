@@ -10,7 +10,13 @@ public class PlayerAttackCheck : MonoBehaviour
     public bool isfirst = false;
 
     EventParam eventParam;
-    private void OnTriggerStay(Collider other)
+
+	private void Start()
+	{
+        EventManager.StartListening("Attack", Re);
+	}
+
+	private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("BOSS") && playerAttack.IsAttacking && !isfirst)
         {
@@ -18,16 +24,15 @@ public class PlayerAttackCheck : MonoBehaviour
             eventParam.intParam = (int)playerAttack.PlayerDamage;
 
             //eventParam.intParam = 200; // 원하는 정도의 데미지 받기
+            eventParam.intParam = (int)playerAttack.PlayerDamage;
+            Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
             EventManager.TriggerEvent("DAMAGE", eventParam); // 데미지
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("BOSS"))
-        {
-            isfirst = false;
-        }
-    }
+    private void Re(EventParam eventParam)
+	{
+        isfirst = false;
+	}
 }

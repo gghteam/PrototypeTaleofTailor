@@ -42,7 +42,16 @@ public class HP : MonoBehaviour
     Image[] clothesButtonImage;
     [SerializeField]
     Image halfButtonImage;
+    [SerializeField]
+    private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    [SerializeField]
+    private Image damageImage;
+    [SerializeField]
+    private float flashSpeed = 5f;
+    [SerializeField]
+    private Killed killed;
 
+    bool damaged = false;
     bool isDead = false;
     bool isHalf = false;
     bool isDamage = false;
@@ -70,6 +79,16 @@ public class HP : MonoBehaviour
     {
         // 데미지 입히기
         UpdateSlider();
+
+        if (damaged)
+        {
+            damageImage.color = flashColour;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        damaged = false;
     }
 
     // 단추 리셋
@@ -84,19 +103,20 @@ public class HP : MonoBehaviour
         if (isDead) return;
         if (eventParam.stringParam == "PLAYER")
         {
-
             playerHP -= eventParam.intParam;
             Invoke("SliderHit", 0.5f);
+            damaged = true;
 
         }
         else if (eventParam.stringParam == "BOSS")
         {
-                Debug.Log("보스 아픔");
             bossHP -= eventParam.intParam;
+            Debug.Log(bossHP);
             if (bossHP <= 0)
             {
                 // 보스 죽음
-                Debug.LogError("보스 죽음");
+                Debug.Log("보스 죽음");
+                killed.Dead = true;
                 bossHpSlider.gameObject.SetActive(false);
             }
         }
@@ -178,7 +198,7 @@ public class HP : MonoBehaviour
 
         //전부 끄기
         for (int i = 0; i < maxDanchuCount/2; i++)
-            clothesButtonImage[i].gameObject.SetActive(false);  
+            clothesButtonImage[i].gameObject.SetActive(false);
         //인덱스까지만 키기
         for (int i = 0; i < cIndex + 1; i++)
             clothesButtonImage[i].gameObject.SetActive(true);

@@ -18,16 +18,25 @@ public class Inventory : MonoBehaviour
     [Header("인게임 아이템 표시 UI")]
     [SerializeField]
     Image[] itemImage;    // 아이템 창 아이템이미지
-    [SerializeField]
-    Text[] itemText;    // 아이템 갯수 표시 TEXT
+    // 아이템 갯수 표시 TEXT
 
+    [SerializeField]
+    Text[] itemText;
+    [SerializeField]
+    GameObject[] itemTextB;
     //Image beforeItem;
+
+    public NewBehaviourScript textData;
 
 
     EventParam eventParam = new EventParam();
 
     private void Start()
     {
+        Instantiate(itemText[0], itemTextB[0].transform);
+        Instantiate(itemText[1], itemTextB[1].transform);
+        Instantiate(itemText[2], itemTextB[2].transform);
+
         EventManager.StartListening("ITEMHAVE", ItemHave);      // 아이템 가졌는지 판단 후 아이템 인벤 끄고 키기
         EventManager.StartListening("ITEMTEXT", ItemTextIndex);    // 아이템 갯수 텍스트 표시
     }

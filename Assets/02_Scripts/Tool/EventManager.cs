@@ -2,18 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EventManager : MonoBehaviour
+public class EventManager: MonoBehaviour
 {
 	private static Dictionary<string, Action<EventParam>> eventDictionary = new Dictionary<string, Action<EventParam>>();
-
-
-	private void Awake()
-	{
+    public void Awake()
+    {
         DontDestroyOnLoad(this.gameObject);
-	}
+    }
 
-
-	public static void StartListening(string eventName, Action<EventParam> listener)
+    public static void StartListening(string eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))

@@ -53,9 +53,6 @@ public class HP : MonoBehaviour
     [SerializeField]
     private Killed killed;
 
-    [SerializeField]
-    private ParticleSystem bloodParticle;
-
     bool damaged = false;
     bool isDead = false;
     bool isHalf = false;
@@ -67,11 +64,9 @@ public class HP : MonoBehaviour
     {
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StartListening("DAMAGE", DamageSlider);
-        EventManager.StartListening("DAMAGE", BloodParticle);
     }
     private void Start()
     {
-        bloodParticle.Pause();
         ResetClothesButton();
         //playerHpSlider.value = whiteSlider.value = playerHP / maxPlayerHP;
         playerHpSlider.fillAmount = whiteSlider.fillAmount = playerHP / maxPlayerHP;
@@ -228,12 +223,6 @@ public class HP : MonoBehaviour
         playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //서서히 참
         playerHP = maxPlayerHP; // HP도 초기화
         isDead = false;
-    }
-
-
-    void BloodParticle(EventParam eventParam)
-	{
-        bloodParticle.Play();
     }
 
 }

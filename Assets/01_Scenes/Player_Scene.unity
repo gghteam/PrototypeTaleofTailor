@@ -2943,7 +2943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -719351122082108921, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_Layer
@@ -5771,7 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b84286d6fbe92498101ac0a43f00b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 5000
+  playerDamage: 70
   attackObject: {fileID: 64462296}
   attackParticle: {fileID: 630729208}
   attackState: 0
@@ -5904,7 +5904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parriyngStemina: 1
-  parringSuccessStemina: 2
+  parringSuccessStemina: 1
   parryingDelay: 1.5
   viewAngle: 60
 --- !u!114 &359546434

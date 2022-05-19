@@ -26,6 +26,7 @@ public class EnemyAttack : FsmState
 
     private float timer = 0f;
 
+    private Collider[] hitColls;
     private Collider hitColl;
     private Animator ani;
 
@@ -85,7 +86,20 @@ public class EnemyAttack : FsmState
     {
         if (isPlay)
         {
-            hitColl = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer).FirstOrDefault();
+            if(hitColl != null)
+            {
+                //transform.Rotate(hitColl.transform.position);
+                transform.LookAt(hitColl.transform);
+            }
+            
+            hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
+            foreach(Collider coll in hitColls)
+            {
+                if (coll.CompareTag("Player"))
+                {
+                    hitColl = coll;
+                }
+            }
             Debug.Log(hitColl);
             //ani.SetBool(isIn, hitColl != null);
             timer += Time.deltaTime;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Jump_Attack : FsmState
 {
@@ -35,6 +36,9 @@ public class Jump_Attack : FsmState
 
     [SerializeField]
     private Transform camera;
+
+    private readonly int isMove = Animator.StringToHash("IsMove");
+    private readonly int jumpAttack = Animator.StringToHash("JumpAttack");
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -71,26 +75,27 @@ public class Jump_Attack : FsmState
                 target = targetPos.transform.position;
                 dir = (target - transform.position).normalized;
             }
-            else if(currentTime <= time)
+            else if (currentTime <= time)
             {
                 transform.position = MathParabola.Parabola(temp, target - dir * 2.5f, 3.5f, currentTime / time);
             }
             else
             {
                 Vector3 pos = target - dir * 2.5f;
-                //pos.y = 0;
-                transform.position = pos;
+                pos.y = 0;
+                transform.position = pos; // 여기 버구 추정
                 isPlay = false;
             }
         }
 
-        if(!isPlay)
+        if (!isPlay)
         {
             Debug.Log("머워우머ㅓㅁ");
             fsmCore.ChangeState(chaseState);
-            isPlay = true;
+            this.GetComponent<Jump_Attack>().enabled = false;
+            //isPlay = true;
         }
-        
+
     }
 
     public override void OnStateEnter()
@@ -103,14 +108,15 @@ public class Jump_Attack : FsmState
         currentTime = 0;
         isStart = true;
         isPlay = true;
-        animator.SetBool("IsMove", false);
-        animator.SetTrigger("JumpAttack");
+        animator.SetBool(isMove, false);
+        animator.SetTrigger(jumpAttack);
     }
 
     public override void OnStateLeave()
     {
         isStart = false;
         isPlay = false;
+        animator.SetBool(isMove, true);
         Debug.Log("떠나라!");
     }
 
@@ -132,7 +138,7 @@ public class Jump_Attack : FsmState
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward * distance, cubeScale / 2, Quaternion.identity, layer);
 
-        if(hitColliders.Length > 0)
+        if (hitColliders.Length > 0)
         {
             Debug.Log("ㅋ깍힘");
             StartCoroutine(Shake(0.5f, 0.15f));

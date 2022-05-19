@@ -4896,7 +4896,11 @@ MonoBehaviour:
     Not: 0
   States:
   - State: {fileID: 289970364}
-    Transitions: []
+    Transitions:
+    - Next: {fileID: 289970356}
+      Cond: {fileID: 289970366}
+      Priority: 30
+      Not: 1
   - State: {fileID: 289970360}
     Transitions:
     - Next: {fileID: 289970359}
@@ -4908,13 +4912,17 @@ MonoBehaviour:
       Priority: 20
       Not: 1
   - State: {fileID: 289970359}
-    Transitions: []
-  - State: {fileID: 289970356}
     Transitions:
-    - Next: {fileID: 289970360}
+    - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
       Priority: 0
       Not: 1
+  - State: {fileID: 289970356}
+    Transitions:
+    - Next: {fileID: 289970359}
+      Cond: {fileID: 289970358}
+      Priority: 20
+      Not: 0
   - State: {fileID: 289970363}
     Transitions: []
 --- !u!114 &289970363
@@ -4972,13 +4980,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478fa5198cae594faae2acde16aaafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 10
+  Range: 5
   Player: {fileID: 359546423}
 --- !u!4 &289970367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
   m_PrefabInstance: {fileID: 707132539}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &289970368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289970352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87552a7f6d9fd874d93a508ccebc731b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 20
+  Player: {fileID: 289970367}
 --- !u!1 &291563345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5848,8 +5870,6 @@ MonoBehaviour:
     randomness: 0
     vibrato: 0
   steminaRecoveringDelay: 3
-  plusSteminaValue: 2
-  minusSteminaValue: 1
 --- !u!114 &359546433
 MonoBehaviour:
   m_ObjectHideFlags: 0

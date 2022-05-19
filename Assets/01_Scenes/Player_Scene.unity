@@ -5229,7 +5229,7 @@ MonoBehaviour:
       Not: 0
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
-      Priority: 20
+      Priority: 40
       Not: 1
   - State: {fileID: 289970359}
     Transitions:
@@ -5300,7 +5300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478fa5198cae594faae2acde16aaafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 2.5
+  Range: 3
   Player: {fileID: 359546423}
 --- !u!4 &289970367 stripped
 Transform:

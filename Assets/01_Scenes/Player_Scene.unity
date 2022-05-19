@@ -12113,11 +12113,7 @@ MonoBehaviour:
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   damageImage: {fileID: 432502736}
   flashSpeed: 5
-<<<<<<< HEAD
-  killed: {fileID: 289970365}
-=======
   bloodParticle: {fileID: 1634568577}
->>>>>>> origin/kdh
 --- !u!4 &769877126
 Transform:
   m_ObjectHideFlags: 0

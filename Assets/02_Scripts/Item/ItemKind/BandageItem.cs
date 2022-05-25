@@ -20,8 +20,6 @@ public class BandageItem : ItemManager
         }
     }
 
-
-
     protected override void GetItem()
     {
 
@@ -41,8 +39,8 @@ public class BandageItem : ItemManager
         }
         eventParam.itemParam = Item.BANDAGE;
         eventParam.intParam = bandageCount;
-        SteminaManager.Instance.PlusStemina(plusStemina);
         EventManager.TriggerEvent("ITEMTEXT", eventParam);
+        SteminaManager.Instance.PlusStemina(plusStemina);
         BandageUseAnim();
     }
 

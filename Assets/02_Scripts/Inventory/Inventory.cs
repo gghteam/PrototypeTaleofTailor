@@ -19,11 +19,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     Image[] itemImage;    // 아이템 창 아이템이미지
     // 아이템 갯수 표시 TEXT
-
     [SerializeField]
     Text[] itemText;
-    [SerializeField]
-    GameObject[] itemTextB;
     //Image beforeItem;
 
     public NewBehaviourScript textData;
@@ -33,17 +30,20 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(itemText[0], itemTextB[0].transform);
-        Instantiate(itemText[1], itemTextB[1].transform);
-        Instantiate(itemText[2], itemTextB[2].transform);
-
         EventManager.StartListening("ITEMHAVE", ItemHave);      // 아이템 가졌는지 판단 후 아이템 인벤 끄고 키기
         EventManager.StartListening("ITEMTEXT", ItemTextIndex);    // 아이템 갯수 텍스트 표시
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("ITEMHAVE", ItemHave);
+        EventManager.StopListening("ITEMTEXT", ItemTextIndex);
     }
 
     // 아이템 갯수 텍스트로 표시
     void ItemTextIndex(EventParam eventParam)
     {
+        Debug.Log((int)eventParam.itemParam);
         itemText[(int)eventParam.itemParam].text = string.Format($"{eventParam.intParam}");
     }
 

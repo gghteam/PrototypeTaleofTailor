@@ -121,8 +121,7 @@ public class EnemyAttack : FsmState
                 }
                 else
                 {
-                    //eventParam.intParam = 30;
-                    eventParam.intParam = 0;
+                    eventParam.intParam = 30;
                     eventParam.stringParam = "PLAYER";
                     EventManager.TriggerEvent("DAMAGE", eventParam);
                 }

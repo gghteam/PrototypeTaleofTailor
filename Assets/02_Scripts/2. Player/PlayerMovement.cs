@@ -24,12 +24,16 @@ public class PlayerMovement : Character
 	private float runMovementSpeed = 7;
 	[SerializeField]
 	private float rotationSpeed = 10;
+	[SerializeField]
+	private float jumpPower = 5;
 
 	private bool isDash = false;
 	private float DashSpeed = 1;
 	private bool isFirst = false;
 	//private Vector3 dashDirection;
 	private bool isMove = true;
+	private bool isJump = false;
+	private bool jDown = false;
 
 	private void Start()
 	{
@@ -45,6 +49,12 @@ public class PlayerMovement : Character
 	public void Update()
 	{
 		if (!isMove) return;
+
+
+		if (!isJump && jDown)
+		{
+		Jump();
+		}
 		if (isDash)
 		{
 			if (isFirst)
@@ -184,5 +194,23 @@ public class PlayerMovement : Character
 	private void IsMove(EventParam eventParam)
 	{
 		isMove = eventParam.boolParam;
+	}
+	private void IsJump(EventParam eventParam)
+	{
+		if (eventParam.boolParam == true)
+		{
+			jDown = true;
+		}
+		else
+		{
+			jDown = false;
+			isJump = false;
+		}
+	}
+
+	void Jump()
+	{
+			rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+			isJump = true;
 	}
 }

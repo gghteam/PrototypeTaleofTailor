@@ -6019,6 +6019,7 @@ GameObject:
   - component: {fileID: 359546432}
   - component: {fileID: 359546434}
   - component: {fileID: 359546424}
+  - component: {fileID: 359546435}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -6111,6 +6112,7 @@ MonoBehaviour:
   movementSpeed: 5
   runMovementSpeed: 10
   rotationSpeed: 10
+  jumpPower: 5
 --- !u!114 &359546428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6170,7 +6172,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &359546432
 MonoBehaviour:
@@ -6216,6 +6218,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b2a05fa7a41aa147adf77211f8c7b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &359546435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359546422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4751a98cd8080e40bf34d2a7a56164a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &361548719

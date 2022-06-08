@@ -6,14 +6,11 @@ using System.Linq;
 
 public class EnemyAttack : FsmState
 {
-    // 이렇게 변수로 할까 SO로 할까?
-    //[SerializeField]
-    //private float attackDamage = 1f;
-    //[SerializeField]
-    //private float attackDelay = 0.5f;
-
     [SerializeField]
-    private EnemyDataSO enemyData = null;
+    private float attackDelay = 1f;
+    [SerializeField]
+    private float attackRange = 3f;
+    private float viewAngle = 60f;
 
     [SerializeField]
     private Collider[] colliders;
@@ -22,22 +19,23 @@ public class EnemyAttack : FsmState
 
     private bool isAttack = false;
     private bool isPlayerDamage = false;
-    private bool isPlay = false;
 
     private float timer = 0f;
+    private int attackCnt = 0;
 
     private Collider[] hitColls;
     private Collider hitColl;
     private Animator ani;
 
-    private FsmCore fsmCore;
-    private EnemyIdle chaseState;
+    //private FsmCore fsmCore;
+    //private EnemyIdle chaseState;
 
     private readonly int parrying = Animator.StringToHash("parrying");
     private readonly int isMove = Animator.StringToHash("IsMove");
     //private readonly int isIn = Animator.StringToHash("isIn");
     //private readonly int attackTrigger = Animator.StringToHash("Attack");
     private readonly int attack = Animator.StringToHash("Attack");
+    private readonly int attackCount = Animator.StringToHash("count");
 
     private readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
@@ -45,105 +43,66 @@ public class EnemyAttack : FsmState
     void Start()
     {
         ani = GetComponent<Animator>();
-        fsmCore = GetComponent<FsmCore>();
-        chaseState = GetComponent<EnemyIdle>();
+        //fsmCore = GetComponent<FsmCore>();
+        //chaseState = GetComponent<EnemyIdle>();
         //Reset();
 
-        timer = enemyData.attackDelay;
+        timer = attackDelay;
     }
 
     public override void OnStateEnter()
     {
-        this.GetComponent<EnemyIdle>().enabled = false;
-        this.GetComponent<Chase>().enabled = false;
-        isAttack = false;
+        timer = attackDelay;
         ani.SetBool(isMove, false);
         ani.SetBool(parrying, false);
-        ani.SetBool(attack, true);
-        //ani.SetTrigger(attackTrigger);
+        ani.SetBool(attack, false);
         StopAllCoroutines();
-        //Reset();
-        timer = enemyData.attackDelay;
-        isPlay = true;
     }
 
     public override void OnStateLeave()
     {
         StopAllCoroutines();
-        isPlay = false;
         ani.SetBool(isMove, true);
         ani.SetBool(attack, false);
-        this.GetComponent<EnemyAttack>().enabled = false;
+        Reset();
+        attackCnt = 0;
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), enemyData.attackRange);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), attackRange);
     }
 
     void Update()
     {
-        if (isPlay)
+        timer += Time.deltaTime;
+        hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), attackRange, attackLayer);
+        hitColl = hitColls.Where(coll => coll.CompareTag("Player")).FirstOrDefault();
+        ani.SetBool(attack, isAttack);
+        ani.SetInteger(attackCount, attackCnt % 2);
+
+        //foreach (Collider coll in hitColls) // 위 Linq와 같은 방식
+        //{
+        //    if (coll.CompareTag("Player"))
+        //    {
+        //        hitColl = coll;
+        //    }
+        //}
+
+        if (hitColl != null)
         {
-            if(hitColl != null)
-            {
-                //transform.Rotate(hitColl.transform.position);
-                transform.LookAt(hitColl.transform);
-            }
-            
-            hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
-            foreach(Collider coll in hitColls)
-            {
-                if (coll.CompareTag("Player"))
-                {
-                    hitColl = coll;
-                }
-            }
+            transform.LookAt(hitColl.transform);
+
             Debug.Log(hitColl);
-            //ani.SetBool(isIn, hitColl != null);
-            timer += Time.deltaTime;
-            //ani.SetBool(attack, isAttack);
-            if (!ani.GetBool(parrying))
+            if (timer >= attackDelay)
             {
-                //ani.SetFloat(attackCnt, attackCount);
-                //ani.SetBool(attack, isAttack);
-
-                //if (!ani.GetBool(isIn))
-                //{
-                //    fsmCore.ChangeState(chaseState);
-                //}
-
-                if (timer >= enemyData.attackDelay)
-                {
-                    //if (!isAttack)
-                    //{
-                    //    //ani.SetTrigger(attackTrigger);
-                    //    //AttackChange(1);
-                    //    Attack();
-                    //}
-                    //Attack();
-                }
+                ++attackCnt;
+                Debug.Log("공격!");
+                AttackChange(1);
+                timer = 0f;
             }
         }
-
-        if (!isPlay)
-        {
-            fsmCore.ChangeState(chaseState);
-            this.GetComponent<EnemyAttack>().enabled = false;
-        }
-
-        /*
-        if (timer >= enemyData.attackDelay)
-        {
-            if (!isAttack)
-            {
-                Attack();
-                timer = 0;
-                fsmCore.ChangeState(chaseState);
-            }
-        }
-        */
     }
 
     private void Damage()
@@ -182,6 +141,7 @@ public class EnemyAttack : FsmState
     /// <summary>
     /// 공격 함수
     /// </summary>
+    [System.Obsolete]
     private void Attack()
     {
         //attackCount = (attackCount + 1) % 2;
@@ -214,6 +174,7 @@ public class EnemyAttack : FsmState
     /// 공격 코루틴
     /// </summary>
     /// <returns></returns>
+    [System.Obsolete]
     private IEnumerator AttackCoroutine(GameObject hitObj)
     {
         yield return waitForSeconds05;
@@ -251,8 +212,7 @@ public class EnemyAttack : FsmState
                 PlayerDamageChange(1);
             }
         }
-        isPlay = false;
-        fsmCore.ChangeState(chaseState);
+        //fsmCore.ChangeState(chaseState);
     }
 
     /// <summary>

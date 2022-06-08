@@ -5106,7 +5106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e195febcd50e24fb566c69312314ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 1320243fc61d50948997fcc6dc4bd54a, type: 2}
+  attackDelay: 10
+  attackRange: 3
   colliders:
   - {fileID: 1197575990}
   - {fileID: 148226534}

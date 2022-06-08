@@ -13,7 +13,7 @@ public class EnemyAttack : FsmState
     private float viewAngle = 60f;
 
     [SerializeField]
-    private Collider[] colliders;
+    private Collider[] attackColliders;
 
     private int attackLayer = 1 << 10;
 
@@ -57,6 +57,7 @@ public class EnemyAttack : FsmState
         ani.SetBool(parrying, false);
         ani.SetBool(attack, false);
         StopAllCoroutines();
+        attackCnt = 0;
     }
 
     public override void OnStateLeave()
@@ -68,11 +69,16 @@ public class EnemyAttack : FsmState
         attackCnt = 0;
     }
 
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), attackRange);
+        if (UnityEditor.Selection.activeObject == this.gameObject)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), attackRange);
+        }
     }
+#endif
 
     void Update()
     {
@@ -118,6 +124,9 @@ public class EnemyAttack : FsmState
                     ParryingAction();
                     player.SuccessParrying();
                     ani.SetTrigger(parrying);
+                    ColliderEnabledChange(0);
+                    //ParryingImpact impact = PoolManager.Instance.Pop("ParryingParticle") as ParryingImpact;
+                    //impact.transform.position = attackColliders[0].transform.position;
                 }
                 else
                 {
@@ -251,7 +260,7 @@ public class EnemyAttack : FsmState
 
     private void ColliderEnabledChange(int value)
     {
-        foreach(Collider coll in colliders)
+        foreach(Collider coll in attackColliders)
         {
             coll.enabled = value != 0;
         }

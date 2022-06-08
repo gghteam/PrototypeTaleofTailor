@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     Slider bgmSlider;
     [SerializeField]
     Slider sfxSlider;
+    [SerializeField]
+    Slider sensitivitySlider;
     public bool isSetting = false;
     public Image steminaBar;
     public GameObject bar;
@@ -58,9 +60,15 @@ public class UIManager : MonoBehaviour
     {
         return bgmSlider.value;
     }
+
     public float GetSfxVolume()
     {
         return sfxSlider.value;
+    }
+
+    public float GetsensitivityValue()
+    {
+        return sensitivitySlider.value;
     }
     public void UseSteminaFailedEffect()
     {

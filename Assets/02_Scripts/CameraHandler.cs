@@ -47,6 +47,11 @@ public class CameraHandler : MonoBehaviour
         EventManager.StartListening("CAMERA_MOVE", SetMousePos);
     }
 
+    private void Update()
+    {
+        if(lookSpeed != UIManager.Instance.GetsensitivityValue()) 
+            lookSpeed = UIManager.Instance.GetsensitivityValue();
+    }
 
     public void FollowTarget(float delta)
     {

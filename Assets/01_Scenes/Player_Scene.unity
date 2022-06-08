@@ -6134,7 +6134,6 @@ MonoBehaviour:
   movementSpeed: 5
   runMovementSpeed: 10
   rotationSpeed: 10
-  jumpPower: 5
   turnSmoothing: 0.06
 --- !u!114 &359546428
 MonoBehaviour:
@@ -6255,6 +6254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4751a98cd8080e40bf34d2a7a56164a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 35
 --- !u!1 &361548719
 GameObject:
   m_ObjectHideFlags: 0

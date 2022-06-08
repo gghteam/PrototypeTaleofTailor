@@ -26,6 +26,8 @@ public class PlayerMovement : Character
 	private float rotationSpeed = 10;
 	[SerializeField]
 	private float jumpPower = 5;
+	[SerializeField]
+	private float turnSmoothing = 0.06f;
 
 	private bool isDash = false;
 	private float DashSpeed = 1;
@@ -90,7 +92,8 @@ public class PlayerMovement : Character
 		{
 			if (moveDirection.sqrMagnitude > 0)
 			{
-				transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
+				Rotating(inputX, inputZ);
+				//transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
 				moveDirection.y = 0;
 				if (Input.GetKey(KeyCode.LeftShift))
 				{
@@ -139,6 +142,56 @@ public class PlayerMovement : Character
 		}
 
 		transform.LookAt(transform.position + moveDirection);
+	}
+
+	Vector3 Rotating(float horizontal, float vertical)
+	{
+		Vector3 forward = cameraObject.TransformDirection(Vector3.forward);
+
+		forward.y = 0.0f;
+		forward = forward.normalized;
+
+		Vector3 right = new Vector3(forward.z, 0, -forward.x);
+		Vector3 targetDirection;
+		targetDirection = forward * vertical + right * horizontal;
+
+		// Lerp current direction to calculated target direction.
+		if ((IsMoving() && targetDirection != Vector3.zero))
+		{
+			Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+			Quaternion newRotation = Quaternion.Slerp(rigidbody.rotation, targetRotation, turnSmoothing);
+			rigidbody.MoveRotation(newRotation);
+			SetLastDirection(targetDirection);
+		}
+		// If idle, Ignore current camera facing and consider last moving direction.
+		if (!(Mathf.Abs(horizontal) > 0.9 || Mathf.Abs(vertical) > 0.9))
+		{
+			Repositioning();
+		}
+
+		return targetDirection;
+	}
+
+	public bool IsMoving()
+	{
+		return (inputX != 0) || (inputZ != 0);
+	}
+
+	private void SetLastDirection(Vector3 direction)
+	{
+		lastDirection = direction;
+	}
+
+	private void Repositioning()
+	{
+		if (lastDirection != Vector3.zero)
+		{
+			lastDirection.y = 0;
+			Quaternion targetRotation = Quaternion.LookRotation(lastDirection);
+			Quaternion newRotation = Quaternion.Slerp(rigidbody.rotation, targetRotation, turnSmoothing);
+			rigidbody.MoveRotation(newRotation);
+		}
 	}
 
 	/// <summary>

@@ -30,7 +30,7 @@ public class Chase : FsmState
 
     void Update()
     {
-        Debug.Log($"플레이어의 거리 : {Vector3.Distance(target.position, transform.position)}");
+        //Debug.Log($"플레이어의 거리 : {Vector3.Distance(target.position, transform.position)}");
 
         if (animator.GetBool(isMove))
         {

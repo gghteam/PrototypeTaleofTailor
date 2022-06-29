@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
 	protected Rigidbody rigidbody = null;
 	protected Collider col = null;
 	protected Animator ani = null;
+	protected Vector3 lastDirection;
 
 	protected virtual void Awake()
 	{

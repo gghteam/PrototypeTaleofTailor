@@ -5127,9 +5127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e195febcd50e24fb566c69312314ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 10
+  attackDelay: 3
   attackRange: 3
-  colliders:
+  attackColliders:
   - {fileID: 1197575990}
   - {fileID: 148226534}
 --- !u!114 &289970357
@@ -12933,6 +12933,7 @@ GameObject:
   - component: {fileID: 769877125}
   - component: {fileID: 769877127}
   - component: {fileID: 769877128}
+  - component: {fileID: 769877129}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -13032,6 +13033,19 @@ MonoBehaviour:
   isSetting: 0
   steminaBar: {fileID: 1863115810}
   bar: {fileID: 291563345}
+--- !u!114 &769877129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769877124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221cd5a4773bce14387be0ddb36a9258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolList: {fileID: 11400000, guid: a38dfe97e83210045a81866d5f9fc1cb, type: 2}
 --- !u!1 &772270187
 GameObject:
   m_ObjectHideFlags: 0

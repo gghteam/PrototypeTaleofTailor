@@ -83,7 +83,7 @@ public class PlayerMovement : Character
 		}
 
 		moveDirection.Normalize();
-		if (!ani.GetBool("IsAttack"))
+		if (ani.GetInteger("AttackCount") != 0)
 		{
 			if (moveDirection.sqrMagnitude > 0)
 			{
@@ -129,7 +129,7 @@ public class PlayerMovement : Character
 		//moveDirection *= movementSpeed;
 
 		//normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
-		if (!ani.GetBool("IsAttack"))
+		if (ani.GetInteger("AttackCount") != 0)
 		{
 			Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
 			//이동

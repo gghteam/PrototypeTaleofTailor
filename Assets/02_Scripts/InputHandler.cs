@@ -33,6 +33,7 @@ public class InputHandler : MonoBehaviour
     {
         MoveInput();
         AttackInput();
+        JumpInput();
     }
 
     /// <summary>
@@ -70,5 +71,13 @@ public class InputHandler : MonoBehaviour
         eventParam.boolParam = Input.GetMouseButtonDown(0);
 
         EventManager.TriggerEvent("InputAttack", eventParam);
+    }
+    
+    private void JumpInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.F);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("InputJump", eventParam);
     }
 }

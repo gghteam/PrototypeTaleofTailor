@@ -70,8 +70,7 @@ public class InputHandler : MonoBehaviour
     {
         eventParam.boolParam = Input.GetMouseButtonDown(0);
 
-        if (eventParam.boolParam)
-            EventManager.TriggerEvent("InputAttack", eventParam);
+        EventManager.TriggerEvent("InputAttack", eventParam);
     }
     
     private void JumpInput()

@@ -3151,7 +3151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5932659749172436066, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_Layer
@@ -4976,6 +4976,10 @@ PrefabInstance:
       value: SM_Room_Puzzle (1)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -5450,6 +5454,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
+    - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 22f19e8b78ac2b541ad65eabdb07c2e7, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -6276,7 +6284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4751a98cd8080e40bf34d2a7a56164a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 35
+  jumpSpeed: 2
 --- !u!114 &359546436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24207,6 +24215,10 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -26135,6 +26147,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577760706}
     m_Modifications:
+    - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bf080a9a9e1be124592c6d15755e3181, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295

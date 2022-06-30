@@ -18,6 +18,10 @@ public class ClearManager : MonoBehaviour
 
     public void GameEnd()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
     }
 }

@@ -60,6 +60,8 @@ public class BandageItem : ItemManager
     }
     void BandageStop()
     {
+        eventParam.boolParam = false;
+        EventManager.TriggerEvent("ITEMOFF", eventParam);
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;

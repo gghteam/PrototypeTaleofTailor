@@ -58,12 +58,15 @@ public class NeedleItem : ItemManager
         item.SetActive(true);
         baseWeapon.SetActive(false);
         eventParam.itemParam = Item.NEEDLE;
+        eventParam.boolParam= false;
         EventManager.TriggerEvent("ITEMUSEANIM", eventParam);
         Invoke("NeedleStop", useTime);
     }
 
     void NeedleStop()
     {
+        eventParam.boolParam = false;
+        EventManager.TriggerEvent("ITEMOFF", eventParam);
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;

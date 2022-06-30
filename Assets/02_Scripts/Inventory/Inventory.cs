@@ -43,8 +43,7 @@ public class Inventory : MonoBehaviour
     // 아이템 갯수 텍스트로 표시
     void ItemTextIndex(EventParam eventParam)
     {
-        Debug.Log((int)eventParam.itemParam);
-        itemText[(int)eventParam.itemParam].text = string.Format($"{eventParam.intParam}");
+        Debug.Log((int)eventParam.itemParam);itemText[(int)eventParam.itemParam].text = string.Format($"{eventParam.intParam}");
     }
 
     private void Update()

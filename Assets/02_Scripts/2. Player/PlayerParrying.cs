@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerParrying : Character
 {
@@ -17,6 +18,8 @@ public class PlayerParrying : Character
 
     [SerializeField, Tooltip("시야각 범위")]
     private float viewAngle = 60f;
+
+    public UnityEvent OnParrying = null;
 
     private float timer = 0f;
 
@@ -107,5 +110,6 @@ public class PlayerParrying : Character
         // TODO : Success Parring
         Debug.Log("패링 성공!");
         SteminaManager.Instance.PlusStemina(parringSuccessStemina); // 스테미나 증가
+        OnParrying?.Invoke();
     }
 }

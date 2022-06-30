@@ -24,7 +24,7 @@ public class PlayerMovement : Character
 	private float runMovementSpeed = 7;
 	[SerializeField]
 	private float rotationSpeed = 10;
-	
+
 	[SerializeField]
 	private float turnSmoothing = 0.06f;
 
@@ -33,7 +33,7 @@ public class PlayerMovement : Character
 	private bool isFirst = false;
 	//private Vector3 dashDirection;
 	private bool isMove = true;
-	
+
 
 	private void Start()
 	{
@@ -50,8 +50,6 @@ public class PlayerMovement : Character
 	{
 		if (!isMove) return;
 
-
-		
 		if (isDash)
 		{
 			if (isFirst)
@@ -68,7 +66,6 @@ public class PlayerMovement : Character
 					//캐릭터 오른쪽(inputZ = 1) 또는 왼쪽(inputZ = -1)를 vector에 더함
 					moveDirection += cameraObject.right * inputX;
 					moveDirection *= DashSpeed;
-
 				}
 				isFirst = false;
 			}
@@ -84,24 +81,24 @@ public class PlayerMovement : Character
 
 		moveDirection.y = 0;
 		moveDirection.Normalize();
-		if (ani.GetInteger("AttackCount") != 0)
+
+		if (ani.GetInteger("AttackCount") == 0)
 		{
 			if (moveDirection.sqrMagnitude > 0)
 			{
 				Rotating(inputX, inputZ);
-				//transform.rotation = Quaternion.Euler(transform.rotation.x, cameraObject.eulerAngles.y, transform.rotation.z);
 				moveDirection.y = 0;
 				if (Input.GetKey(KeyCode.LeftShift))
 				{
-                    if (SteminaManager.Instance.CheckStemina(0.01f))
-                    {
+					if (SteminaManager.Instance.CheckStemina(0.01f))
+					{
 						SteminaManager.Instance.MinusStemina(0.01f);
 						//방향에 Run_Speed를 곱함
 						moveDirection *= runMovementSpeed;
 						ani.SetBool("IsMove", false);
 						ani.SetBool("IsRun", true);
 					}
-					
+
 				}
 				else if (isDash)
 				{
@@ -130,14 +127,14 @@ public class PlayerMovement : Character
 		//moveDirection *= movementSpeed;
 
 		//normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
-		if (ani.GetInteger("AttackCount") != 0)
+		if (ani.GetInteger("AttackCount") == 0)
 		{
 			Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
 			//이동
 			rigidbody.velocity = projectedVelocity;
-		}
 
-		transform.LookAt(transform.position + moveDirection);
+			transform.LookAt(transform.position + moveDirection);
+		}
 	}
 
 	Vector3 Rotating(float horizontal, float vertical)
@@ -244,5 +241,5 @@ public class PlayerMovement : Character
 	{
 		isMove = eventParam.boolParam;
 	}
-	
+
 }

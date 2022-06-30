@@ -3151,7 +3151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5932659749172436066, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
       propertyPath: m_Layer
@@ -5245,14 +5245,14 @@ MonoBehaviour:
     Transitions:
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
-      Priority: 30
+      Priority: 50
       Not: 1
   - State: {fileID: 289970360}
     Transitions:
     - Next: {fileID: 289970359}
       Cond: {fileID: 289970358}
-      Priority: 30
-      Not: 0
+      Priority: 50
+      Not: 1
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
       Priority: 40
@@ -5261,12 +5261,16 @@ MonoBehaviour:
     Transitions:
     - Next: {fileID: 289970356}
       Cond: {fileID: 289970366}
-      Priority: 20
+      Priority: 30
       Not: 1
+    - Next: {fileID: 289970360}
+      Cond: {fileID: 289970368}
+      Priority: 20
+      Not: 0
   - State: {fileID: 289970356}
     Transitions:
-    - Next: {fileID: 289970359}
-      Cond: {fileID: 289970358}
+    - Next: {fileID: 289970360}
+      Cond: {fileID: 289970368}
       Priority: 20
       Not: 0
   - State: {fileID: 289970363}
@@ -6046,6 +6050,7 @@ GameObject:
   - component: {fileID: 359546434}
   - component: {fileID: 359546424}
   - component: {fileID: 359546435}
+  - component: {fileID: 359546436}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -6232,6 +6237,21 @@ MonoBehaviour:
   parringSuccessStemina: 1
   parryingDelay: 1.5
   viewAngle: 60
+  OnParrying:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 359546436}
+        m_TargetAssemblyTypeName: TimeFreezeEffect, Assembly-CSharp
+        m_MethodName: TimeFreeze
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &359546434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6257,6 +6277,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 35
+--- !u!114 &359546436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359546422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94991ca0c6f52b498a5605b01fc2b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeTimeDelay: 0.1
+  unfreezeTimeDalay: 0.05
+  timeFreezeValue: 0.3
 --- !u!1 &361548719
 GameObject:
   m_ObjectHideFlags: 0

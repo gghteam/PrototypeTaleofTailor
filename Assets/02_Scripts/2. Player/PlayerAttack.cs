@@ -34,12 +34,14 @@ public class PlayerAttack : Character
 	{
 		Debug.Log("?");
 		CheckAttackPhase();
+		EventManager.TriggerEvent("Attack", eventParam);
 	}
 
 	private void Attack()
 	{
 		if (CountAttack < 1)
 		{
+			attacking = true;
 			ani.SetInteger("AttackCount", 1);
 			CountAttack = 1;
 		}
@@ -55,7 +57,6 @@ public class PlayerAttack : Character
 		{
 			if (CountAttack > 1)
 			{
-				Debug.Log("J");
 				ani.SetInteger("AttackCount", 2);
 				CountAttack = 2;
 			}
@@ -86,6 +87,7 @@ public class PlayerAttack : Character
 	{
 		CountAttack = 0;
 		ani.SetInteger("AttackCount", 0);
+		attacking = false;
 	}
 
 	private void IsInputAttack(EventParam ep)

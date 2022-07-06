@@ -92,7 +92,6 @@ public class PlayerClothesButton : ItemManager
     void SetClothesTransform()
     {
         //단추 생성
-        Vector3 buttonPos = (transform.position - enemyVector).normalized;
         if (danchuIndex % 2 == 0) // 단추가 반쪼가리가 없다
         {
             danchuIndex = danchuIndex / 2 - 1;
@@ -101,7 +100,35 @@ public class PlayerClothesButton : ItemManager
         {
             danchuIndex = (danchuIndex - 1) / 2 - 1;
         }
-        //clothesButton[danchuIndex].transform.localPosition = new Vector3(buttonPos.x * buttonDistance, 0.2f, buttonPos.z * buttonDistance);
+        SpawnClothesButton();
+    }
+
+    void SpawnClothesButton()
+    {
+        int spawnX=0, spawnZ=0;
+        int randomPos = Random.Range(1, 100);
+        if (randomPos <= 30)
+        {
+            spawnX = 2;
+            spawnZ = 2;
+        }
+        else if (randomPos <= 50)
+        {
+            spawnX = -2;
+            spawnZ = -2;
+        }
+        else if (randomPos <= 80)
+        {
+            spawnX = 2;
+            spawnZ = -2;
+        }
+        else
+        {
+            spawnX = -2;
+            spawnZ = 2;
+        }
+        Debug.Log($" 단추  {danchuIndex}");
+        clothesButton[danchuIndex].transform.localPosition = transform.position + new Vector3(spawnX, 0, spawnZ);
         clothesButton[danchuIndex].gameObject.SetActive(true);
     }
 

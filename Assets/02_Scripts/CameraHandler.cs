@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,8 @@ public class CameraHandler : MonoBehaviour
 
 		smoothPivotOffset = pivotOffset;
 		smoothCamOffset = camOffset;
-		defaultFOV = cam.GetComponent<Camera>().fieldOfView;
+		//defaultFOV = cam.GetComponent<Camera>().fieldOfView;
+		defaultFOV = cam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView;
 		angleH = player.eulerAngles.y;
 
 		ResetTargetOffsets();
@@ -60,7 +62,8 @@ public class CameraHandler : MonoBehaviour
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
 		cam.rotation = aimRotation;
 
-		cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, targetFOV, Time.deltaTime);
+		//cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, targetFOV, Time.deltaTime);
+		defaultFOV = Mathf.Lerp(defaultFOV, targetFOV, Time.deltaTime);
 
 		Vector3 baseTempPosition = player.position + camYRotation * targetPivotOffset;
 		Vector3 noCollisionOffset = targetCamOffset;

@@ -2,9 +2,11 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class CameraHandler : MonoBehaviour
 {
+	[System.Obsolete]
 	public Transform player;                                           // Player의 Transform
 	public Vector3 pivotOffset = new Vector3(0.0f, 1.7f, 0.0f);        // 카메라를 가리키기 위한 Offset
 	public Vector3 camOffset = new Vector3(0.0f, 0.0f, -3.0f);         // 플레이어의 위치와 관련된 카메라를 재배치하는 Offset
@@ -16,6 +18,7 @@ public class CameraHandler : MonoBehaviour
 
 	private float angleH = 0;                                          // 마우스 이동을 통한 수평 각도
 	private float angleV = 0;                                          // 마우스 이동을 통한 수직 각도
+	[System.Obsolete]
 	private Transform cam;                                             // 해당 스크립트의 Transform
 	private Vector3 smoothPivotOffset;                                 // 보간 시 현재 카메라의 Pivot Offset을 저장
 	private Vector3 smoothCamOffset;                                   // 보간 시 현재 카메라의 Offset을 저장
@@ -31,16 +34,16 @@ public class CameraHandler : MonoBehaviour
 
 	void Awake()
 	{
-		cam = transform;
+		//cam = transform;
 
-		cam.position = player.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
-		cam.rotation = Quaternion.identity;
+		VCam.transform.position = Player.transform.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
+		VCam.transform.rotation = Quaternion.identity;
 
 		smoothPivotOffset = pivotOffset;
 		smoothCamOffset = camOffset;
 		//defaultFOV = cam.GetComponent<Camera>().fieldOfView;
-		defaultFOV = cam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView;
-		angleH = player.eulerAngles.y;
+		defaultFOV = VCam.m_Lens.FieldOfView;
+		angleH = Player.transform.eulerAngles.y;
 
 		ResetTargetOffsets();
 		ResetFOV();
@@ -60,12 +63,11 @@ public class CameraHandler : MonoBehaviour
 
 		Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
-		cam.rotation = aimRotation;
+		VCam.transform.rotation = aimRotation;
 
-		//cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, targetFOV, Time.deltaTime);
-		defaultFOV = Mathf.Lerp(defaultFOV, targetFOV, Time.deltaTime);
+        VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
 
-		Vector3 baseTempPosition = player.position + camYRotation * targetPivotOffset;
+        Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
 		Vector3 noCollisionOffset = targetCamOffset;
 		while (noCollisionOffset.magnitude >= 0.2f)
 		{
@@ -81,7 +83,7 @@ public class CameraHandler : MonoBehaviour
 		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
 
-		cam.position = player.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+		VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)
@@ -140,11 +142,11 @@ public class CameraHandler : MonoBehaviour
 
 	bool ViewingPosCheck(Vector3 checkPos)
 	{
-		Vector3 target = player.position + pivotOffset;
+		Vector3 target = Player.transform.position + pivotOffset;
 		Vector3 direction = target - checkPos;
 		if (Physics.SphereCast(checkPos, 0.2f, direction, out RaycastHit hit, direction.magnitude))
 		{
-			if (hit.transform != player && !hit.transform.GetComponent<Collider>().isTrigger)
+			if (hit.transform != Player && !hit.transform.GetComponent<Collider>().isTrigger)
 			{
 				return false;
 			}
@@ -155,11 +157,11 @@ public class CameraHandler : MonoBehaviour
 	bool ReverseViewingPosCheck(Vector3 checkPos)
 	{
 		// Cast origin and direction.
-		Vector3 origin = player.position + pivotOffset;
+		Vector3 origin = Player.transform.position + pivotOffset;
 		Vector3 direction = checkPos - origin;
 		if (Physics.SphereCast(origin, 0.2f, direction, out RaycastHit hit, direction.magnitude))
 		{
-			if (hit.transform != player && hit.transform != transform && !hit.transform.GetComponent<Collider>().isTrigger)
+			if (hit.transform != Player && hit.transform != transform && !hit.transform.GetComponent<Collider>().isTrigger)
 			{
 				return false;
 			}

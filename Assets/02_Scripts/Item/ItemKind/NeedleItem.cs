@@ -36,14 +36,15 @@ public class NeedleItem : ItemManager
     protected override void UseItem()
     {
         if (isUsing) return;
+        if (needleCount <= 0) return;
         if (needleCount > 0)
         {
             isUsing = true;
             needleCount--;
-        }
-        if (needleCount <= 0)
-        {
-            ItemZero();
+            if(needleCount <= 0)
+            {
+                ItemZero();
+            }
         }
         eventParam.itemParam = Item.NEEDLE;
         eventParam.intParam = needleCount;

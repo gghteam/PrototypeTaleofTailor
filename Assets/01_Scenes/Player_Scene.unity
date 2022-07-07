@@ -18189,7 +18189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 960325252}
-  useTime: 2
+  useTime: 1.8
   baseWeapon: {fileID: 64462296}
   bandageCount: 5
   plusStemina: 1

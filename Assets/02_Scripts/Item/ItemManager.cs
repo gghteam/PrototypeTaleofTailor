@@ -7,7 +7,7 @@ public abstract class ItemManager : MonoBehaviour
     [SerializeField, Header("아이템")]
     protected GameObject item;
     [SerializeField, Header("사용 시간")]
-    protected int useTime;
+    protected float useTime;
     [SerializeField, Header("기본 가위 무기")]
     protected GameObject baseWeapon;
 

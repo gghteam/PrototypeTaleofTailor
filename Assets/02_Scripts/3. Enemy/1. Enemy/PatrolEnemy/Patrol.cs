@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Patrol : MonoBehaviour
+public class Patrol : FsmState
 {
 	public Transform[] wayPoints;
 	public int speed;
@@ -11,7 +11,6 @@ public class Patrol : MonoBehaviour
 	public float waitSecound;
 
 	private int wayPointsIndex;
-	private bool isWaitDone = true;
 	private NavMeshAgent nav;
 
 	private void Start()
@@ -25,13 +24,22 @@ public class Patrol : MonoBehaviour
 		Patrols();
 	}
 
+
+	public override void OnStateEnter()
+	{
+
+	}
+	public override void OnStateLeave()
+	{
+
+	}
 	void Patrols()
 	{
 		nav.SetDestination(wayPoints[wayPointsIndex].position);
 		if (nav.remainingDistance <= nav.stoppingDistance)
 		{
-			Vector3 v1 = wayPoints[wayPointsIndex].position;
 			Gamemanager.Instance.Shuffle<Transform>(wayPoints);
+			Vector3 v1 = wayPoints[wayPointsIndex].position;
 			if (v1 == wayPoints[wayPointsIndex].position)
 			{
 				wayPointsIndex++;

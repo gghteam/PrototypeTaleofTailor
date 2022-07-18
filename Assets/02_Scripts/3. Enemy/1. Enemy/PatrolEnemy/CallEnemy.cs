@@ -15,7 +15,12 @@ public class CallEnemy : FsmState
 			FsmCore fsm = colliders[i].GetComponent<FsmCore>();
 			for (int j = 0; j < fsm.States.Length; j++)
 			{
-				fsm.ChangeState(fsm.States[j].State?.GetComponent<Chase>());
+				if (fsm.States[j].State is Chase)
+				{
+					Debug.Log(fsm.States[j].State);
+					fsm.ChangeState(fsm.States[j].State);
+					break;
+				}
 			}
 		}
 	}

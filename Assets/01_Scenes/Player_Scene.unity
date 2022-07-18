@@ -11182,6 +11182,10 @@ PrefabInstance:
       value: TeddyBear (5)
       objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

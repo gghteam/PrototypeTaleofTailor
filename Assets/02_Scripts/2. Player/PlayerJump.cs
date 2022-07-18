@@ -5,47 +5,63 @@ using UnityEngine;
 public class PlayerJump : Character
 {
     [SerializeField]
-    private float jumpPower = 10;
+    private float jumpSpeed;
 
-    bool isJump;
+    bool isJump=false;
 
     EventParam eventParam = new EventParam();
 
-    private readonly int hashJumpOn = Animator.StringToHash("JumpStart");
-    private readonly int hashJumpOff = Animator.StringToHash("JumpStop");
+    private Transform _transform;
+    private bool _isJumping;
+    private float _posY;        //오브젝트의 초기 높이
+    private float _gravity;     //중력가속도
+    private float _jumpPower;   //점프력
+    private float _jumpTime;    //점프 이후 경과시간
 
-    protected override void Awake()
+    void Start()
     {
-        base.Awake();
+        _transform = transform;
+        _isJumping = false;
+        _posY = transform.position.y;
+        _gravity = 9.8f;
+        _jumpPower = 9.0f;
+        _jumpTime = 0.0f;
+
         EventManager.StartListening("InputJump", JumpOn);
     }
 
     protected override void Update()
     {
-        ani.SetFloat("velocity", rigidbody.velocity.y);
-
+        if (_isJumping)
+        {
+            Jump();
+        }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        ani.SetBool(hashJumpOff, true);
-        isJump = false;
-        
-    }
-
     void JumpOn(EventParam eventParam)
     {
-        if (isJump) return;
-        isJump = true;
-        ani.SetTrigger(hashJumpOn);
-        Jump();
+        if (_isJumping) return;
+        ani.SetTrigger("JumpStart");
+        _isJumping = true;
+        _posY = _transform.position.y;
     }
-
     void Jump()
     {
-        rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-    }
+        //y=-a*x+b에서 (a: 중력가속도, b: 초기 점프속도)
+        //적분하여 y = (-a/2)*x*x + (b*x) 공식을 얻는다.(x: 점프시간, y: 오브젝트의 높이)
+        //변화된 높이 height를 기존 높이 _posY에 더한다.
+        float height = (_jumpTime * _jumpTime * (-_gravity) / 2) + (_jumpTime * _jumpPower);
+        _transform.position = new Vector3(_transform.position.x, _posY + height, _transform.position.z);
+        //점프시간을 증가시킨다.
+        _jumpTime += Time.deltaTime*jumpSpeed;
 
+        //처음의 높이 보다 더 내려 갔을때 => 점프전 상태로 복귀한다.
+        if (height < 0.0f)
+        {
+            _isJumping = false;
+            _jumpTime = 0.0f;
+            _transform.position = new Vector3(_transform.position.x, _posY, _transform.position.z);
+        }
+    }
     private void OnDestroy()
     {
         EventManager.StopListening("InputJump", JumpOn);

@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - BOSS
   - CLOTHES_ITEM
+  - VCam
   layers:
   - Default
   - TransparentFX

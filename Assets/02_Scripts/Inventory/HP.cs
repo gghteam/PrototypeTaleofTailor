@@ -108,7 +108,6 @@ public class HP : MonoBehaviour
             playerHP -= eventParam.intParam;
             Invoke("SliderHit", 0.5f);
             damaged = true;
-
         }
         else if (eventParam.stringParam == "BOSS")
         {
@@ -146,13 +145,11 @@ public class HP : MonoBehaviour
                 if (isDead) Dead();
             }
         }
-
     }
 
     private void SliderHit()
     {
         isDamage = true;
-
     }
 
     // 죽었을 때 실행
@@ -179,10 +176,10 @@ public class HP : MonoBehaviour
         }
         else
         {
-        ClothesButtonOnOff(danchuCount);
+            ClothesButtonOnOff(danchuCount);
         }
-        
     }
+
     void PlusClothesButton(EventParam eventParam)
     {
         danchuCount++; //가진 단추 수 +1

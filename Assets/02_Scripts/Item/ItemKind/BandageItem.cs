@@ -28,14 +28,15 @@ public class BandageItem : ItemManager
     protected override void UseItem()
     {
         if (isUsing) return;
+        if (bandageCount <= 0) return;
         if (bandageCount > 0)
         {
             isUsing = true;
             bandageCount--;
-        }
-        if (bandageCount <= 0)
-        {
-            ItemZero();
+            if (bandageCount <= 0)
+            {
+                ItemZero();
+            }
         }
         eventParam.itemParam = Item.BANDAGE;
         eventParam.intParam = bandageCount;

@@ -11,17 +11,20 @@ public class PlayerAnim : Character
     private readonly int hashItem = Animator.StringToHash("IsItem");
     private readonly int hashItemIndex = Animator.StringToHash("ItemIndex");
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ani = GetComponent<Animator>();
     }
     private void Start()
     {
         EventManager.StartListening("ITEMUSEANIM", ItemUseAnim);
+        EventManager.StartListening("ITEMOFF", IsItemChange);
     }
     private void OnDestroy()
     {
         EventManager.StopListening("ITEMUSEANIM", ItemUseAnim);
+        EventManager.StopListening("ITEMOFF", IsItemChange);
     }
 
     void IsUsingItem()
@@ -38,9 +41,9 @@ public class PlayerAnim : Character
         ani.SetBool(hashItem, isItem);
     }
 
-    public void IsItemChange(int value)
+    public void IsItemChange(EventParam eventParam)
     {
-        isItem = value == 0 ? false : true;
+        isItem = eventParam.boolParam;
         IsUsingItem();
         ani.SetBool(hashItem, isItem);
     }

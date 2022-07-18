@@ -36,14 +36,15 @@ public class NeedleItem : ItemManager
     protected override void UseItem()
     {
         if (isUsing) return;
+        if (needleCount <= 0) return;
         if (needleCount > 0)
         {
             isUsing = true;
             needleCount--;
-        }
-        if (needleCount <= 0)
-        {
-            ItemZero();
+            if(needleCount <= 0)
+            {
+                ItemZero();
+            }
         }
         eventParam.itemParam = Item.NEEDLE;
         eventParam.intParam = needleCount;
@@ -58,12 +59,15 @@ public class NeedleItem : ItemManager
         item.SetActive(true);
         baseWeapon.SetActive(false);
         eventParam.itemParam = Item.NEEDLE;
+        eventParam.boolParam= false;
         EventManager.TriggerEvent("ITEMUSEANIM", eventParam);
         Invoke("NeedleStop", useTime);
     }
 
     void NeedleStop()
     {
+        eventParam.boolParam = false;
+        EventManager.TriggerEvent("ITEMOFF", eventParam);
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;

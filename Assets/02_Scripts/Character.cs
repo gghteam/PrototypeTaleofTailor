@@ -23,4 +23,9 @@ public class Character : MonoBehaviour
 		col = GetComponent<Collider>();
 		ani = GetComponent<Animator>();
 	}
+
+	protected virtual void Update()
+    {
+
+    }
 }

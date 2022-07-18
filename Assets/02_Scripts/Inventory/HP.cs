@@ -126,7 +126,6 @@ public class HP : MonoBehaviour
         }
 
     }
-
     // HP ∞‘¿Ã¡ˆ UI Update
     void UpdateSlider()
     {
@@ -146,8 +145,6 @@ public class HP : MonoBehaviour
                 else isDead = false;
                 if (isDead) Dead();
             }
-
-            
         }
 
     }

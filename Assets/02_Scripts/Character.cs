@@ -28,4 +28,9 @@ public class Character : MonoBehaviour
     {
 
     }
+
+	public void Hit(int atk)
+	{
+
+	}
 }

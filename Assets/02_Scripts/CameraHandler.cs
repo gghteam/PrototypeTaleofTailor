@@ -6,7 +6,7 @@ using static Define;
 
 public class CameraHandler : MonoBehaviour
 {
-	[System.Obsolete]
+	//[System.Obsolete]
 	public Transform player;                                           // Player의 Transform
 	public Vector3 pivotOffset = new Vector3(0.0f, 1.7f, 0.0f);        // 카메라를 가리키기 위한 Offset
 	public Vector3 camOffset = new Vector3(0.0f, 0.0f, -3.0f);         // 플레이어의 위치와 관련된 카메라를 재배치하는 Offset
@@ -18,7 +18,7 @@ public class CameraHandler : MonoBehaviour
 
 	private float angleH = 0;                                          // 마우스 이동을 통한 수평 각도
 	private float angleV = 0;                                          // 마우스 이동을 통한 수직 각도
-	[System.Obsolete]
+	//[System.Obsolete]
 	private Transform cam;                                             // 해당 스크립트의 Transform
 	private Vector3 smoothPivotOffset;                                 // 보간 시 현재 카메라의 Pivot Offset을 저장
 	private Vector3 smoothCamOffset;                                   // 보간 시 현재 카메라의 Offset을 저장
@@ -32,9 +32,15 @@ public class CameraHandler : MonoBehaviour
 	// 카메라 수평 각도 프로퍼티
 	public float GetH { get { return angleH; } }
 
+	[Header("락온에 필요한 변수들")]
+	private bool lockOn = false;
+	public float lockOnRange;
+	public LayerMask layerMask;
+	public CinemachineVirtualCamera camera = null;
+
 	void Awake()
 	{
-		//cam = transform;
+		cam = transform;
 
 		VCam.transform.position = Player.transform.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
 		VCam.transform.rotation = Quaternion.identity;
@@ -54,6 +60,11 @@ public class CameraHandler : MonoBehaviour
 				"It is recommended to set all vertical offset in Pivot Offset.");
 	}
 
+	public void Start()
+	{
+		EventManager.StartListening("LockOn", OnLockOn);
+	}
+
 	void Update()
 	{
 		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
@@ -65,9 +76,9 @@ public class CameraHandler : MonoBehaviour
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
 		VCam.transform.rotation = aimRotation;
 
-        VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
+		VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
 
-        Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
+		Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
 		Vector3 noCollisionOffset = targetCamOffset;
 		while (noCollisionOffset.magnitude >= 0.2f)
 		{
@@ -84,6 +95,28 @@ public class CameraHandler : MonoBehaviour
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
 
 		VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+
+		if (lockOn)
+		{
+			Collider[] colliders = Physics.OverlapSphere(this.transform.position, lockOnRange, layerMask);
+			int maxindex = 0;
+			Debug.Log(colliders.Length);
+			for (int i = 0; i < colliders.Length; i++)
+			{
+				float maxDistance = (this.transform.position - colliders[maxindex].transform.position).sqrMagnitude;
+				float enemyDistance = (this.transform.position - colliders[i].transform.position).sqrMagnitude;
+				if (maxDistance < enemyDistance)
+					maxindex = i;
+			}
+			player.LookAt(colliders[maxindex].transform);
+			Vector3 vec = Player.transform.position + -player.forward.normalized * 10f;
+			vec.y += 5;
+			VCam.transform.position = vec;
+
+			Vector3 playerVec = player.transform.position;
+			playerVec.y += 2f;
+			VCam.transform.LookAt(playerVec);
+		}
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)
@@ -172,5 +205,15 @@ public class CameraHandler : MonoBehaviour
 	public float GetCurrentPivotMagnitude(Vector3 finalPivotOffset)
 	{
 		return Mathf.Abs((finalPivotOffset - smoothPivotOffset).magnitude);
+	}
+
+	public void OnLockOn(EventParam eventParam)
+	{
+		lockOn = !lockOn;
+	}
+
+	public void OnDestroy()
+	{
+		EventManager.StopListening("LockOn", OnLockOn);
 	}
 }

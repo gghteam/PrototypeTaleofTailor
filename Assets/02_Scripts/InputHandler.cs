@@ -34,6 +34,7 @@ public class InputHandler : MonoBehaviour
         MoveInput();
         AttackInput();
         JumpInput();
+        LockInput();
     }
 
     /// <summary>
@@ -80,4 +81,10 @@ public class InputHandler : MonoBehaviour
         if (eventParam.boolParam)
             EventManager.TriggerEvent("InputJump", eventParam);
     }
+
+    private void LockInput()
+	{
+        if (Input.GetMouseButtonDown(2))
+            EventManager.TriggerEvent("LockOn", eventParam);
+	}
 }

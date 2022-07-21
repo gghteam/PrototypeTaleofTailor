@@ -1893,6 +1893,11 @@ MonoBehaviour:
   verticalAimingSpeed: 6
   maxVerticalAngle: 50
   minVerticalAngle: -50
+  lockOnRange: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  camera: {fileID: 0}
 --- !u!81 &85712496
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1959,8 +1964,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85712494}
-  m_LocalRotation: {x: -0.1536901, y: -0.4099859, z: 0.07027371, w: -0.8962994}
-  m_LocalPosition: {x: -29.580954, y: 18.121159, z: 7.8159027}
+  m_LocalRotation: {x: 0.19706836, y: 0.34607187, z: -0.07459734, w: 0.91423935}
+  m_LocalPosition: {x: -4.31, y: 0, z: 10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15860,6 +15865,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007131521}
   m_CullTransparentMesh: 1
+--- !u!1 &1010172635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010172636}
+  m_Layer: 7
+  m_Name: TedyPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1010172636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010172635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.459, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 289970367}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019299544
 GameObject:
   m_ObjectHideFlags: 0
@@ -16836,8 +16871,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110506237}
-  m_LocalRotation: {x: -0.1536901, y: -0.4099859, z: 0.07027371, w: -0.8962994}
-  m_LocalPosition: {x: -29.580954, y: 18.121159, z: 7.8159027}
+  m_LocalRotation: {x: 0.19706836, y: 0.34607187, z: -0.07459734, w: 0.91423935}
+  m_LocalPosition: {x: -4.31, y: 0, z: 10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1282522922}
@@ -16864,6 +16899,11 @@ MonoBehaviour:
   verticalAimingSpeed: 6
   maxVerticalAngle: 50
   minVerticalAngle: -50
+  lockOnRange: 50
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  camera: {fileID: 1110506238}
 --- !u!1 &1114707008
 GameObject:
   m_ObjectHideFlags: 0
@@ -23396,6 +23436,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671161166}
   m_CullTransparentMesh: 1
+--- !u!1 &1672670364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1672670365}
+  m_Layer: 7
+  m_Name: TedyPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1672670365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672670364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1685918416}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1676447467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23650,6 +23720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Man_Character_NoJacket_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
 --- !u!1 &1685918409 stripped
@@ -23755,6 +23829,11 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!4 &1685918416 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2dbdaf0dc272d274d930e38819ab8aab, type: 3}
+  m_PrefabInstance: {fileID: 1685918408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1695188272 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ee13bff447245a748bef5a24d4c5252e, type: 3}

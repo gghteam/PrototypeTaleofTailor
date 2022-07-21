@@ -17,7 +17,7 @@ public class FsmLegacyAni : MonoBehaviour
     }
 
 
-    private void Start()
+    private void Awake()
     {
         animation = GetComponent<Animation>();
     }

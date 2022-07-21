@@ -128,7 +128,9 @@ public class PlayerClothesButton : ItemManager
             spawnZ = 2;
         }
         Debug.Log($" ¥‹√ﬂ  {danchuIndex}");
-        clothesButton[danchuIndex].transform.localPosition = transform.position + new Vector3(spawnX, 0, spawnZ);
+        Vector3 pos = transform.position + new Vector3(spawnX, 0, spawnZ);
+        pos.y = 0.5f;
+        clothesButton[danchuIndex].transform.localPosition = pos;
         clothesButton[danchuIndex].gameObject.SetActive(true);
     }
 
@@ -155,6 +157,8 @@ public class PlayerClothesButton : ItemManager
 
     void ClothesButtonStop()
     {
+        eventParam.boolParam = false;
+        EventManager.TriggerEvent("ITEMOFF", eventParam);
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;

@@ -16,6 +16,8 @@ public class CameraHandler : MonoBehaviour
 	public float maxVerticalAngle = 30f;                               // 수직 최대 각도
 	public float minVerticalAngle = -60f;                              // 수직 최소 각도
 
+	public float yOffset = 3f;
+
 	private float angleH = 0;                                          // 마우스 이동을 통한 수평 각도
 	private float angleV = 0;                                          // 마우스 이동을 통한 수직 각도
 	[System.Obsolete]
@@ -82,8 +84,9 @@ public class CameraHandler : MonoBehaviour
 
 		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
-
-		VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+		Vector3 camPos = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+		camPos.y += (aimRotation.x != 0 ? yOffset * aimRotation.x : 0);
+		VCam.transform.position = camPos;
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)

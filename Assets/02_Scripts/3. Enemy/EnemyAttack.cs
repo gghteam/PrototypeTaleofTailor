@@ -27,9 +27,6 @@ public class EnemyAttack : FsmState
     private Collider hitColl;
     private Animator ani;
 
-    //private FsmCore fsmCore;
-    //private EnemyIdle chaseState;
-
     private readonly int parrying = Animator.StringToHash("parrying");
     private readonly int isMove = Animator.StringToHash("IsMove");
     //private readonly int isIn = Animator.StringToHash("isIn");

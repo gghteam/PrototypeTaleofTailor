@@ -1973,6 +1973,7 @@ MonoBehaviour:
   verticalAimingSpeed: 6
   maxVerticalAngle: 50
   minVerticalAngle: -50
+  yOffset: 3
 --- !u!81 &85712496
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2039,7 +2040,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85712494}
-  m_LocalRotation: {x: -0.1536901, y: -0.4099859, z: 0.07027371, w: -0.8962994}
+  m_LocalRotation: {x: 0.23925392, y: 0.50390095, z: -0.14761294, w: 0.81673247}
   m_LocalPosition: {x: -29.580954, y: 18.121159, z: 7.8159027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -17079,7 +17080,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110506237}
-  m_LocalRotation: {x: -0.1536901, y: -0.4099859, z: 0.07027371, w: -0.8962994}
+  m_LocalRotation: {x: 0.23925392, y: 0.50390095, z: -0.14761294, w: 0.81673247}
   m_LocalPosition: {x: -29.580954, y: 18.121159, z: 7.8159027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17107,6 +17108,7 @@ MonoBehaviour:
   verticalAimingSpeed: 6
   maxVerticalAngle: 50
   minVerticalAngle: -50
+  yOffset: 10
 --- !u!114 &1110506241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17121,22 +17123,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
-  m_IgnoreTag: 
+    m_Bits: 4096
+  m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   m_MinimumDistanceFromTarget: 0.01
   m_AvoidObstacles: 1
   m_DistanceLimit: 1
   m_MinimumOcclusionTime: 0.3
   m_CameraRadius: 0.1
-  m_Strategy: 2
+  m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
   m_Damping: 0
   m_DampingWhenOccluded: 0
-  m_OptimalTargetDistance: 1
+  m_OptimalTargetDistance: 0
 --- !u!1 &1114707008
 GameObject:
   m_ObjectHideFlags: 0
@@ -18993,8 +18995,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1282522922}
   - component: {fileID: 1282522925}
-  - component: {fileID: 1282522923}
   - component: {fileID: 1282522924}
+  - component: {fileID: 1282522923}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -19055,16 +19057,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
+  Damping: {x: 0, y: 0, z: 0}
   ShoulderOffset: {x: 0.5, y: -0.4, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 4096
-  IgnoreTag: Player
-  CameraRadius: 0.8
+    m_Bits: 0
+  IgnoreTag: 
+  CameraRadius: 0.2
 --- !u!114 &1282522925
 MonoBehaviour:
   m_ObjectHideFlags: 3

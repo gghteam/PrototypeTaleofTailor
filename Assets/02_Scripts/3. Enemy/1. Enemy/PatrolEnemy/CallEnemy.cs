@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class CallEnemy : FsmState
 {
+
 	public float range;
 
 	public LayerMask layerMask;
+
+	public AnimationClip CallAnimClip = null;
+	private Animation skullAnimation = null;
+
+	private void Awake()
+	{
+		skullAnimation = GetComponent<Animation>();
+
+		skullAnimation[CallAnimClip.name].wrapMode = WrapMode.Loop;
+	}
 	public override void OnStateEnter()
 	{
+		skullAnimation.CrossFade(CallAnimClip.name);
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, range, layerMask);
 		for (int i = 0; i < colliders.Length; i++)
 		{

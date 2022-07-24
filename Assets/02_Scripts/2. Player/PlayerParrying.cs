@@ -110,6 +110,7 @@ public class PlayerParrying : Character
         // TODO : Success Parring
         Debug.Log("패링 성공!");
         SteminaManager.Instance.PlusStemina(parringSuccessStemina); // 스테미나 증가
+        Debug.Log("패링 이펙트 생성");
         OnParrying?.Invoke();
     }
 }

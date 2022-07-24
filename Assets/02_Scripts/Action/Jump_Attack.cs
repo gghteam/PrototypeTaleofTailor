@@ -22,7 +22,7 @@ public class Jump_Attack : FsmState
     private Animator animator;
 
     private FsmCore fsmCore;
-    private EnemyIdle chaseState;
+    private Chase chaseState;
 
     [SerializeField] CrackControll _CrackPrefab;
     Vector3 direction;
@@ -44,7 +44,7 @@ public class Jump_Attack : FsmState
     {
         animator = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();
-        chaseState = GetComponent<EnemyIdle>();
+        chaseState = GetComponent<Chase>();
         originPos = camera.localPosition;
     }
 
@@ -93,7 +93,6 @@ public class Jump_Attack : FsmState
         {
             Debug.Log("머워우머ㅓㅁ");
             fsmCore.ChangeState(chaseState);
-            this.GetComponent<Jump_Attack>().enabled = false;
             //isPlay = true;
         }
 

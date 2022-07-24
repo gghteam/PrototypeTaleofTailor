@@ -20,12 +20,18 @@ public class Chase : FsmState
     private Vector3 lastKnownLoc;
     private NavMeshAgent agent;
 
+    [SerializeField]
+    private float transitionTime = 3f; // 틍정 행동이 연달아 (ex 점프 어택 -> 점프 어택) 일어나지 않게 시간 체크 후 전이
+    public float TransitionTime => transitionTime;
+    private float initTransitionTime;
+
     private readonly int isMove = Animator.StringToHash("IsMove");
     private readonly string walk = "walk";
     void Awake()
     {
         //ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        initTransitionTime = transitionTime;
     }
 
     void Update()
@@ -35,6 +41,11 @@ public class Chase : FsmState
         if (animator.GetBool(isMove))
         {
             ChangeStop(false);
+            transitionTime -= Time.deltaTime;
+            if(transitionTime < 0)
+            {
+                transitionTime = 0f;
+            }
             agent.destination = lastKnownLoc = target.position;
         }
         else
@@ -62,6 +73,7 @@ public class Chase : FsmState
     {
         animator.SetBool(isMove, true);
         agent.destination = lastKnownLoc = target.position;
+        transitionTime = initTransitionTime;
         Debug.Log("Chase 진입");
     }
 

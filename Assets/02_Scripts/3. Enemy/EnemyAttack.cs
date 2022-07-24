@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 public class EnemyAttack : FsmState
 {
     [SerializeField]
-    private float attackDelay = 1f;
-    [SerializeField]
-    private float attackRange = 3f;
-    private float viewAngle = 60f;
+    private EnemyAttackDataSO enemyData;
+    private float attackDelay;
 
     [SerializeField]
     private Collider[] attackColliders;
@@ -18,6 +17,7 @@ public class EnemyAttack : FsmState
     private int attackLayer = 1 << 10;
 
     private bool isAttack = false;
+    public bool IsAttack => isAttack;
     private bool isPlayerDamage = false;
 
     private float timer = 0f;
@@ -47,12 +47,13 @@ public class EnemyAttack : FsmState
         //chaseState = GetComponent<EnemyIdle>();
         //Reset();
 
-        timer = attackDelay;
+        timer = enemyData.attackDelay;
+        attackDelay = timer;
     }
 
     public override void OnStateEnter()
     {
-        timer = attackDelay;
+        timer = enemyData.attackDelay;
         ani.SetBool(isMove, false);
         ani.SetBool(parrying, false);
         ani.SetBool(attack, false);
@@ -75,7 +76,7 @@ public class EnemyAttack : FsmState
         if (UnityEditor.Selection.activeObject == this.gameObject)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), attackRange);
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0, 2, 0), enemyData.attackRange);
         }
     }
 #endif
@@ -83,7 +84,7 @@ public class EnemyAttack : FsmState
     void Update()
     {
         timer += Time.deltaTime;
-        hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), attackRange, attackLayer);
+        hitColls = Physics.OverlapCapsule(transform.position, new Vector3(0, 1.2f, 0), enemyData.attackRange, attackLayer);
         hitColl = hitColls.Where(coll => coll.CompareTag("Player")).FirstOrDefault();
         ani.SetBool(attack, isAttack);
         ani.SetInteger(attackCount, attackCnt % 2);
@@ -107,6 +108,14 @@ public class EnemyAttack : FsmState
                 Debug.Log("공격!");
                 AttackChange(1);
                 timer = 0f;
+                if(enemyData.isAttackDelayRandomness == true)
+                {
+                    attackDelay = enemyData.attackDelay + Random.Range(-enemyData.attackDelayRandomness, enemyData.attackDelayRandomness);
+                }
+                else
+                {
+                    attackDelay = enemyData.attackDelay;
+                }
             }
         }
     }
@@ -125,12 +134,10 @@ public class EnemyAttack : FsmState
                     player.SuccessParrying();
                     ani.SetTrigger(parrying);
                     ColliderEnabledChange(0);
-                    //ParryingImpact impact = PoolManager.Instance.Pop("ParryingParticle") as ParryingImpact;
-                    //impact.transform.position = attackColliders[0].transform.position;
                 }
                 else
                 {
-                    eventParam.intParam = 30;
+                    eventParam.intParam = enemyData.attackDamage;
                     eventParam.stringParam = "PLAYER";
                     EventManager.TriggerEvent("DAMAGE", eventParam);
                 }
@@ -145,6 +152,8 @@ public class EnemyAttack : FsmState
     private void ParryingAction()
     {
         Debug.Log("쫌 치네ㅋ");
+        // 패링 이펙트 생성
+        // 패링 이니메이션으로 넘어가기
     }
 
     /// <summary>

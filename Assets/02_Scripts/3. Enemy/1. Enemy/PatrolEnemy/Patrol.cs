@@ -13,9 +13,14 @@ public class Patrol : FsmState
 	private int wayPointsIndex;
 	private NavMeshAgent nav;
 
+
+	public AnimationClip PatrolAnimClip = null;
+	private Animation skullAnimation = null;
 	private void Start()
 	{
+		skullAnimation = GetComponent<Animation>();
 		nav = GetComponent<NavMeshAgent>();
+		skullAnimation[PatrolAnimClip.name].wrapMode = WrapMode.Loop;
 		wayPointsIndex = 0;
 	}
 
@@ -35,6 +40,7 @@ public class Patrol : FsmState
 	}
 	void Patrols()
 	{
+		skullAnimation.CrossFade(PatrolAnimClip.name);
 		nav.SetDestination(wayPoints[wayPointsIndex].position);
 		if (nav.remainingDistance <= nav.stoppingDistance)
 		{

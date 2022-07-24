@@ -18,7 +18,7 @@ public class CameraHandler : MonoBehaviour
 
 	private float angleH = 0;                                          // 마우스 이동을 통한 수평 각도
 	private float angleV = 0;                                          // 마우스 이동을 통한 수직 각도
-	//[System.Obsolete]
+																	   //[System.Obsolete]
 	private Transform cam;                                             // 해당 스크립트의 Transform
 	private Vector3 smoothPivotOffset;                                 // 보간 시 현재 카메라의 Pivot Offset을 저장
 	private Vector3 smoothCamOffset;                                   // 보간 시 현재 카메라의 Offset을 저장
@@ -37,6 +37,7 @@ public class CameraHandler : MonoBehaviour
 	public float lockOnRange;
 	public LayerMask layerMask;
 	public CinemachineVirtualCamera camera = null;
+	private bool lockWait = false;
 
 	void Awake()
 	{
@@ -67,6 +68,11 @@ public class CameraHandler : MonoBehaviour
 
 	void Update()
 	{
+		if (lockOn)
+		{
+			LockOn();
+			return;
+		}
 		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
 		angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;
 
@@ -96,27 +102,27 @@ public class CameraHandler : MonoBehaviour
 
 		VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
 
-		if (lockOn)
-		{
-			Collider[] colliders = Physics.OverlapSphere(this.transform.position, lockOnRange, layerMask);
-			int maxindex = 0;
-			Debug.Log(colliders.Length);
-			for (int i = 0; i < colliders.Length; i++)
-			{
-				float maxDistance = (this.transform.position - colliders[maxindex].transform.position).sqrMagnitude;
-				float enemyDistance = (this.transform.position - colliders[i].transform.position).sqrMagnitude;
-				if (maxDistance < enemyDistance)
-					maxindex = i;
-			}
-			player.LookAt(colliders[maxindex].transform);
-			Vector3 vec = Player.transform.position + -player.forward.normalized * 10f;
-			vec.y += 5;
-			VCam.transform.position = vec;
+	}
 
-			Vector3 playerVec = player.transform.position;
-			playerVec.y += 2f;
-			VCam.transform.LookAt(playerVec);
+	private void LockOn()
+	{
+		Collider[] colliders = Physics.OverlapSphere(this.transform.position, lockOnRange, layerMask);
+		int maxindex = 0;
+		for (int i = 1; i < colliders.Length; i++)
+		{
+			float maxDistance = Vector3.Distance(player.transform.position, colliders[maxindex].transform.position);
+			float enemyDistance = Vector3.Distance(player.transform.position,colliders[i].transform.position);
+			if (maxDistance > enemyDistance)
+				maxindex = i;
 		}
+		player.LookAt(colliders[maxindex].transform);
+		Vector3 vec = Player.transform.position + -player.forward.normalized * 10f;
+		vec.y += 5;
+		VCam.transform.position = vec;
+
+		Vector3 playerVec = player.transform.position;
+		playerVec.y += 2f;
+		VCam.transform.LookAt(playerVec);
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)

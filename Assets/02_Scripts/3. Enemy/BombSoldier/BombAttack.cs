@@ -12,11 +12,11 @@ public class BombAttack : FsmState
     [SerializeField, Header("气藕 Prefab")]
     GameObject bomb;
 
-    Animation anim;
+    FsmLegacyAni anim;
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<FsmLegacyAni>();
     }
     private void Update()
     {
@@ -36,13 +36,13 @@ public class BombAttack : FsmState
     // 气藕 积己
     void Attack()
     {
-        anim.CrossFade("Armature_soldier_B_reloading", 0.25f);
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Reloading, 0.25f);
         Invoke("Shoot", 3.5f);
     }
 
     void Shoot()
     {
-        anim.CrossFade("Armature_soldier_B_shoot", 0.25f);
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Attack, 0.25f);
         GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
     }
 

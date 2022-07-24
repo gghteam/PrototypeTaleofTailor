@@ -10,14 +10,14 @@ public class BombChase : FsmState
 
     private Vector3 lastKnownLoc;
     private NavMeshAgent agent;
-    Animation anim;
+    FsmLegacyAni anim;
 
     bool isChase = false;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animation>();
+        anim = GetComponent<FsmLegacyAni>();
     }
 
     void Update()
@@ -40,7 +40,7 @@ public class BombChase : FsmState
     public override void OnStateEnter()
     {
         isChase = true;
-        anim.CrossFade("Armature_soldier_B_walk");
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Move, 0.25f);
         agent.destination = lastKnownLoc = target.position;
     }
 

@@ -4186,8 +4186,9 @@ GameObject:
   - component: {fileID: 2386096254527759805}
   - component: {fileID: 6032915786570152133}
   - component: {fileID: 6310583444028527475}
-  - component: {fileID: 7375296278899616819}
+  - component: {fileID: 4347765641897793625}
   - component: {fileID: 32478629}
+  - component: {fileID: 5510577816286482271}
   m_Layer: 6
   m_Name: BombSoldier
   m_TagString: Untagged
@@ -4408,28 +4409,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd76c736fff54b84bb763b10beaeabfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &7375296278899616819
-Animation:
+--- !u!114 &4347765641897793625
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2766221132056115929}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  m_Animations:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba230d0d6e4fe2e4f8b19c4d64b2ef82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
   - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}
-  - {fileID: 7400000, guid: f85429d8cf7cf8340b83d28df6907e09, type: 2}
   - {fileID: 7400000, guid: 4b3ab42ce5b5bdf4995eedbc6d6377ed, type: 2}
   - {fileID: 7400000, guid: 7acb24aa0dcd39b469726d3fd6e8410a, type: 2}
-  - {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
-  - {fileID: 7400000, guid: 47fa400d29eeef04b8d23975e07226a8, type: 2}
-  - {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!195 &32478629
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4452,6 +4448,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!111 &5510577816286482271
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766221132056115929}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
+  - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}
+  - {fileID: 7400000, guid: 4b3ab42ce5b5bdf4995eedbc6d6377ed, type: 2}
+  - {fileID: 7400000, guid: 7acb24aa0dcd39b469726d3fd6e8410a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2766227499458741461
 GameObject:
   m_ObjectHideFlags: 0

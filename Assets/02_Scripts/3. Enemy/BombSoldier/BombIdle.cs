@@ -5,16 +5,16 @@ using UnityEngine.AI;
 
 public class BombIdle : FsmState
 {
-    Animation anim;
+    FsmLegacyAni anim;
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<FsmLegacyAni>();
     }
 
     public override void OnStateEnter()
     {
-        anim.CrossFade("Armature_soldier_B_watches");
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Idle, 0.25f);
     }
     public override void OnStateLeave()
     {

@@ -13,7 +13,8 @@ public class FsmLegacyAni : MonoBehaviour
     {
         Idle,
         Move,
-        Attack
+        Attack,
+        Reloading
     }
 
 

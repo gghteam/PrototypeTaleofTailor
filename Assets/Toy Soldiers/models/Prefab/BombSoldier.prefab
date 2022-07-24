@@ -4518,7 +4518,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4755997457426372}
   - component: {fileID: 111593733354057808}
-  - component: {fileID: 7590279364762013573}
   m_Layer: 0
   m_Name: BombSoldier
   m_TagString: Untagged
@@ -4582,18 +4581,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &7590279364762013573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705923364356518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99d318dc0924a1419cd6f18f1c94eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1706138954849622
 GameObject:
   m_ObjectHideFlags: 0

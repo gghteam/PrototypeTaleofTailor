@@ -9,6 +9,7 @@ public class Gamemanager : MonoSingleton<Gamemanager>
 	private void Awake()
 	{
 		DontDestroyOnLoad(this.gameObject);
+
         PoolManager.Instance = new PoolManager(transform);
 
 		CreatePool();

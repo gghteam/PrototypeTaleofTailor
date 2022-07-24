@@ -121,13 +121,13 @@ public class FsmCore : MonoBehaviour {
 			TransitionRule tr = GlobalState[i];
 
 			//(검사되는 규칙이 있고 선택한 규칙이 없을때) 또는 (검사되는 규칙이 우선순위↑)
-			//그리고 조건이 충족되면(XOR연산자를 통하여 Not처리도 함)
-			if (tr != null &&
-				(chosenTransition == null || tr.Priority > chosenTransition.Priority) &&
-				(tr.Cond != null && (tr.Not ^ tr.Cond.IsSatisfied(current != null ? current.State : null, tr.Next))))
-
+			//그리고 조건이 충족되면(XOR연산자를 통하여 Not처리도 함)null &&
+			if ((chosenTransition == null || tr.Priority > chosenTransition.Priority) &&
+			(tr.Cond != null && (tr.Not ^ tr.Cond.IsSatisfied(current != null ? current.State : null, tr.Next))))
+			{
 				//선택할 규칙을 변경
 				chosenTransition = tr;
+			}
 		}
 
 		//현재 상태랑 현재 상태에 대한 규칙이 있다면

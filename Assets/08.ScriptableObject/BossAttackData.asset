@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ace02d083915eb4f9d6e49353f25e17, type: 3}
-  m_Name: InitPoolingList SO
+  m_Script: {fileID: 11500000, guid: 2b71da28557b59d4c92c512eaeb16f4e, type: 3}
+  m_Name: BossAttackData
   m_EditorClassIdentifier: 
-  list: []
+  attackDelay: 3
+  isAttackDelayRandomness: 0
+  attackDelayRandomness: 1
+  attackRange: 3
+  viewAngle: 60
+  attackDamage: 30

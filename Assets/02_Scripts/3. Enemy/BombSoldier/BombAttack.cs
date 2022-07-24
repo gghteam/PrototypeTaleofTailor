@@ -36,13 +36,13 @@ public class BombAttack : FsmState
     // ÆøÅº »ý¼º
     void Attack()
     {
-        anim.CrossFade("Armature_soldier|B_reloading", 0.25f);
+        anim.CrossFade("Armature_soldier_B_reloading", 0.25f);
         Invoke("Shoot", 3.5f);
     }
 
     void Shoot()
     {
-        anim.CrossFade("Armature_soldier|B_shoot", 0.25f);
+        anim.CrossFade("Armature_soldier_B_shoot", 0.25f);
         GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
     }
 

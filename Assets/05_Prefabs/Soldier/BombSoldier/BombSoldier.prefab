@@ -4419,12 +4419,13 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
   m_Animations:
-  - {fileID: 7400036, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
+  - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}
+  - {fileID: 7400000, guid: f85429d8cf7cf8340b83d28df6907e09, type: 2}
+  - {fileID: 7400000, guid: 4b3ab42ce5b5bdf4995eedbc6d6377ed, type: 2}
+  - {fileID: 7400000, guid: 7acb24aa0dcd39b469726d3fd6e8410a, type: 2}
+  - {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
+  - {fileID: 7400000, guid: 47fa400d29eeef04b8d23975e07226a8, type: 2}
   - {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  - {fileID: 7400032, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  - {fileID: 7400034, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  - {fileID: 7400030, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
-  - {fileID: 7400022, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

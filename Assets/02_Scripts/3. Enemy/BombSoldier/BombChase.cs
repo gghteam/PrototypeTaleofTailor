@@ -40,7 +40,7 @@ public class BombChase : FsmState
     public override void OnStateEnter()
     {
         isChase = true;
-        anim.CrossFade("Armature_soldier|B_walk");
+        anim.CrossFade("Armature_soldier_B_walk");
         agent.destination = lastKnownLoc = target.position;
     }
 

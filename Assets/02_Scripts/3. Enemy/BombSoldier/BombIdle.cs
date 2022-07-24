@@ -14,7 +14,7 @@ public class BombIdle : FsmState
 
     public override void OnStateEnter()
     {
-        anim.CrossFade("Armature_soldier|B_watches");
+        anim.CrossFade("Armature_soldier_B_watches");
     }
     public override void OnStateLeave()
     {

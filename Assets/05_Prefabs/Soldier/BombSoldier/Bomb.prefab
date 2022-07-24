@@ -127,6 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   bombSec: 1.5
-  bombPower: 30
+  bombPower: 35
   radius: 5
   bombParticle: {fileID: 100008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}

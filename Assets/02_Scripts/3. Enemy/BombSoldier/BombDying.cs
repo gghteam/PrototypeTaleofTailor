@@ -13,7 +13,7 @@ public class BombDying : FsmState
 
     public override void OnStateEnter()
     {
-        anim.CrossFade("Armature_soldier|B_dead", 0.25f);
+        anim.CrossFade("Armature_soldier_B_dead", 0.25f);
         Invoke("Die", 2f);
     }
 

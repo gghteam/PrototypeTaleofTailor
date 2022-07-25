@@ -85,7 +85,7 @@ public class CameraHandler : MonoBehaviour
 		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
 		Vector3 camPos = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
-		camPos.y += (aimRotation.x != 0 ? yOffset * aimRotation.x : 0);
+		//camPos.y += (aimRotation.x != 0 ? yOffset * aimRotation.x : 0);
 		VCam.transform.position = camPos;
 	}
 

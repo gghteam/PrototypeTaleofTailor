@@ -10,6 +10,7 @@ TagManager:
   - BOSS
   - CLOTHES_ITEM
   - VCam
+  - BOMBBALL
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Floor
   - Water
   - UI
-  - 
+  - BombSoldier
   - Enemy
   - 
   - Player

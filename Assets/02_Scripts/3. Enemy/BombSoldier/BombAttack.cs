@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BombAttack : FsmState
 {
+    [SerializeField, Header("°ø°Ý ¼Óµµ")]
+    float attackSec;
+    
     [SerializeField, Header("¸ñÇ¥ ÁöÁ¡")]
     Transform target;
     [SerializeField, Header("ÃÑ¾Ë ½ºÆù À§Ä¡")]
@@ -12,11 +15,11 @@ public class BombAttack : FsmState
     [SerializeField, Header("ÆøÅº Prefab")]
     GameObject bomb;
 
-    Animation anim;
+    FsmLegacyAni anim;
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<FsmLegacyAni>();
     }
     private void Update()
     {
@@ -25,7 +28,7 @@ public class BombAttack : FsmState
 
     public override void OnStateEnter()
     {
-        InvokeRepeating("Attack", 0.1f, 5f);
+        InvokeRepeating("Attack", 0.1f, attackSec);
     }
     public override void OnStateLeave()
     {
@@ -36,13 +39,13 @@ public class BombAttack : FsmState
     // ÆøÅº »ý¼º
     void Attack()
     {
-        anim.CrossFade("Armature_soldier_B_reloading", 0.25f);
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Reloading, 0.25f);
         Invoke("Shoot", 3.5f);
     }
 
     void Shoot()
     {
-        anim.CrossFade("Armature_soldier_B_shoot", 0.25f);
+        anim.ChangeAnimation(FsmLegacyAni.ClipState.Attack, 0.25f);
         GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
     }
 

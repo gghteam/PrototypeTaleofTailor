@@ -8,20 +8,20 @@ using Random = UnityEngine.Random;
 public class EnemyAttack : FsmState
 {
     [SerializeField]
-    private EnemyAttackDataSO enemyData;
-    private float attackDelay;
+    protected EnemyAttackDataSO enemyData;
+    protected float attackDelay;
 
     [SerializeField]
     private Collider[] attackColliders;
 
-    private int attackLayer = 1 << 10;
+    protected int attackLayer = 1 << 10;
 
-    private bool isAttack = false;
+    protected bool isAttack = false;
     public bool IsAttack => isAttack;
-    private bool isPlayerDamage = false;
+    protected bool isPlayerDamage = false;
 
-    private float timer = 0f;
-    private int attackCnt = 0;
+    protected float timer = 0f;
+    protected int attackCnt = 0;
 
     private Collider[] hitColls;
     private Collider hitColl;
@@ -34,7 +34,7 @@ public class EnemyAttack : FsmState
     private readonly int attack = Animator.StringToHash("Attack");
     private readonly int attackCount = Animator.StringToHash("count");
 
-    private readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
+    protected readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
     EventParam eventParam;
     void Start()
@@ -68,7 +68,7 @@ public class EnemyAttack : FsmState
     }
 
 #if UNITY_EDITOR
-    void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         if (UnityEditor.Selection.activeObject == this.gameObject)
         {
@@ -146,7 +146,7 @@ public class EnemyAttack : FsmState
     /// <summary>
     /// 패링당했을 때 함수
     /// </summary>
-    private void ParryingAction()
+    protected virtual void ParryingAction()
     {
         Debug.Log("쫌 치네ㅋ");
         // 패링 이펙트 생성
@@ -243,7 +243,7 @@ public class EnemyAttack : FsmState
     /// isAttack변수(현재 공격중인지?)를 변경시키는 함수
     /// </summary>
     /// <param name="value"></param>
-    private void AttackChange(int value)
+    protected void AttackChange(int value)
     {
         isAttack = value != 0;
     }
@@ -252,7 +252,7 @@ public class EnemyAttack : FsmState
     /// isPlayerDamage변수(플레이어가 데미지를 받는 중인지?)를 변경시키는 함수. 도트뎀을 막는 용도
     /// </summary>
     /// <param name="value"></param>
-    private void PlayerDamageChange(int value)
+    protected void PlayerDamageChange(int value)
     {
         isPlayerDamage = value != 0;
     }
@@ -264,7 +264,7 @@ public class EnemyAttack : FsmState
         ParryingChange(0);
     }
 
-    private void ColliderEnabledChange(int value)
+    protected void ColliderEnabledChange(int value)
     {
         foreach(Collider coll in attackColliders)
         {

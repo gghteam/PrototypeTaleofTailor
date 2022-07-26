@@ -7,7 +7,6 @@ using static Define;
 public class CameraHandler : MonoBehaviour
 {
 	//[System.Obsolete]
-<<<<<<< HEAD
 	public Transform player;                                           // PlayerÀÇ Transform
 	public Vector3 pivotOffset = new Vector3(0.0f, 1.7f, 0.0f);        // Ä«¸Þ¶ó¸¦ °¡¸®Å°±â À§ÇÑ Offset
 	public Vector3 camOffset = new Vector3(0.0f, 0.0f, -3.0f);         // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿Í °ü·ÃµÈ Ä«¸Þ¶ó¸¦ Àç¹èÄ¡ÇÏ´Â Offset
@@ -31,33 +30,6 @@ public class CameraHandler : MonoBehaviour
 	private bool isCustomOffset;                                       // »ç¿ëÀÚ ÁöÁ¤ Ä«¸Þ¶ó ¿ÀÇÁ¼Â »ç¿ë ¿©ºÎ
 
 	// Ä«¸Þ¶ó ¼öÆò °¢µµ ÇÁ·ÎÆÛÆ¼
-=======
-	public Transform player;                                           // Playerï¿½ï¿½ Transform
-	public Vector3 pivotOffset = new Vector3(0.0f, 1.7f, 0.0f);        // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Offset
-	public Vector3 camOffset = new Vector3(0.0f, 0.0f, -3.0f);         // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ Offset
-	public float smooth = 10f;                                         // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
-	public float horizontalAimingSpeed = 6f;                           // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Óµï¿½
-	public float verticalAimingSpeed = 6f;                             // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Óµï¿½
-	public float maxVerticalAngle = 30f;                               // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
-	public float minVerticalAngle = -60f;                              // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½
-
-	public float yOffset = 3f;
-
-	private float angleH = 0;                                          // ï¿½ï¿½ï¿½ì½º ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	private float angleV = 0;                                          // ï¿½ï¿½ï¿½ì½º ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	//[System.Obsolete]
-	private Transform cam;                                             // ï¿½Ø´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ Transform
-	private Vector3 smoothPivotOffset;                                 // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ Pivot Offsetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	private Vector3 smoothCamOffset;                                   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ Offsetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	private Vector3 targetPivotOffset;                                 // Å¸ï¿½ï¿½ï¿½ï¿½ Pivot Offset
-	private Vector3 targetCamOffset;                                   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ Offset
-	private float defaultFOV;                                          // ï¿½âº» Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½
-	private float targetFOV;                                           // Å¸ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½
-	private float targetMaxVerticalAngle;                              // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½
-	private bool isCustomOffset;                                       // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-
-	// Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
->>>>>>> origin/NEWKJP
 	public float GetH { get { return angleH; } }
 
 	[Header("ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]

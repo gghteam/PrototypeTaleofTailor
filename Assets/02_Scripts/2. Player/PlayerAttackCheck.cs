@@ -22,11 +22,16 @@ public class PlayerAttackCheck : MonoBehaviour
         {
             isfirst = true;
             eventParam.intParam = (int)playerAttack.PlayerDamage;
-            eventParam.intParam = (int)playerAttack.PlayerDamage;
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
 			EventManager.TriggerEvent("DAMAGE", eventParam); // µ¥¹ÌÁö
 		}
+        else if(other.CompareTag("ENEMY") && playerAttack.IsAttacking && !isfirst)
+        {
+            isfirst = true;
+            other.GetComponent<EnemyHP>().Damage(1);
+
+        }
     }
 
     private void Re(EventParam eventParam)

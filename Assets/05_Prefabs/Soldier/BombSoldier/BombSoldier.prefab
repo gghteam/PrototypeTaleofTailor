@@ -4189,9 +4189,10 @@ GameObject:
   - component: {fileID: 4347765641897793625}
   - component: {fileID: 32478629}
   - component: {fileID: 5510577816286482271}
+  - component: {fileID: 7898119029718117506}
   m_Layer: 6
   m_Name: BombSoldier
-  m_TagString: Untagged
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4245,7 +4246,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &666366361886542688
 CapsuleCollider:
@@ -4340,6 +4341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905cdfcb0e812a541baee5aa476c3632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSec: 4
   target: {fileID: 0}
   bombPos: {fileID: 7574404429952561391}
   bomb: {fileID: 8188338975372523985, guid: 2e84e10c249938842bb694eca3cdf618, type: 3}
@@ -4383,7 +4385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 15
-  maxRange: 25
+  maxRange: 20
   Player: {fileID: 0}
 --- !u!114 &6032915786570152133
 MonoBehaviour:
@@ -4426,6 +4428,8 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}
   - {fileID: 7400000, guid: 4b3ab42ce5b5bdf4995eedbc6d6377ed, type: 2}
   - {fileID: 7400000, guid: 7acb24aa0dcd39b469726d3fd6e8410a, type: 2}
+  - {fileID: 7400000, guid: 0a740c487d1cc8e4695db88312ca1bae, type: 2}
+  - {fileID: 7400000, guid: 47fa400d29eeef04b8d23975e07226a8, type: 2}
 --- !u!195 &32478629
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4463,10 +4467,25 @@ Animation:
   - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}
   - {fileID: 7400000, guid: 4b3ab42ce5b5bdf4995eedbc6d6377ed, type: 2}
   - {fileID: 7400000, guid: 7acb24aa0dcd39b469726d3fd6e8410a, type: 2}
+  - {fileID: 7400000, guid: 0a740c487d1cc8e4695db88312ca1bae, type: 2}
+  - {fileID: 7400000, guid: 47fa400d29eeef04b8d23975e07226a8, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &7898119029718117506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766221132056115929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eac79e6cbe9634eb541a3e73f48873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
 --- !u!1 &2766227499458741461
 GameObject:
   m_ObjectHideFlags: 0

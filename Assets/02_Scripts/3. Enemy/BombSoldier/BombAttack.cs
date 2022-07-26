@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BombAttack : FsmState
 {
+    [SerializeField, Header("공격 속도")]
+    float attackSec;
+    
     [SerializeField, Header("목표 지점")]
     Transform target;
     [SerializeField, Header("총알 스폰 위치")]
@@ -25,7 +28,7 @@ public class BombAttack : FsmState
 
     public override void OnStateEnter()
     {
-        InvokeRepeating("Attack", 0.1f, 5f);
+        InvokeRepeating("Attack", 0.1f, attackSec);
     }
     public override void OnStateLeave()
     {

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/08.ScriptableObject/BossAttackData.asset.meta
 guid: 8afc3b552b51a514a8b8ffa7d9e88d49
 NativeFormatImporter:
+========
+guid: de75f5100d53c57409ef616dae172e85
+DefaultImporter:
+>>>>>>>> SubMain:Assets/01_Scenes/KHJAI.unity.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 

@@ -40,7 +40,7 @@ public class Jump_Attack : FsmState
     private readonly int isMove = Animator.StringToHash("IsMove");
     private readonly int jumpAttack = Animator.StringToHash("JumpAttack");
     private readonly int attack = Animator.StringToHash("Attack");
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         fsmCore = GetComponent<FsmCore>();

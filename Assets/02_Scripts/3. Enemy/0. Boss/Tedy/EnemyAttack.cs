@@ -37,7 +37,7 @@ public class EnemyAttack : FsmState
     protected readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
     EventParam eventParam;
-    void Start()
+    void Awake()
     {
         ani = GetComponent<Animator>();
         //fsmCore = GetComponent<FsmCore>();

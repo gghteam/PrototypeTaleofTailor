@@ -44,7 +44,6 @@ public class EnemyIdle : FsmState
     public override void OnStateLeave()
     {
         ani.SetBool(isMove, true);
-        this.GetComponent<EnemyIdle>().enabled = false;
     }
 
     private void Update()

@@ -5175,8 +5175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e195febcd50e24fb566c69312314ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 3
-  attackRange: 3
+  enemyData: {fileID: 0}
   attackColliders:
   - {fileID: 1197575990}
   - {fileID: 148226534}
@@ -5209,7 +5208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 100
-  Player: {fileID: 359546423}
 --- !u!114 &289970359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,6 +5243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1571446119}
   animator: {fileID: 289970355}
+  transitionTime: 3
 --- !u!195 &289970361
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5375,7 +5374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 3
-  Player: {fileID: 359546423}
 --- !u!4 &289970367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
@@ -5394,7 +5392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 20
-  Player: {fileID: 289970367}
 --- !u!1 &291563345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11192,7 +11189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
       propertyPath: m_TagString
@@ -31986,6 +31983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1571446119}
   animator: {fileID: 0}
+  transitionTime: 3
 --- !u!136 &2041353200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32072,7 +32070,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 100
-  Player: {fileID: 1571446119}
 --- !u!114 &2041353207
 MonoBehaviour:
   m_ObjectHideFlags: 0

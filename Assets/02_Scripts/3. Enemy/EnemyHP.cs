@@ -10,15 +10,15 @@ public class EnemyHP : MonoBehaviour
     FsmLegacyAni anim;
 
     //
-    BombDying dieState;
-    BombKilled killed;
+    MonsterDying dieState;
+    EnemyKilled killed;
     
 
     private void Awake()
     {
         anim = GetComponent<FsmLegacyAni>();
-        dieState = GetComponent<BombDying>();
-        killed = GetComponent<BombKilled>();
+        dieState = GetComponent<MonsterDying>();
+        killed = GetComponent<EnemyKilled>();
     }
 
     public void Damage(int damage)

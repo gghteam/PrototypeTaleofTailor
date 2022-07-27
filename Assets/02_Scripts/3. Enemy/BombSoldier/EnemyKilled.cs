@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombKilled : FsmCondition
+public class EnemyKilled : FsmCondition
 {
     private bool dead;
 
@@ -22,6 +22,6 @@ public class BombKilled : FsmCondition
 
     public override bool IsSatisfied(FsmState curr, FsmState next)
     {
-        return dead && !(curr is BombDying);
+        return dead && !(curr is MonsterDying);
     }
 }

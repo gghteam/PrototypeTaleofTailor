@@ -5175,8 +5175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e195febcd50e24fb566c69312314ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 3
-  attackRange: 3
+  enemyData: {fileID: 0}
   attackColliders:
   - {fileID: 1197575990}
   - {fileID: 148226534}
@@ -5209,7 +5208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 100
-  Player: {fileID: 359546423}
 --- !u!114 &289970359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,6 +5243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1571446119}
   animator: {fileID: 289970355}
+  transitionTime: 3
 --- !u!195 &289970361
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5375,7 +5374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 3
-  Player: {fileID: 359546423}
 --- !u!4 &289970367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400080, guid: 0e8915349da353f4d8bc41bdc089faad, type: 3}
@@ -5394,7 +5392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 20
-  Player: {fileID: 289970367}
 --- !u!1 &291563345
 GameObject:
   m_ObjectHideFlags: 0
@@ -17628,6 +17625,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170924615}
   m_CullTransparentMesh: 1
+--- !u!114 &1171310215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6032915786570152133, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+  m_PrefabInstance: {fileID: 2766785710830160916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e894c573b9ba791478e091f49b54c84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1171310218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5932192451669679993, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+  m_PrefabInstance: {fileID: 2766785710830160916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1048702eec0d0d24fac287d9e9e2b2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1171310219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5606770084598410337, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+  m_PrefabInstance: {fileID: 2766785710830160916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 905cdfcb0e812a541baee5aa476c3632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1186946532 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100018, guid: 9e37ca7899c16534ca0599e0108a5df9, type: 3}
@@ -31952,6 +31982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1571446119}
   animator: {fileID: 0}
+  transitionTime: 3
 --- !u!136 &2041353200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32038,7 +32069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 100
-  Player: {fileID: 1571446119}
 --- !u!114 &2041353207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33629,6 +33659,30 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 359546423}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.data[3].State
+      value: 
+      objectReference: {fileID: 1171310215}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.data[3].Transitions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.data[3].Transitions.Array.data[0].Cond
+      value: 
+      objectReference: {fileID: 1171310218}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.data[3].Transitions.Array.data[0].Next
+      value: 
+      objectReference: {fileID: 1171310219}
+    - target: {fileID: 1517540607451259855, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
+      propertyPath: States.Array.data[3].Transitions.Array.data[0].Priority
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2386096254527759805, guid: 19c535d16929ce742969dd5e730fbef8, type: 3}
       propertyPath: Player
       value: 

@@ -13,12 +13,13 @@ public class NeedleItem : ItemManager
     EventParam eventParam = new EventParam();
 
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            UseItem();
-        }
+        EventManager.StartListening("NeedleItem", UseItem);
+    }
+    private void OnDestroy()
+    {
+        EventManager.StopListening("NeedleItem", UseItem);
     }
 
     protected override void GetItem()
@@ -33,7 +34,7 @@ public class NeedleItem : ItemManager
         EventManager.TriggerEvent("ITEMHAVE", eventParam);
     }
 
-    protected override void UseItem()
+    protected override void UseItem(EventParam eventParam)
     {
         if (isUsing) return;
         if (needleCount <= 0) return;

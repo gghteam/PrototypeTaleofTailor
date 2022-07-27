@@ -13,7 +13,7 @@ public abstract class ItemManager : MonoBehaviour
 
     protected static bool isUsing;
     // 아이템 사용 시
-    protected abstract void UseItem();
+    protected abstract void UseItem(EventParam eventParam);
 
     // 아이템 얻었을 때
     protected abstract void GetItem();

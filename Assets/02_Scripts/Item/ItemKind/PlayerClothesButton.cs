@@ -11,8 +11,6 @@ public class PlayerClothesButton : ItemManager
     int danchuIndex = 3;    // 현재 목숨 단추
     int clothesButtonItemCount = 0;    // 주운 단추 갯수
 
-    Vector3 enemyVector = Vector3.zero;    // Enemy의 위치
-
     EventParam eventParam = new EventParam();
 
     private void Start()
@@ -20,22 +18,19 @@ public class PlayerClothesButton : ItemManager
         // 죽었을 때 이벤트 받기 ( 단추 떨구기 )
         clothesButtonItemCount = 0;
         EventManager.StartListening("DEAD", DropClothesButton);
+        EventManager.StartListening("DanchuItem", UseItem);
+        EventManager.StartListening("ResetDanchu", ResetClothes);
     }
     private void OnDestroy()
     {
         EventManager.StopListening("DEAD", DropClothesButton);
+        EventManager.StopListening("DanchuItem", UseItem);
+        EventManager.StopListening("ResetDanchu", ResetClothes);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))   // 단추 아이템 사용
-        {
-            UseItem();
-        }
-    }
 
     // 아이템 사용
-    protected override void UseItem()
+    protected override void UseItem(EventParam eventParam)
     {
         if (clothesButtonItemCount > 0)
         {
@@ -58,13 +53,7 @@ public class PlayerClothesButton : ItemManager
         EventManager.TriggerEvent("ITEMUSEANIM", eventParam);
         Invoke("ClothesButtonStop", useTime);
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("BOSS"))
-        {
-            enemyVector = collision.transform.position; // 적의 위치 받기
-        }
-    }
+   
     void ClothesButtonCount()
     {
         eventParam.intParam = clothesButtonItemCount;
@@ -127,7 +116,6 @@ public class PlayerClothesButton : ItemManager
             spawnX = -2;
             spawnZ = 2;
         }
-        Debug.Log($" 단추  {danchuIndex}");
         Vector3 pos = transform.position + new Vector3(spawnX, 0, spawnZ);
         pos.y = 0.5f;
         clothesButton[danchuIndex].transform.localPosition = pos;
@@ -162,5 +150,17 @@ public class PlayerClothesButton : ItemManager
         baseWeapon.SetActive(true);
         item.SetActive(false);
         isUsing = false;
+    }
+
+    void ResetClothes(EventParam eventParam)
+    {
+        ItemZero();
+        int index = eventParam.intParam/2;
+        danchuIndex = index;
+        clothesButtonItemCount = 0;
+        for(int i=0;i< index; i++)
+        {
+            clothesButton[i].SetActive(false);
+        }
     }
 }

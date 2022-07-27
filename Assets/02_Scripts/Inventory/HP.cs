@@ -96,6 +96,7 @@ public class HP : MonoBehaviour
     // 단추 리셋
     void ResetClothesButton()
     {
+        danchuCount = maxDanchuCount;
         ClothesButtonOnOff(maxDanchuCount);
     }
 
@@ -172,12 +173,22 @@ public class HP : MonoBehaviour
         danchuCount -= minus; // 단추 수 빼기
         if (danchuCount <= 0)
         {
-            SceneManager.LoadScene("DeadScene");
+            RealDead();
         }
         else
         {
             ClothesButtonOnOff(danchuCount);
         }
+    }
+
+    void RealDead()
+    {
+        ResetHP();
+        ResetClothesButton();
+        EventManager.TriggerEvent("Spawn", eventParam);
+        eventParam.intParam = maxDanchuCount;
+        EventManager.TriggerEvent("ResetDanchu", eventParam);
+        //SceneManager.LoadScene("DeadScene");
     }
 
     void PlusClothesButton(EventParam eventParam)

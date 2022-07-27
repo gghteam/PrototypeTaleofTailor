@@ -41,7 +41,6 @@ public class BombBullet : MonoBehaviour
             // ÆøÅº ¹üÀ§ ¾È
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Æã");
                 eventParam.stringParam = "PLAYER";
                 eventParam.intParam = damage;
                 EventManager.TriggerEvent("DAMAGE", eventParam);

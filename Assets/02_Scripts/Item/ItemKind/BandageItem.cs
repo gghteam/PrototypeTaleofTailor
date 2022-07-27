@@ -11,13 +11,13 @@ public class BandageItem : ItemManager
 
     EventParam eventParam = new EventParam();
 
-
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UseItem();
-        }
+        EventManager.StartListening("BandageItem", UseItem);
+    }
+    private void OnDestroy()
+    {
+        EventManager.StopListening("BandageItem", UseItem);
     }
 
     protected override void GetItem()
@@ -25,7 +25,7 @@ public class BandageItem : ItemManager
 
     }
 
-    protected override void UseItem()
+    protected override void UseItem(EventParam eventParam)
     {
         if (isUsing) return;
         if (bandageCount <= 0) return;

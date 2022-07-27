@@ -35,6 +35,10 @@ public class InputHandler : MonoBehaviour
         AttackInput();
         JumpInput();
         LockInput();
+        BandageItemInput();
+        NeedleItemInput();
+        ClothesButtonItemInput();
+        TeaTableInput();
     }
 
     /// <summary>
@@ -87,4 +91,37 @@ public class InputHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(2))
             EventManager.TriggerEvent("LockOn", eventParam);
 	}
+
+    private void BandageItemInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.E);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("BandageItem", eventParam);
+    }
+    private void NeedleItemInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.Q);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("NeedleItem", eventParam);
+    }
+    
+    private void ClothesButtonItemInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.R);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("DanchuItem", eventParam);
+    }
+    
+    private void TeaTableInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.T);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("TeaTable", eventParam);
+    }
+
+    
 }

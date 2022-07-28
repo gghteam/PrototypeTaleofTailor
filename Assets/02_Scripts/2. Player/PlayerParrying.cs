@@ -19,6 +19,9 @@ public class PlayerParrying : Character
     [SerializeField, Tooltip("시야각 범위")]
     private float viewAngle = 60f;
 
+    [SerializeField]
+    private Transform swordPos;
+
     public UnityEvent OnParrying = null;
 
     private float timer = 0f;
@@ -61,7 +64,7 @@ public class PlayerParrying : Character
     private IEnumerator ParryingCoroutine()
     {
         isParrying = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         isParrying = false;
     }
 
@@ -110,7 +113,9 @@ public class PlayerParrying : Character
         // TODO : Success Parring
         Debug.Log("패링 성공!");
         SteminaManager.Instance.PlusStemina(parringSuccessStemina); // 스테미나 증가
-        Debug.Log("패링 이펙트 생성");
+        ParticlePool parryingParticle = PoolManager.Instance.Pop("ParryingParticle") as ParticlePool;
+        parryingParticle.transform.position = swordPos.position;
+
         OnParrying?.Invoke();
     }
 }

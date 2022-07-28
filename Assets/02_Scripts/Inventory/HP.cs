@@ -53,6 +53,9 @@ public class HP : MonoBehaviour
     [SerializeField]
     private Killed killed;
 
+    [SerializeField]
+    private Transform bossHitParticlePos;
+
     bool damaged = false;
     bool isDead = false;
     bool isHalf = false;
@@ -111,7 +114,8 @@ public class HP : MonoBehaviour
         }
         else if (eventParam.stringParam == "BOSS")
         {
-            EventManager.TriggerEvent("AttackParticle", eventParam);
+            //EventManager.TriggerEvent("AttackParticle", eventParam);
+            StartCoroutine(CreateHitParticiel(0.5f));
             bossHP -= eventParam.intParam;
             Debug.Log(bossHP);
             if (bossHP <= 0)
@@ -124,6 +128,14 @@ public class HP : MonoBehaviour
             }
         }
 
+    }
+
+    private IEnumerator CreateHitParticiel(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ParticlePool particle = PoolManager.Instance.Pop("BossHitParticle") as ParticlePool;
+        Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        particle.transform.position = bossHitParticlePos.position + offset;
     }
     // HP °ÔÀÌÁö UI Update
     void UpdateSlider()

@@ -149,8 +149,6 @@ public class EnemyAttack : FsmState
     protected virtual void ParryingAction()
     {
         Debug.Log("쫌 치네ㅋ");
-        // 패링 이펙트 생성
-        // 패링 이니메이션으로 넘어가기
     }
 
     /// <summary>

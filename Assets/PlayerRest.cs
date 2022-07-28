@@ -27,18 +27,24 @@ public class PlayerRest : MonoBehaviour
 
     void Resting(EventParam eventParam)
     {
-        EffectSpawn();
+        EffectSave();
         savePoint = transform.position;
     }
 
     void Spawn(EventParam eventParam)
     {
+        EffectSpawn();
         transform.position = savePoint;
     }
 
     void EffectSpawn()
     {
         // 스폰 이펙트
+    }
+    void EffectSave()
+    {
+        // 스폰 저장 이펙트
+        // 플레이어 차 마시는 애니메이션 추가
     }
 
 }

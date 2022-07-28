@@ -13,6 +13,7 @@ public class TeaTable : MonoBehaviour
     float dis;
 
     bool isOn = false;
+    bool isSaving = false;
 
     private void Update()
     {
@@ -21,6 +22,7 @@ public class TeaTable : MonoBehaviour
 
     void CheckSave()
     {
+        if (isSaving) return;
         isOn = Vector3.Distance(transform.position, player.transform.position) < dis ? true:false;
         questions.SetActive(isOn);
     }
@@ -37,7 +39,15 @@ public class TeaTable : MonoBehaviour
     void Use(EventParam eventParam)
     {
         if (!isOn) return;
-
+        isSaving = true;
+        questions.SetActive(false);
         EventManager.TriggerEvent("Rest", eventParam);
+        Invoke("OffUse", 3f);
+    }
+
+    void OffUse()
+    {
+
+        isSaving = false;
     }
 }

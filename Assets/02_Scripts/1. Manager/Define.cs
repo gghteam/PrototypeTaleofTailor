@@ -6,6 +6,7 @@ using Cinemachine;
 public class Define
 {
     private static CinemachineVirtualCamera vCam;
+    private static Ci flCam;
     private static GameObject player;
 
     public static CinemachineVirtualCamera VCam
@@ -17,6 +18,18 @@ public class Define
                 vCam = GameObject.FindWithTag("VCam").GetComponent<CinemachineVirtualCamera>();
             }
             return vCam;
+        }
+    }
+
+    public static CinemachineFreeLook FLCam
+    {
+        get
+        {
+            if(flCam == null)
+            {
+                flCam = GameObject.FindWithTag("FLCam").GetComponent<CinemachineFreeLook>();
+            }
+            return flCam;
         }
     }
 

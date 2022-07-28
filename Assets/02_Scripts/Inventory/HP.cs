@@ -109,13 +109,14 @@ public class HP : MonoBehaviour
         if (eventParam.stringParam == "PLAYER")
         {
             playerHP -= eventParam.intParam;
+            EventManager.TriggerEvent("CameraShake", eventParam);
             Invoke("SliderHit", 0.5f);
             damaged = true;
         }
         else if (eventParam.stringParam == "BOSS")
         {
             //EventManager.TriggerEvent("AttackParticle", eventParam);
-            StartCoroutine(CreateHitParticiel(0.5f));
+            StartCoroutine(CreateHitParticiel(0.7f));
             bossHP -= eventParam.intParam;
             Debug.Log(bossHP);
             if (bossHP <= 0)

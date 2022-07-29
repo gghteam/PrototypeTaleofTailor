@@ -37,7 +37,7 @@ public class EnemyAttack : FsmState
     protected readonly static WaitForSeconds waitForSeconds05 = new WaitForSeconds(0.5f);
 
     EventParam eventParam;
-    void Start()
+    void Awake()
     {
         ani = GetComponent<Animator>();
         //fsmCore = GetComponent<FsmCore>();
@@ -149,8 +149,6 @@ public class EnemyAttack : FsmState
     protected virtual void ParryingAction()
     {
         Debug.Log("쫌 치네ㅋ");
-        // 패링 이펙트 생성
-        // 패링 이니메이션으로 넘어가기
     }
 
     /// <summary>

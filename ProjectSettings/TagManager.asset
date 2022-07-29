@@ -11,6 +11,8 @@ TagManager:
   - CLOTHES_ITEM
   - VCam
   - BOMBBALL
+  - FxTemporaire
+  - FLCam
   layers:
   - Default
   - TransparentFX

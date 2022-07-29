@@ -16,7 +16,8 @@ public class FsmLegacyAni : MonoBehaviour
         Attack,
         Reloading,
         Damage,
-        Dead
+        Dead,
+        Reconnaissance
     }
 
 

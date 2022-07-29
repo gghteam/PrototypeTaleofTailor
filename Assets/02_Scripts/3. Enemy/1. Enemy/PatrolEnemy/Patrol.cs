@@ -13,14 +13,14 @@ public class Patrol : FsmState
 	private int wayPointsIndex;
 	private NavMeshAgent nav;
 
-
-	public AnimationClip PatrolAnimClip = null;
-	private Animation skullAnimation = null;
+	private FsmLegacyAni fsmLegacyAni;
+	private void Awake()
+	{
+		fsmLegacyAni = GetComponent<FsmLegacyAni>();
+	}
 	private void Start()
 	{
-		skullAnimation = GetComponent<Animation>();
 		nav = GetComponent<NavMeshAgent>();
-		skullAnimation[PatrolAnimClip.name].wrapMode = WrapMode.Loop;
 		wayPointsIndex = 0;
 	}
 
@@ -32,7 +32,7 @@ public class Patrol : FsmState
 
 	public override void OnStateEnter()
 	{
-
+		fsmLegacyAni.ChangeAnimation(FsmLegacyAni.ClipState.Move, 0.25f);
 	}
 	public override void OnStateLeave()
 	{
@@ -40,7 +40,6 @@ public class Patrol : FsmState
 	}
 	void Patrols()
 	{
-		skullAnimation.CrossFade(PatrolAnimClip.name);
 		nav.SetDestination(wayPoints[wayPointsIndex].position);
 		if (nav.remainingDistance <= nav.stoppingDistance)
 		{

@@ -8,6 +8,7 @@ public class TeaTable : MonoBehaviour
     GameObject questions;
     [SerializeField]
     GameObject player;
+   
 
     [SerializeField]
     float dis;

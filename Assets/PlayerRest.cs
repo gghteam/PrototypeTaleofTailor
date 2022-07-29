@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerRest : MonoBehaviour
 {
+    [SerializeField]
+    ParticleSystem spawnParticle;
+
     Animator anim;
 
     Vector3 savePoint = Vector3.zero;
@@ -40,11 +43,14 @@ public class PlayerRest : MonoBehaviour
     void EffectSpawn()
     {
         // 스폰 이펙트
+        spawnParticle.Play();
     }
     void EffectSave()
     {
         // 스폰 저장 이펙트
         // 플레이어 차 마시는 애니메이션 추가
+        spawnParticle.Play();
     }
+
 
 }

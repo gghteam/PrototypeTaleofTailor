@@ -6,7 +6,7 @@ using Cinemachine;
 public class Define
 {
     private static CinemachineVirtualCamera vCam;
-    private static Ci flCam;
+    private static CinemachineFreeLook flCam;
     private static GameObject player;
 
     public static CinemachineVirtualCamera VCam

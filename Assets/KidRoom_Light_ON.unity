@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000234, guid: fe56a60dc766e844b80b298e560a0561, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 507bba2fa98c79144ae1d2cc57582ef5, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e7d944b012d542648bed4698c1aa683d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -768,6 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 18a90284a06db9e408835e8f267a0b86, type: 2}
 --- !u!81 &85712496
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5770,6 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 18a90284a06db9e408835e8f267a0b86, type: 2}
 --- !u!81 &1920493312
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6374,6 +6376,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

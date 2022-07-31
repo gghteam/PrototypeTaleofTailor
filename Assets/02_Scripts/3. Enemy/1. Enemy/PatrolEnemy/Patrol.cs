@@ -40,17 +40,20 @@ public class Patrol : FsmState
 	}
 	void Patrols()
 	{
-		nav.SetDestination(wayPoints[wayPointsIndex].position);
-		if (nav.remainingDistance <= nav.stoppingDistance)
+		if(wayPoints.Length > 0)
 		{
-			Gamemanager.Instance.Shuffle<Transform>(wayPoints);
-			Vector3 v1 = wayPoints[wayPointsIndex].position;
-			if (v1 == wayPoints[wayPointsIndex].position)
+			nav?.SetDestination(wayPoints[wayPointsIndex].position);
+			if (nav.remainingDistance <= nav.stoppingDistance)
 			{
-				wayPointsIndex++;
-				if (wayPointsIndex >= wayPoints.Length)
+				Gamemanager.Instance.Shuffle<Transform>(wayPoints);
+				Vector3 v1 = wayPoints[wayPointsIndex].position;
+				if (v1 == wayPoints[wayPointsIndex].position)
 				{
-					wayPointsIndex = 0;
+					wayPointsIndex++;
+					if (wayPointsIndex >= wayPoints.Length)
+					{
+						wayPointsIndex = 0;
+					}
 				}
 			}
 		}

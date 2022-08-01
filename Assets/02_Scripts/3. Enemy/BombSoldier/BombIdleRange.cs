@@ -11,6 +11,6 @@ public class BombIdleRange : FsmCondition
 
     public override bool IsSatisfied(FsmState curr, FsmState next)
     {
-        return Vector3.Distance(transform.position, Player.position) < Range || Vector3.Distance(transform.position, Player.position) > maxRange;
+        return Vector3.Distance(transform.position, Player.position) > Range;
     }
 }

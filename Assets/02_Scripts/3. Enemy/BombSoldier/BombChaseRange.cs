@@ -9,10 +9,33 @@ public class BombChaseRange : FsmCondition
 
     public Transform Player;
 
+    private bool isAttack = false;
+
+    private void Start()
+    {
+        EventManager.StartListening("BombStart", IsBomb);
+
+
+    }
+    private void OnDestroy()
+    {
+        EventManager.StopListening("BombStart", IsBomb);
+    }
+
     public override bool IsSatisfied(FsmState curr, FsmState next)
     {
         float dis = Vector3.Distance(transform.position, Player.position);
-        return  dis > Range && dis < maxRange;
+        if (dis > Range && dis < maxRange)
+        {
+            if (isAttack) return false;
+            else return true;
+        }
+        else return false;
+    }
+
+    private void IsBomb(EventParam eventParam)
+    {
+        isAttack = eventParam.boolParam;
     }
 
 #if UNITY_EDITOR

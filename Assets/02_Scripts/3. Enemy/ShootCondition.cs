@@ -70,4 +70,9 @@ public class ShootCondition : FsmState
         Instantiate(bullet, bulletPos.position, qur);
         isShoot = false;
     }
+
+    public override void OnStateLeave()
+    {
+        CancelInvoke("Shoot");
+    }
 }

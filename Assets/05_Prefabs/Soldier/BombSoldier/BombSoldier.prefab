@@ -4206,7 +4206,7 @@ Transform:
   m_GameObject: {fileID: 2766221132056115929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 19.7}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 2768258874889968001}
   - {fileID: 2768098654239687035}
@@ -4282,10 +4282,6 @@ MonoBehaviour:
   States:
   - State: {fileID: 7777156679976546653}
     Transitions:
-    - Next: {fileID: 5606770084598410337}
-      Cond: {fileID: 5932192451669679993}
-      Priority: 30
-      Not: 1
     - Next: {fileID: 445619959035646501}
       Cond: {fileID: 2386096254527759805}
       Priority: 20
@@ -4357,7 +4353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1048702eec0d0d24fac287d9e9e2b2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 15
+  Range: 120
   Player: {fileID: 0}
 --- !u!114 &445619959035646501
 MonoBehaviour:
@@ -4384,8 +4380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57629e02b528c3f47aaa83d914164791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 15
-  maxRange: 20
+  Range: 120
+  maxRange: 200
   Player: {fileID: 0}
 --- !u!114 &6032915786570152133
 MonoBehaviour:
@@ -4461,7 +4457,7 @@ Animation:
   m_GameObject: {fileID: 2766221132056115929}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: d63dffbbda3f7684a817f3a49a98e00b, type: 2}
   - {fileID: 7400000, guid: 1daa9a2c89eb88747a84fc4cafec7091, type: 2}

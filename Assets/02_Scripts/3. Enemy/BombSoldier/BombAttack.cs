@@ -16,6 +16,7 @@ public class BombAttack : FsmState
     GameObject bomb;
 
     FsmLegacyAni anim;
+    EventParam eventParam;
 
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class BombAttack : FsmState
 
     public override void OnStateEnter()
     {
+        eventParam.boolParam = true;
+        EventManager.TriggerEvent("BombStart", eventParam);
+
         InvokeRepeating("Attack", 0.1f, attackSec);
     }
     public override void OnStateLeave()
@@ -49,6 +53,9 @@ public class BombAttack : FsmState
         //GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
         BombBullet _bullet = PoolManager.Instance.Pop("Bomb") as BombBullet;
         _bullet.transform.SetPositionAndRotation(bombPos.position, GetDirection());
+        
+        eventParam.boolParam = false;
+        EventManager.TriggerEvent("BombStart", eventParam);
     }
 
     void LookPlayer()

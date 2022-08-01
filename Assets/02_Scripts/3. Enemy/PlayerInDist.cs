@@ -24,7 +24,7 @@ public class PlayerInDist : FsmCondition
     public override bool IsSatisfied(FsmState curr, FsmState next)
     {
         checkState = curr;
-        float distance = Vector3.Distance(transform.position, targetTransform.position);
+        float distance = Vector3.Distance(transform.position,  targetTransform.position);
 
         return distance <= dist;
     }

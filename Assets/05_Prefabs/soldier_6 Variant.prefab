@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 111207587553514264, guid: e40dceb2c5c7640489681dee9922ce7b, type: 3}
       propertyPath: m_Animations.Array.data[6]
       value: 
-      objectReference: {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
+      objectReference: {fileID: 7400020, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e40dceb2c5c7640489681dee9922ce7b, type: 3}
 --- !u!1 &8039197701868811833 stripped
@@ -158,7 +158,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  CallAnimClip: {fileID: 7400042, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
 --- !u!114 &1981394426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,13 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732f1d51393eb1b42b819da1fa8c7830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  wayPoints: []
   speed: 3
   distMin: 2
   waitSecound: 1
-  PatrolAnimClip: {fileID: 7400052, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
 --- !u!114 &1981394427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +215,7 @@ MonoBehaviour:
   range: 2
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
 --- !u!114 &2646073003844169511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +247,7 @@ MonoBehaviour:
   - {fileID: 7400010, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
   - {fileID: 7400004, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
   - {fileID: 7400000, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
+  - {fileID: 7400020, guid: b69d362dda29cbe41a4af495b4fd60c7, type: 3}
 --- !u!114 &5072231330701755858
 MonoBehaviour:
   m_ObjectHideFlags: 0

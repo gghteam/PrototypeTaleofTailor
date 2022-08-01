@@ -43,13 +43,13 @@ public class CameraHandler : MonoBehaviour
 	{
 		cam = transform;
 
-		VCam.transform.position = Player.transform.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
-		VCam.transform.rotation = Quaternion.identity;
+		//VCam.transform.position = Player.transform.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
+		//VCam.transform.rotation = Quaternion.identity;
 
 		smoothPivotOffset = pivotOffset;
 		smoothCamOffset = camOffset;
 		//defaultFOV = cam.GetComponent<Camera>().fieldOfView;
-		defaultFOV = VCam.m_Lens.FieldOfView;
+		//defaultFOV = VCam.m_Lens.FieldOfView;
 		angleH = Player.transform.eulerAngles.y;
 
 		ResetTargetOffsets();
@@ -80,9 +80,9 @@ public class CameraHandler : MonoBehaviour
 
 		Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
-		VCam.transform.rotation = aimRotation;
+		//VCam.transform.rotation = aimRotation;
 
-		VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
+		//VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
 
 		Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
 		Vector3 noCollisionOffset = targetCamOffset;
@@ -100,7 +100,7 @@ public class CameraHandler : MonoBehaviour
 		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
 
-		VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+		//VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
 
 	}
 
@@ -118,11 +118,11 @@ public class CameraHandler : MonoBehaviour
 		player.LookAt(colliders[maxindex].transform);
 		Vector3 vec = Player.transform.position + -player.forward.normalized * 10f;
 		vec.y += 5;
-		VCam.transform.position = vec;
+		FLCam.transform.position = vec;
 
 		Vector3 playerVec = player.transform.position;
 		playerVec.y += 2f;
-		VCam.transform.LookAt(playerVec);
+		FLCam.transform.LookAt(playerVec);
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)

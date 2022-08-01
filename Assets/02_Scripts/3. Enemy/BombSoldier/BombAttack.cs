@@ -33,7 +33,7 @@ public class BombAttack : FsmState
     public override void OnStateLeave()
     {
         CancelInvoke();
-        this.GetComponent<BombAttack>().enabled = false;
+        //this.GetComponent<BombAttack>().enabled = false;
     }
 
     // ÆøÅº »ý¼º
@@ -46,7 +46,9 @@ public class BombAttack : FsmState
     void Shoot()
     {
         anim.ChangeAnimation(FsmLegacyAni.ClipState.Attack, 0.25f);
-        GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
+        //GameObject _bullet = Instantiate(bomb, bombPos.position, transform.rotation);
+        BombBullet _bullet = PoolManager.Instance.Pop("Bomb") as BombBullet;
+        _bullet.transform.SetPositionAndRotation(bombPos.position, GetDirection());
     }
 
     void LookPlayer()
@@ -57,5 +59,11 @@ public class BombAttack : FsmState
         transform.rotation = q;
     }
 
-
+    private Quaternion GetDirection()
+    {
+        Vector3 vec = target.position - transform.position;
+        vec.Normalize();
+        Quaternion q = Quaternion.LookRotation(vec);
+        return q;
+    }
 }

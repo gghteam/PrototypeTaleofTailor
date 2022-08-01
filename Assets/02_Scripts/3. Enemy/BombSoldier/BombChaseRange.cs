@@ -14,4 +14,14 @@ public class BombChaseRange : FsmCondition
         float dis = Vector3.Distance(transform.position, Player.position);
         return  dis > Range && dis < maxRange;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, Range);
+        Gizmos.DrawWireSphere(transform.position, maxRange);
+        Gizmos.color = Color.white;
+    }
+#endif
 }

@@ -13,4 +13,12 @@ public class BombAttackRange : FsmCondition
         return Vector3.Distance(transform.position, Player.position) < Range;
     }
 
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, Range);
+        Gizmos.color = Color.white;
+    }
+#endif
 }

@@ -22,7 +22,7 @@ TagManager:
   - UI
   - BombSoldier
   - Enemy
-  - 
+  - EnemyDic
   - Player
   - Controller
   - PUNCH

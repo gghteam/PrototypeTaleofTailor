@@ -30,7 +30,7 @@ public class PlayerAttackCheck : MonoBehaviour
         {
             isfirst = true;
             other.GetComponent<EnemyHP>().Damage(1);
-
+            Debug.Log("??");
         }
     }
 

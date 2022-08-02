@@ -79,7 +79,7 @@ public class PlayerMovement : Character
 			//vector를 정규화함(길이를 1로 만들어 방향만 남김)
 		}
 
-		moveDirection.y = 0;
+		//moveDirection.y = 0;
 		moveDirection.Normalize();
 
 		if (ani.GetInteger("AttackCount") == 0)

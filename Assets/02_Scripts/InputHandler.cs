@@ -39,6 +39,7 @@ public class InputHandler : MonoBehaviour
         NeedleItemInput();
         ClothesButtonItemInput();
         TeaTableInput();
+        TeleportInput();
     }
 
     /// <summary>
@@ -121,6 +122,14 @@ public class InputHandler : MonoBehaviour
 
         if (eventParam.boolParam)
             EventManager.TriggerEvent("TeaTable", eventParam);
+    }
+    
+    private void TeleportInput()
+    {
+        eventParam.boolParam = Input.GetKeyDown(KeyCode.Z);
+
+        if (eventParam.boolParam)
+            EventManager.TriggerEvent("Teleport", eventParam);
     }
 
     

@@ -6,6 +6,8 @@ public class PlayerJump : Character
 {
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private float _jumpPower;   //점프력
 
     bool isJump=false;
 
@@ -15,7 +17,6 @@ public class PlayerJump : Character
     private bool _isJumping;
     private float _posY;        //오브젝트의 초기 높이
     private float _gravity;     //중력가속도
-    private float _jumpPower;   //점프력
     private float _jumpTime;    //점프 이후 경과시간
 
     void Start()
@@ -24,7 +25,6 @@ public class PlayerJump : Character
         _isJumping = false;
         _posY = transform.position.y;
         _gravity = 9.8f;
-        _jumpPower = 9.0f;
         _jumpTime = 0.0f;
 
         EventManager.StartListening("InputJump", JumpOn);

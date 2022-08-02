@@ -47,7 +47,7 @@ public class Chase : FsmState
                 transitionTime = 0f;
             }
             agent.destination = lastKnownLoc = target.position;
-            //agent.SetDestination(target.position);
+            agent.SetDestination(target.position);
         }
         else
             ChangeStop(true);
@@ -80,7 +80,7 @@ public class Chase : FsmState
 
     public override void OnStateLeave()
     {
-        this.GetComponent<Chase>().enabled = false;
+        //this.GetComponent<Chase>().enabled = false;
         agent.ResetPath();
         Debug.Log("Chase ¶°³ª±â");
     }

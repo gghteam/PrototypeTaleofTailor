@@ -29,9 +29,13 @@ public class PlayerParrying : Character
     private bool isParrying = false;
     public bool IsParrying { get => isParrying; }
 
+    private PlayerAttack playerAttack;
+
     private readonly int parrying = Animator.StringToHash("isParrying");
     void Start()
     {
+        playerAttack = GetComponent<PlayerAttack>();
+
         timer = parryingDelay;
     }
 
@@ -43,16 +47,19 @@ public class PlayerParrying : Character
 
         if (timer >= parryingDelay)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (playerAttack.IsAttacking == false)
             {
-                if (SteminaManager.Instance.CheckStemina(parriyngStemina))
+                if (Input.GetMouseButtonDown(1))
                 {
-                    SteminaManager.Instance.MinusStemina(parriyngStemina);
-                    Parrying();
-                    timer = 0f;
+                    if (SteminaManager.Instance.CheckStemina(parriyngStemina))
+                    {
+                        SteminaManager.Instance.MinusStemina(parriyngStemina);
+                        Parrying();
+                        timer = 0f;
+                    }
+                    else
+                        UIManager.Instance.UseSteminaFailedEffect();
                 }
-                else
-                    UIManager.Instance.UseSteminaFailedEffect();
             }
         }
     }

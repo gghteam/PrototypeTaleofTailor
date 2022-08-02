@@ -135,7 +135,8 @@ public class HP : MonoBehaviour
     private IEnumerator CreateHitParticiel(float time)
     {
         yield return new WaitForSeconds(time);
-        ParticlePool particle = PoolManager.Instance.Pop("BossHitParticle") as ParticlePool;
+        //ParticlePool particle = PoolManager.Instance.Pop("BossHitParticle") as ParticlePool;
+        ParticlePool particle = PoolManager.Instance.Pop("CFX3_Hit_SmokePuff") as ParticlePool;
         Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
         particle.transform.position = bossHitParticlePos.position + offset;
     }

@@ -12,15 +12,19 @@ public class CameraShake : MonoBehaviour
     [SerializeField, Tooltip("Èçµé¸± ½Ã°£")]
     private float shakeTime = 0.3f;
 
+    private CinemachineFreeLook flCam;
+
     private CinemachineBasicMultiChannelPerlin noise1;
     private CinemachineBasicMultiChannelPerlin noise2;
     private CinemachineBasicMultiChannelPerlin noise3;
 
     private void Start()
     {
-        noise1 = FLCam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        noise2 = FLCam.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        noise3 = FLCam.GetRig(2).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        flCam = FLCam;
+
+        noise1 = flCam.GetRig(0).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        noise2 = flCam.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        noise3 = flCam.GetRig(2).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         EventManager.StartListening("CameraShake", CameraShakeEffect);
     }

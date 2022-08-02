@@ -32,7 +32,6 @@ public class PlayerAttack : Character
 	}
 	private void PlayerAttackAnimationEnd()
 	{
-		Debug.Log("?");
 		CheckAttackPhase();
 		EventManager.TriggerEvent("Attack", eventParam);
 	}

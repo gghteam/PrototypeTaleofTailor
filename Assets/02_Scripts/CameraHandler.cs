@@ -36,7 +36,7 @@ public class CameraHandler : MonoBehaviour
 	private bool lockOn = false;
 	public float lockOnRange;
 	public LayerMask layerMask;
-	public CinemachineVirtualCamera camera = null;
+	public Camera camera;
 	private bool lockWait = false;
 
 	void Awake()
@@ -73,32 +73,34 @@ public class CameraHandler : MonoBehaviour
 			LockOn();
 			return;
 		}
-		angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
-		angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;
+		else
+			FLCam.gameObject.SetActive(true);
+		//angleH += Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
+		//angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;
 
-		angleV = Mathf.Clamp(angleV, minVerticalAngle, targetMaxVerticalAngle);
+		//angleV = Mathf.Clamp(angleV, minVerticalAngle, targetMaxVerticalAngle);
 
-		Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
-		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
-		//VCam.transform.rotation = aimRotation;
+		//Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
+		//Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
+		////VCam.transform.rotation = aimRotation;
 
-		//VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
+		////VCam.m_Lens.FieldOfView = Mathf.Lerp(VCam.m_Lens.FieldOfView, targetFOV, Time.deltaTime);
 
-		Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
-		Vector3 noCollisionOffset = targetCamOffset;
-		while (noCollisionOffset.magnitude >= 0.2f)
-		{
-			if (DoubleViewingPosCheck(baseTempPosition + aimRotation * noCollisionOffset))
-				break;
-			noCollisionOffset -= noCollisionOffset.normalized * 0.2f;
-		}
-		if (noCollisionOffset.magnitude < 0.2f)
-			noCollisionOffset = Vector3.zero;
+		//Vector3 baseTempPosition = Player.transform.position + camYRotation * targetPivotOffset;
+		//Vector3 noCollisionOffset = targetCamOffset;
+		//while (noCollisionOffset.magnitude >= 0.2f)
+		//{
+		//	if (DoubleViewingPosCheck(baseTempPosition + aimRotation * noCollisionOffset))
+		//		break;
+		//	noCollisionOffset -= noCollisionOffset.normalized * 0.2f;
+		//}
+		//if (noCollisionOffset.magnitude < 0.2f)
+		//	noCollisionOffset = Vector3.zero;
 
-		bool customOffsetCollision = isCustomOffset && noCollisionOffset.sqrMagnitude < targetCamOffset.sqrMagnitude;
+		//bool customOffsetCollision = isCustomOffset && noCollisionOffset.sqrMagnitude < targetCamOffset.sqrMagnitude;
 
-		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
-		smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
+		//smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, customOffsetCollision ? pivotOffset : targetPivotOffset, smooth * Time.deltaTime);
+		//smoothCamOffset = Vector3.Lerp(smoothCamOffset, customOffsetCollision ? Vector3.zero : noCollisionOffset, smooth * Time.deltaTime);
 
 		//VCam.transform.position = Player.transform.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
 
@@ -106,23 +108,29 @@ public class CameraHandler : MonoBehaviour
 
 	private void LockOn()
 	{
+		FLCam.gameObject.SetActive(false);
 		Collider[] colliders = Physics.OverlapSphere(this.transform.position, lockOnRange, layerMask);
 		int maxindex = 0;
-		for (int i = 1; i < colliders.Length; i++)
+		if (colliders.Length > 0)
 		{
-			float maxDistance = Vector3.Distance(player.transform.position, colliders[maxindex].transform.position);
-			float enemyDistance = Vector3.Distance(player.transform.position,colliders[i].transform.position);
-			if (maxDistance > enemyDistance)
-				maxindex = i;
-		}
-		player.LookAt(colliders[maxindex].transform);
-		Vector3 vec = Player.transform.position + -player.forward.normalized * 10f;
-		vec.y += 5;
-		FLCam.transform.position = vec;
+			for (int i = 1; i < colliders.Length; i++)
+			{
+				float maxDistance = Vector3.Distance(player.transform.position, colliders[maxindex].transform.position);
+				float enemyDistance = Vector3.Distance(player.transform.position, colliders[i].transform.position);
+				if (maxDistance > enemyDistance)
+					maxindex = i;
+			}
+			player.LookAt(colliders[maxindex].transform);
+			Vector3 vec = player.transform.position + -player.forward.normalized * 10f;
+			vec.y += 5;
+			camera.transform.position = vec;
 
-		Vector3 playerVec = player.transform.position;
-		playerVec.y += 2f;
-		FLCam.transform.LookAt(playerVec);
+			Vector3 playerVec = player.transform.position;
+			playerVec.y += 2f;
+			camera.transform.LookAt(playerVec);
+		}
+		else
+			lockOn = false;
 	}
 
 	public void SetTargetOffsets(Vector3 newPivotOffset, Vector3 newCamOffset)

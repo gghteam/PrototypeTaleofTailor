@@ -30,7 +30,6 @@ public class EnemyHP : MonoBehaviour
             killed.Dead = true;
         }
         else DamageEffect();
-        
     }
 
 

@@ -121,12 +121,12 @@ public class CameraHandler : MonoBehaviour
 					maxindex = i;
 			}
 			player.LookAt(colliders[maxindex].transform);
-			Vector3 vec = player.transform.position + -player.forward.normalized * 10f;
-			vec.y += 5;
+			Vector3 vec = player.transform.position + -player.forward.normalized * 70f;
+			vec.y += 50;
 			camera.transform.position = vec;
 
 			Vector3 playerVec = player.transform.position;
-			playerVec.y += 2f;
+			playerVec.y += 20f;
 			camera.transform.LookAt(playerVec);
 		}
 		else

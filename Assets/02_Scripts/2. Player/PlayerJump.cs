@@ -6,8 +6,10 @@ public class PlayerJump : Character
 {
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private float _jumpPower;   //점프력
 
-    bool isJump=false;
+    bool isJump = false;
 
     EventParam eventParam = new EventParam();
 
@@ -15,7 +17,6 @@ public class PlayerJump : Character
     private bool _isJumping;
     private float _posY;        //오브젝트의 초기 높이
     private float _gravity;     //중력가속도
-    private float _jumpPower;   //점프력
     private float _jumpTime;    //점프 이후 경과시간
 
     void Start()
@@ -24,7 +25,6 @@ public class PlayerJump : Character
         _isJumping = false;
         _posY = transform.position.y;
         _gravity = 9.8f;
-        _jumpPower = 9.0f;
         _jumpTime = 0.0f;
 
         EventManager.StartListening("InputJump", JumpOn);
@@ -52,7 +52,7 @@ public class PlayerJump : Character
         float height = (_jumpTime * _jumpTime * (-_gravity) / 2) + (_jumpTime * _jumpPower);
         _transform.position = new Vector3(_transform.position.x, _posY + height, _transform.position.z);
         //점프시간을 증가시킨다.
-        _jumpTime += Time.deltaTime*jumpSpeed;
+        _jumpTime += Time.deltaTime * jumpSpeed;
 
         //처음의 높이 보다 더 내려 갔을때 => 점프전 상태로 복귀한다.
         if (height < 0.0f)

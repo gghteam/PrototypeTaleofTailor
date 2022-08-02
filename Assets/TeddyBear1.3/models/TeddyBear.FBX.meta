@@ -654,7 +654,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy 1
       parentName: ROOT
-      position: {x: -0, y: 0.31335205, z: -0.0000000153368}
+      position: {x: -0, y: 0.31335202, z: -0.0000000153368}
       rotation: {x: -0.50000036, y: 0.49999964, z: 0.49999964, w: 0.50000036}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Pelvis
@@ -664,12 +664,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Thigh
       parentName: Teddy Pelvis
-      position: {x: 0.00000015258789, y: 0.00000016361878, z: 0.108106226}
+      position: {x: 0.00000015258789, y: 0.00000016361878, z: 0.10810623}
       rotation: {x: -0.027381185, y: 0.9986014, z: 0.045218624, w: 0.0008993322}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Calf
       parentName: Teddy L Thigh
-      position: {x: -0.11599895, y: 0, z: -0.000000019073486}
+      position: {x: -0.11599896, y: 0, z: -0.000000019073486}
       rotation: {x: 3.8770298e-10, y: 3.3078865e-10, z: 0.09838824, w: 0.9951481}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Foot
@@ -679,47 +679,47 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Toe0
       parentName: Teddy L Foot
-      position: {x: -0.08669978, y: 0.11157865, z: 0}
+      position: {x: -0.08669977, y: 0.11157865, z: 0}
       rotation: {x: -0.00000001545431, y: 0.00000001545431, z: -0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Thigh
       parentName: Teddy Pelvis
-      position: {x: -0.00000015258789, y: -0.0000001362247, z: -0.108106226}
+      position: {x: -0.00000015258789, y: -0.0000001362247, z: -0.10810623}
       rotation: {x: -0.027387884, y: 0.9986013, z: 0.045214996, w: 0.0010001031}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Calf
       parentName: Teddy R Thigh
-      position: {x: -0.11599897, y: 5.9604643e-10, z: 0}
+      position: {x: -0.11599896, y: 5.9604643e-10, z: 0}
       rotation: {x: -0.000000001044459, y: 8.7646096e-10, z: 0.09839585, w: 0.99514735}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Foot
       parentName: Teddy R Calf
-      position: {x: -0.11599897, y: -0.0000000023841857, z: -0.000000009536743}
+      position: {x: -0.11599896, y: -0.0000000023841857, z: -0.000000009536743}
       rotation: {x: 0.04509473, y: -0.0034530782, z: -0.07100318, w: 0.99645025}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Toe0
       parentName: Teddy R Foot
-      position: {x: -0.08669978, y: 0.11157865, z: 0}
+      position: {x: -0.08669977, y: 0.11157865, z: 0}
       rotation: {x: -0.00000001545431, y: 0.00000001545431, z: -0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Spine
       parentName: Teddy Pelvis
-      position: {x: -0.12432243, y: -0.00010069338, z: 0.00000017254995}
+      position: {x: -0.124322414, y: -0.000100693374, z: 0.00000017254993}
       rotation: {x: -0.000002080476, y: 0.000000693676, z: -0.000398159, w: 0.99999994}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Spine1
       parentName: Teddy Spine
-      position: {x: -0.12647969, y: -0.00010071251, z: -2.7933636e-10}
+      position: {x: -0.12647969, y: -0.00010071251, z: -2.793364e-10}
       rotation: {x: -3.0117673e-14, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Clavicle
       parentName: Teddy Spine1
-      position: {x: -0.09983299, y: -0.005799756, z: 0.024194458}
+      position: {x: -0.09983298, y: -0.0057997555, z: 0.024194458}
       rotation: {x: -0.7071067, y: -0.0003359081, z: 0.70710677, w: -0.00022717376}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L UpperArm
       parentName: Teddy L Clavicle
-      position: {x: -0.07346176, y: 0.0000036778074, z: -0.000000007450581}
+      position: {x: -0.073461756, y: 0.0000036778072, z: -0.000000007450581}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Forearm
@@ -729,12 +729,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Hand
       parentName: Teddy L Forearm
-      position: {x: -0.16420878, y: 0, z: 0}
+      position: {x: -0.16420877, y: 0, z: 0}
       rotation: {x: -0.70678294, y: -0.0077302093, z: 0.00774868, w: 0.70734584}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Finger0
       parentName: Teddy L Hand
-      position: {x: -0.03390583, y: -0.0013438165, z: -0.083609946}
+      position: {x: -0.03390583, y: -0.0013438164, z: -0.08360993}
       rotation: {x: 0.65328145, y: -0.27059776, z: 0.27059817, w: 0.6532817}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Finger01
@@ -744,7 +744,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Finger1
       parentName: Teddy L Hand
-      position: {x: -0.06646368, y: -0.01263195, z: -0.0022759866}
+      position: {x: -0.06646369, y: -0.01263195, z: -0.0022759866}
       rotation: {x: -0.00039812512, y: 0.009858932, z: -0.000012586011, w: 0.99995136}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy L Finger11
@@ -754,12 +754,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Neck
       parentName: Teddy Spine1
-      position: {x: -0.12647964, y: -0.00006741825, z: -1.8699112e-10}
+      position: {x: -0.12647963, y: -0.00006741826, z: -1.8699112e-10}
       rotation: {x: -3.0117673e-14, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Head
       parentName: Teddy Neck
-      position: {x: -0.08466705, y: 3.7252902e-11, z: 1.4210854e-16}
+      position: {x: -0.08466706, y: 3.7252902e-11, z: 1.4210854e-16}
       rotation: {x: -7.2656e-14, y: -0.0000000011042733, z: 0.00039883057, w: 0.99999994}
       scale: {x: 1, y: 1, z: 1}
     - name: Hat
@@ -769,37 +769,37 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Ribbon
       parentName: Teddy Head
-      position: {x: -0.3205316, y: 0.12769072, z: 0.107526004}
+      position: {x: -0.32053158, y: 0.12769072, z: 0.107526}
       rotation: {x: -0.44677725, y: 0.43160617, z: 0.7755463, w: 0.11240153}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy EarL
       parentName: Teddy Head
-      position: {x: -0.249459, y: 0.039481148, z: 0.17596155}
+      position: {x: -0.24945898, y: 0.039481144, z: 0.17596155}
       rotation: {x: -0.009254433, y: 0.46283653, z: -0.03770965, w: 0.8855928}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy EarR
       parentName: Teddy Head
-      position: {x: -0.249459, y: 0.03948164, z: -0.1802379}
+      position: {x: -0.24945898, y: 0.03948164, z: -0.18023787}
       rotation: {x: 0.009249731, y: -0.46283627, z: -0.037712295, w: 0.88559294}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy LidL
       parentName: Teddy Head
-      position: {x: -0.12066719, y: 0.21525042, z: 0.06419699}
+      position: {x: -0.1206672, y: 0.21525042, z: 0.06419699}
       rotation: {x: -0.7075798, y: 0.00029953275, z: 0.0014250856, w: 0.70663196}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy LidR
       parentName: Teddy Head
-      position: {x: -0.12066719, y: 0.21525063, z: -0.060944073}
+      position: {x: -0.1206672, y: 0.21525066, z: -0.060944073}
       rotation: {x: -0.7075798, y: 0.00029953275, z: 0.0014250856, w: 0.70663196}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Nose
       parentName: Teddy Head
-      position: {x: -0.051914062, y: 0.15984075, z: 0.000001496599}
+      position: {x: -0.051914055, y: 0.15984073, z: 0.0000014965991}
       rotation: {x: 0.7076689, y: -0.70654416, z: 0.00020768774, w: -0.00029908033}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Clavicle
       parentName: Teddy Spine1
-      position: {x: -0.09983299, y: -0.0057996213, z: -0.024194488}
+      position: {x: -0.09983298, y: -0.005799621, z: -0.024194486}
       rotation: {x: 0.7071067, y: 0.00033394684, z: 0.70710677, w: -0.00022913495}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R UpperArm
@@ -819,17 +819,17 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Finger0
       parentName: Teddy R Hand
-      position: {x: -0.033904962, y: -0.001339227, z: 0.08360992}
+      position: {x: -0.033904966, y: -0.0013392268, z: 0.08360992}
       rotation: {x: -0.65328157, y: 0.2705984, z: 0.27059788, w: 0.6532812}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Finger01
       parentName: Teddy R Finger0
-      position: {x: -0.045573577, y: 0, z: -0.000000019073486}
+      position: {x: -0.045573574, y: 0, z: -0.000000019073486}
       rotation: {x: 0.000000024686234, y: -0.00000000814781, z: -0.17410815, w: 0.98472655}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Finger1
       parentName: Teddy R Hand
-      position: {x: -0.0664637, y: -0.012631988, z: 0.0022759843}
+      position: {x: -0.0664637, y: -0.012631988, z: 0.002275984}
       rotation: {x: 0.00039812547, y: -0.009858933, z: -0.000012600909, w: 0.99995136}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy R Finger11
@@ -844,7 +844,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy Tail
       parentName: Teddy Pelvis
-      position: {x: -0.020591697, y: -0.10802351, z: 0.00000021836357}
+      position: {x: -0.020591697, y: -0.10802351, z: 0.00000021836355}
       rotation: {x: -0.0000024490205, y: -0.00000007171615, z: 0.77998984, w: 0.6257922}
       scale: {x: 1, y: 1, z: 1}
     - name: Teddy
@@ -854,7 +854,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Tshirt
       parentName: TeddyBear(Clone)
-      position: {x: -0, y: 0, z: -0.000084457395}
+      position: {x: -0, y: 0, z: -0.00008445739}
       rotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5

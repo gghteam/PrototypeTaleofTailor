@@ -47,6 +47,7 @@ public class Chase : FsmState
                 transitionTime = 0f;
             }
             agent.destination = lastKnownLoc = target.position;
+            //agent.SetDestination(target.position);
         }
         else
             ChangeStop(true);

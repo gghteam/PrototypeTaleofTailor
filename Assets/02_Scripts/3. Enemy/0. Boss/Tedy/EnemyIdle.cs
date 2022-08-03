@@ -60,4 +60,13 @@ public class EnemyIdle : FsmState
     {
         return Vector3.Distance(transform.position, target.position) < contactDistance;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, contactDistance);
+        Gizmos.color = Color.white;
+    }
+#endif
 }

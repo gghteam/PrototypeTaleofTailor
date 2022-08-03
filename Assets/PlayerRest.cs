@@ -8,6 +8,8 @@ public class PlayerRest : MonoBehaviour
     ParticleSystem spawnParticle;
     [SerializeField]
     GameObject cup;
+    [SerializeField]
+    Transform defaulPosition;
 
     Animator anim;
     private readonly int hashDrink = Animator.StringToHash("Drinking");
@@ -20,6 +22,8 @@ public class PlayerRest : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+
+        savePoint = defaulPosition.position;
     }
 
     private void Start()

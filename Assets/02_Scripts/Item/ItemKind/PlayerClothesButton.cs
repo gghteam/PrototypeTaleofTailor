@@ -98,26 +98,26 @@ public class PlayerClothesButton : ItemManager
         int randomPos = Random.Range(1, 100);
         if (randomPos <= 30)
         {
-            spawnX = 2;
-            spawnZ = 2;
+            spawnX = 20;
+            spawnZ = 20;
         }
         else if (randomPos <= 50)
         {
-            spawnX = -2;
-            spawnZ = -2;
+            spawnX = -20;
+            spawnZ = -20;
         }
         else if (randomPos <= 80)
         {
-            spawnX = 2;
-            spawnZ = -2;
+            spawnX = 20;
+            spawnZ = -20;
         }
         else
         {
-            spawnX = -2;
-            spawnZ = 2;
+            spawnX = -20;
+            spawnZ = 20;
         }
         Vector3 pos = transform.position + new Vector3(spawnX, 0, spawnZ);
-        pos.y = 0.5f;
+        pos.y = transform.position.y+2.5f;
         clothesButton[danchuIndex].transform.localPosition = pos;
         clothesButton[danchuIndex].gameObject.SetActive(true);
     }

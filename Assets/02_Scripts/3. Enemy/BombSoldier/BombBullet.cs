@@ -20,6 +20,8 @@ public class BombBullet : PoolableMono
     Rigidbody rb;
     EventParam eventParam;
 
+    bool isDamaged = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,8 +29,9 @@ public class BombBullet : PoolableMono
 
     private void OnEnable()
     {
-        //rb.AddForce(transform.forward * bombPower, ForceMode.Impulse);
+        isDamaged = false;
         Invoke("BoomDamage", bombSec);
+        //rb.AddForce(transform.forward * bombPower, ForceMode.Impulse);
     }
 
     private void Update()
@@ -38,9 +41,9 @@ public class BombBullet : PoolableMono
 
 
     // 터지는 시간이 다달았을 때 말고도 플레이어나 다른 오브젝트에 닿았을 때도 체크해야한다.
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("ENEMY") == false) // 부딫한개 내가 아니닐 때
+        if (collision.collider.CompareTag("ENEMY") == false) // 부딫한개 내가 아니닐 때
         {
             BoomDamage();
         }
@@ -57,12 +60,14 @@ public class BombBullet : PoolableMono
             // 폭탄 범위 안
             if (hit.collider.CompareTag("Player"))
             {
+                if (isDamaged) return;
+                isDamaged = true;
                 eventParam.stringParam = "PLAYER";
                 eventParam.intParam = damage;
                 EventManager.TriggerEvent("DAMAGE", eventParam);
+                EndBoom();
             }
         }
-        EndBoom();
     }
 
 

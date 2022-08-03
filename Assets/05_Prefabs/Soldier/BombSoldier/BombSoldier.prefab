@@ -4182,7 +4182,6 @@ GameObject:
   - component: {fileID: 4276690010248433774}
   - component: {fileID: 5606770084598410337}
   - component: {fileID: 5932192451669679993}
-  - component: {fileID: 445619959035646501}
   - component: {fileID: 2386096254527759805}
   - component: {fileID: 6032915786570152133}
   - component: {fileID: 6310583444028527475}
@@ -4190,6 +4189,7 @@ GameObject:
   - component: {fileID: 32478629}
   - component: {fileID: 5510577816286482271}
   - component: {fileID: 7898119029718117506}
+  - component: {fileID: 4754253206996226983}
   m_Layer: 6
   m_Name: BombSoldier
   m_TagString: ENEMY
@@ -4282,17 +4282,17 @@ MonoBehaviour:
   States:
   - State: {fileID: 7777156679976546653}
     Transitions:
-    - Next: {fileID: 445619959035646501}
+    - Next: {fileID: 4754253206996226983}
       Cond: {fileID: 2386096254527759805}
       Priority: 20
       Not: 0
   - State: {fileID: 5606770084598410337}
     Transitions:
-    - Next: {fileID: 445619959035646501}
+    - Next: {fileID: 4754253206996226983}
       Cond: {fileID: 2386096254527759805}
       Priority: 40
       Not: 0
-  - State: {fileID: 445619959035646501}
+  - State: {fileID: 4754253206996226983}
     Transitions:
     - Next: {fileID: 5606770084598410337}
       Cond: {fileID: 5932192451669679993}
@@ -4323,7 +4323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 15
-  maxRange: 25
+  maxRange: 200
   Player: {fileID: 0}
 --- !u!114 &5606770084598410337
 MonoBehaviour:
@@ -4340,7 +4340,7 @@ MonoBehaviour:
   attackSec: 4
   target: {fileID: 0}
   bombPos: {fileID: 7574404429952561391}
-  bomb: {fileID: 8188338975372523985, guid: 2e84e10c249938842bb694eca3cdf618, type: 3}
+  bomb: {fileID: 2595720090088871617, guid: 732e12a252da64507987819a344450d8, type: 3}
 --- !u!114 &5932192451669679993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,19 +4355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 120
   Player: {fileID: 0}
---- !u!114 &445619959035646501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2766221132056115929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c4a9a4b82d9ee94faae92763ef0fd77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &2386096254527759805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4482,6 +4469,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+--- !u!114 &4754253206996226983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766221132056115929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4a9a4b82d9ee94faae92763ef0fd77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &2766227499458741461
 GameObject:
   m_ObjectHideFlags: 0

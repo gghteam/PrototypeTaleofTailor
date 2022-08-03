@@ -21,6 +21,15 @@ public class PlayerInRange : FsmCondition
 		//float ischeck = Vector3.Distance(transform.position, Player.position);
 		//Debug.Log((transform.position - Player.position).sqrMagnitude);
 		//return (transform.position - Player.position).sqrMagnitude >= Range;
-		return ((transform.position - Player.transform.position).sqrMagnitude >= Range) && (chaseState.TransitionTime <= 0);
+		return (Vector3.Distance(transform.position, Player.transform.position) >= Range) && (chaseState.TransitionTime <= 0);
 	}
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+		Gizmos.color = Color.white;
+		Gizmos.DrawWireSphere(transform.position, Range);
+		Gizmos.color = Color.white;
+    }
+#endif
 }

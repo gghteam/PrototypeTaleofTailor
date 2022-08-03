@@ -1,14 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 
-public class Gamemanager : MonoSingleton<Gamemanager>
+public class Gamemanager : /*MonoSingleton<Gamemanager>*/MonoBehaviour
 {
+    public static Gamemanager Instance;
+
 	[SerializeField] PoolingListSO poolList;
 
-	private void Awake()
+    #region SavePath&FileName
+    private string savePath = "";
+    private readonly string saveFileName = "PosSave";
+
+    public string SavePath { get => savePath; }
+    public string SaveFileName { get => saveFileName; }
+    #endregion
+
+    private void Awake()
 	{
-		DontDestroyOnLoad(this.gameObject);
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else if(Instance != this)
+        {
+            Destroy(this);
+        }
+
+		//DontDestroyOnLoad(this.gameObject);
+
+        savePath = Application.dataPath + "/Save";
+        if (!Directory.Exists(savePath))
+            Directory.CreateDirectory(savePath);
 
         PoolManager.Instance = new PoolManager(transform);
 
@@ -45,4 +70,30 @@ public class Gamemanager : MonoSingleton<Gamemanager>
             array[idxB] = temp;
         }
     }
+
+    #region Save&Load
+    public void SaveJson<T>(string createPath, string fileName, T value)
+    {
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, fileName), FileMode.Create);
+        string json = JsonUtility.ToJson(value, true);
+        byte[] data = Encoding.UTF8.GetBytes(json);
+        fileStream.Write(data, 0, data.Length);
+        fileStream.Close();
+    }
+
+    public T LoadJsonFile<T>(string loadPath, string fileName) where T : new()
+    {
+        if (File.Exists(string.Format("{0}/{1}.json", loadPath, fileName)))
+        {
+            FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.Open);
+            byte[] data = new byte[fileStream.Length];
+            fileStream.Read(data, 0, data.Length);
+            fileStream.Close();
+            string jsonData = Encoding.UTF8.GetString(data);
+            return JsonUtility.FromJson<T>(jsonData);
+        }
+        SaveJson<T>(loadPath, fileName, new T());
+        return LoadJsonFile<T>(loadPath, fileName);
+    }
+    #endregion
 }

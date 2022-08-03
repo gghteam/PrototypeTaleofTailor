@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Clear.unity
     guid: 393a12f376343ad4283bb72f029d9681
+  - enabled: 1
+    path: Assets/01_Scenes/CutScene.unity
+    guid: f9f90fa3210f8d84f8b0f88212a80ef0
+  - enabled: 1
+    path: Assets/Map/Scenes/Map.unity
+    guid: 7fa8e95f542e9524a82444d30d7555a5
   m_configObjects: {}

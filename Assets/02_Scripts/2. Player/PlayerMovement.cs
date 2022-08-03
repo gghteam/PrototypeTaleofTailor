@@ -82,59 +82,59 @@ public class PlayerMovement : Character
 		//moveDirection.y = 0;
 		moveDirection.Normalize();
 
-		if (ani.GetInteger("AttackCount") == 0)
+		if (ani.GetInteger("AttackCount") != 0)
 		{
-			if (moveDirection.sqrMagnitude > 0)
-			{
-				Rotating(inputX, inputZ);
-				moveDirection.y = 0;
-				if (Input.GetKey(KeyCode.LeftShift))
-				{
-					if (SteminaManager.Instance.CheckStemina(0.01f))
-					{
-						SteminaManager.Instance.MinusStemina(0.01f);
-						//방향에 Run_Speed를 곱함
-						moveDirection *= runMovementSpeed;
-						ani.SetBool("IsMove", false);
-						ani.SetBool("IsRun", true);
-					}
+			rigidbody.velocity = Vector3.zero;
+			return;
+		}
 
-				}
-				else if (isDash)
+		if (moveDirection.sqrMagnitude > 0)
+		{
+			Rotating(inputX, inputZ);
+			moveDirection.y = 0;
+			if (Input.GetKey(KeyCode.LeftShift))
+			{
+				if (SteminaManager.Instance.CheckStemina(0.01f))
 				{
-					Debug.Log("?");
-					moveDirection *= DashSpeed;
+					SteminaManager.Instance.MinusStemina(0.01f);
+					//방향에 Run_Speed를 곱함
+					moveDirection *= runMovementSpeed;
 					ani.SetBool("IsMove", false);
-					ani.SetBool("IsRun", false);
-					ani.SetBool("IsDash", true);
+					ani.SetBool("IsRun", true);
 				}
-				else
-				{
-					//방향에 Speed를 곱함
-					moveDirection *= movementSpeed;
-					ani.SetBool("IsMove", true);
-					ani.SetBool("IsRun", false);
-				}
+
+			}
+			else if (isDash)
+			{
+				Debug.Log("?");
+				moveDirection *= DashSpeed;
+				ani.SetBool("IsMove", false);
+				ani.SetBool("IsRun", false);
+				ani.SetBool("IsDash", true);
 			}
 			else
 			{
-				ani.SetBool("IsMove", false);
+				//방향에 Speed를 곱함
+				moveDirection *= movementSpeed;
+				ani.SetBool("IsMove", true);
 				ani.SetBool("IsRun", false);
 			}
+		}
+		else
+		{
+			ani.SetBool("IsMove", false);
+			ani.SetBool("IsRun", false);
 		}
 
 		//방향에 Speed를 곱함
 		//moveDirection *= movementSpeed;
 
 		//normalVector의 법선 평면으로부터 플레이어가 움직이려는 방향벡터로 투영
-		if (ani.GetInteger("AttackCount") == 0)
-		{
-			Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-			//이동
-			rigidbody.velocity = projectedVelocity;
+		Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+		//이동
+		rigidbody.velocity = projectedVelocity;
 
-			transform.LookAt(transform.position + moveDirection);
-		}
+		transform.LookAt(transform.position + moveDirection);
 	}
 
 	Vector3 Rotating(float horizontal, float vertical)

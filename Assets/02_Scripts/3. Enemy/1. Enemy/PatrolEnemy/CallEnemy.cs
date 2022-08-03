@@ -21,9 +21,8 @@ public class CallEnemy : FsmState
 			FsmCore fsm = colliders[i].GetComponent<FsmCore>();
 			for (int j = 0; j < fsm.States.Length; j++)
 			{
-				if (fsm.States[j].State is Chase)
+				if (fsm.States[j].State is ChaseInterface)
 				{
-					Debug.Log(fsm.States[j].State);
 					fsm.ChangeState(fsm.States[j].State);
 					break;
 				}

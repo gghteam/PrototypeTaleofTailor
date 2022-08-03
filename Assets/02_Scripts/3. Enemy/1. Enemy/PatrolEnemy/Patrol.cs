@@ -14,6 +14,8 @@ public class Patrol : FsmState
 	private NavMeshAgent nav;
 
 	private FsmLegacyAni fsmLegacyAni;
+
+	public bool isRandom = false;
 	private void Awake()
 	{
 		fsmLegacyAni = GetComponent<FsmLegacyAni>();
@@ -26,7 +28,10 @@ public class Patrol : FsmState
 
 	private void Update()
 	{
-		Patrols();
+		if (isRandom)
+			RandomPatrols();
+		else
+			Patrols();
 	}
 
 
@@ -38,14 +43,34 @@ public class Patrol : FsmState
 	{
 
 	}
-	void Patrols()
+	void RandomPatrols()
 	{
-		if(wayPoints.Length > 0)
+		if (wayPoints.Length > 0)
 		{
 			nav?.SetDestination(wayPoints[wayPointsIndex].position);
 			if (nav.remainingDistance <= nav.stoppingDistance)
 			{
 				Gamemanager.Instance.Shuffle<Transform>(wayPoints);
+				Vector3 v1 = wayPoints[wayPointsIndex].position;
+				if (v1 == wayPoints[wayPointsIndex].position)
+				{
+					wayPointsIndex++;
+					if (wayPointsIndex >= wayPoints.Length)
+					{
+						wayPointsIndex = 0;
+					}
+				}
+			}
+		}
+	}
+
+	void Patrols()
+	{
+		if (wayPoints.Length > 0)
+		{
+			nav?.SetDestination(wayPoints[wayPointsIndex].position);
+			if (nav.remainingDistance <= nav.stoppingDistance)
+			{
 				Vector3 v1 = wayPoints[wayPointsIndex].position;
 				if (v1 == wayPoints[wayPointsIndex].position)
 				{

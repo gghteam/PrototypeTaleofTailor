@@ -31,7 +31,7 @@ public class Teleport : MonoBehaviour
     }
     void DisCheck()
     {
-        Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+        //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
         isOn = Vector3.Distance(transform.position, player.transform.position) < dis ? true : false;
         panel.SetActive(isOn);
     }

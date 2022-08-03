@@ -24,6 +24,7 @@ public class PlayerRest : MonoBehaviour
         anim = GetComponent<Animator>();
 
         savePoint = defaulPosition.position;
+        transform.position = savePoint;
     }
 
     private void Start()
@@ -64,8 +65,16 @@ public class PlayerRest : MonoBehaviour
         cup.SetActive(true);
         MoveStop();
         anim.SetTrigger(hashDrink);
-        Invoke("MoveStart", 5f);
+        StartCoroutine(Effect());
         //spawnParticle.Play();
+    }
+
+    IEnumerator Effect()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(5f);
+        Time.timeScale = 1f;
+        MoveStart();
     }
 
     void MoveStop()

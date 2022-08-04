@@ -4,5 +4,5 @@ using UnityEngine;
 public class StageInfo
 {
     public Vector3 pos;
-    public bool isBoos;
+    public bool isBoss;
 }

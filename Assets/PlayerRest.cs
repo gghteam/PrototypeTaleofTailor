@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerRest : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class PlayerRest : MonoBehaviour
     Transform defaulPosition;
     [SerializeField]
     private Transform bossPos;
+    [SerializeField]
+    GameObject bossCutsceneCol;
+
+    public UnityEvent OnBossAction;
+    public UnityEvent OnNotBossAction;
 
     Animator anim;
     private readonly int hashDrink = Animator.StringToHash("Drinking");
@@ -28,18 +34,25 @@ public class PlayerRest : MonoBehaviour
 
         stageInfo = Gamemanager.Instance.LoadJsonFile<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName);
         savePoint = stageInfo.pos;
-        if (stageInfo.isBoos == true)
+        if (stageInfo.isBoss == true)
         {
             savePoint = bossPos.position;
+            transform.position = savePoint;
+            stageInfo.isBoss = false;
             Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
+            bossCutsceneCol.gameObject.SetActive(false);
+            OnBossAction?.Invoke();
         }
         else
         {
             if (savePoint == Vector3.zero)
             {
                 savePoint = defaulPosition.position;
+                transform.position = savePoint;
                 Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
             }
+            bossCutsceneCol.gameObject.SetActive(true);
+            OnNotBossAction?.Invoke();
         }
 
         EventManager.StartListening("Rest", Resting);
@@ -56,6 +69,8 @@ public class PlayerRest : MonoBehaviour
     {
         EffectSave();
         savePoint = transform.position;
+        stageInfo.pos = savePoint;
+        stageInfo.isBoss = eventParam.boolParam;
         Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
     }
 
@@ -63,6 +78,7 @@ public class PlayerRest : MonoBehaviour
     {
         EffectSpawn();
         stageInfo = Gamemanager.Instance.LoadJsonFile<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName);
+        savePoint = stageInfo.pos;
         transform.position = savePoint;
     }
 

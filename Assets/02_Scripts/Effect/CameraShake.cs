@@ -25,6 +25,11 @@ public class CameraShake : MonoBehaviour
         EventManager.StartListening("CameraShake", CameraShakeEffect);
     }
 
+    private void OnDestroy()
+    {
+        EventManager.StopListening("CameraShake", CameraShakeEffect);
+    }
+
     public void CameraShakeEffect(EventParam eventParam)
     {
         StartCoroutine(ShakeCoroutine());

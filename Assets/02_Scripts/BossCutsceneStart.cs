@@ -14,6 +14,7 @@ public class BossCutsceneStart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            eventParam.boolParam = true;
             EventManager.TriggerEvent("Rest", eventParam);
             StartCoroutine(Action());
         }

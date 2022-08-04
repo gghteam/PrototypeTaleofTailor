@@ -11,7 +11,7 @@ public class PlayerMovement : Character
 
 
 	Transform cameraObject;
-	Vector3 moveDirection;
+	public Vector3 moveDirection;
 
 	[HideInInspector]
 	public Transform myTransform;
@@ -24,16 +24,30 @@ public class PlayerMovement : Character
 	private float runMovementSpeed = 7;
 	[SerializeField]
 	private float rotationSpeed = 10;
-
 	[SerializeField]
 	private float turnSmoothing = 0.06f;
+	[SerializeField]
+	private float fallingSpeed = 45;
+
+	[Header("Ground & Air Detection Stats")]
+	[SerializeField]
+	float StartPoint = 0.5f;
+	[SerializeField]
+	float beginFall = 1f;
+	[SerializeField]
+	float directionRayDistance = 0.2f;
+	public LayerMask ignoreForGroundCHeck;
+	public float inAirTimer;
 
 	private bool isDash = false;
 	private float DashSpeed = 1;
 	private bool isFirst = false;
 	//private Vector3 dashDirection;
 	private bool isMove = true;
+	public bool isInAir;
+	public bool isGrounded;
 
+	private Vector3 targetPos;
 
 	private void Start()
 	{
@@ -44,11 +58,13 @@ public class PlayerMovement : Character
 		//계속 호출 하는 것을 방지(최적화)
 		cameraObject = Camera.main.transform;
 		myTransform = transform;
+		isGrounded = true;
 	}
 
 	public void Update()
 	{
-		if (!isMove) return;
+		HandleFalling(Time.deltaTime, moveDirection);
+		if (!isMove || !isGrounded) return;
 
 		if (isDash)
 		{
@@ -134,6 +150,15 @@ public class PlayerMovement : Character
 			rigidbody.velocity = projectedVelocity;
 
 			transform.LookAt(transform.position + moveDirection);
+		}
+
+	}
+
+	private void LateUpdate()
+	{
+		if (isInAir)
+		{
+			inAirTimer = inAirTimer + Time.deltaTime;
 		}
 	}
 
@@ -242,4 +267,23 @@ public class PlayerMovement : Character
 		isMove = eventParam.boolParam;
 	}
 
+	public void HandleFalling(float delta, Vector3 moveDirection)
+	{
+		isGrounded = false;
+		RaycastHit hit;
+		Vector3 origin = myTransform.position;
+		origin.y += StartPoint;
+
+		Debug.DrawRay(origin, -transform.up * 10f, Color.blue, 0.3f);
+		if (Physics.Raycast(origin, -transform.up, out hit, 10f,ignoreForGroundCHeck))
+		{
+			isGrounded = true;
+		}
+        else
+        {
+			isGrounded = false;
+			rigidbody.AddForce(-Vector3.up * fallingSpeed);
+			//rigidbody.AddForce(moveDirection * fallingSpeed / 10f);
+		}
+	}
 }

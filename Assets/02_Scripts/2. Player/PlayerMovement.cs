@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : Character
 {
-	// EventParamÇÑÅ× ¹ÞÀº °ªµé
+	// EventParamï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private int inputX;
 	private int inputZ;
 	private int inputAmount;
@@ -51,11 +51,11 @@ public class PlayerMovement : Character
 
 	private void Start()
 	{
-		//Player ¿òÁ÷ÀÓÀ» À§ÇØ µéÀ½
+		//Player ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		EventManager.StartListening("PLAYER_MOVEMENT", SetMovement);
 		EventManager.StartListening("ISDASH", IsDash);
 		EventManager.StartListening("ISMOVE", IsMove);
-		//°è¼Ó È£Ãâ ÇÏ´Â °ÍÀ» ¹æÁö(ÃÖÀûÈ­)
+		//ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½È­)
 		cameraObject = Camera.main.transform;
 		myTransform = transform;
 		isGrounded = true;
@@ -77,9 +77,9 @@ public class PlayerMovement : Character
 				}
 				else
 				{
-					//Ä³¸¯ÅÍ ¾Õ(inputZ = 1) ¶Ç´Â µÚ(inputZ = -1)¸¦ vector¿¡ ÀúÀå
+					//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(inputZ = 1) ï¿½Ç´ï¿½ ï¿½ï¿½(inputZ = -1)ï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					moveDirection = cameraObject.forward * inputZ;
-					//Ä³¸¯ÅÍ ¿À¸¥ÂÊ(inputZ = 1) ¶Ç´Â ¿ÞÂÊ(inputZ = -1)¸¦ vector¿¡ ´õÇÔ
+					//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(inputZ = 1) ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½(inputZ = -1)ï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					moveDirection += cameraObject.right * inputX;
 					moveDirection *= DashSpeed;
 				}
@@ -88,66 +88,67 @@ public class PlayerMovement : Character
 		}
 		else
 		{
-			//Ä³¸¯ÅÍ ¾Õ(inputZ = 1) ¶Ç´Â µÚ(inputZ = -1)¸¦ vector¿¡ ÀúÀå
+			//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(inputZ = 1) ï¿½Ç´ï¿½ ï¿½ï¿½(inputZ = -1)ï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			moveDirection = cameraObject.forward * inputZ;
-			//Ä³¸¯ÅÍ ¿À¸¥ÂÊ(inputZ = 1) ¶Ç´Â ¿ÞÂÊ(inputZ = -1)¸¦ vector¿¡ ´õÇÔ
+			//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(inputZ = 1) ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½(inputZ = -1)ï¿½ï¿½ vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			moveDirection += cameraObject.right * inputX;
-			//vector¸¦ Á¤±ÔÈ­ÇÔ(±æÀÌ¸¦ 1·Î ¸¸µé¾î ¹æÇâ¸¸ ³²±è)
+			//vectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½(ï¿½ï¿½ï¿½Ì¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¸ ï¿½ï¿½ï¿½ï¿½)
 		}
 
 		//moveDirection.y = 0;
 		moveDirection.Normalize();
 
-		if (ani.GetInteger("AttackCount") == 0)
+		if (ani.GetInteger("AttackCount") != 0)
 		{
-			if (moveDirection.sqrMagnitude > 0)
-			{
-				Rotating(inputX, inputZ);
-				moveDirection.y = 0;
-				if (Input.GetKey(KeyCode.LeftShift))
-				{
-					if (SteminaManager.Instance.CheckStemina(0.01f))
-					{
-						SteminaManager.Instance.MinusStemina(0.01f);
-						//¹æÇâ¿¡ Run_Speed¸¦ °öÇÔ
-						moveDirection *= runMovementSpeed;
-						ani.SetBool("IsMove", false);
-						ani.SetBool("IsRun", true);
-					}
+			rigidbody.velocity = Vector3.zero;
+			return;
+		}
 
-				}
-				else if (isDash)
+		if (moveDirection.sqrMagnitude > 0)
+		{
+			Rotating(inputX, inputZ);
+			moveDirection.y = 0;
+			if (Input.GetKey(KeyCode.LeftShift))
+			{
+				if (SteminaManager.Instance.CheckStemina(0.01f))
 				{
-					Debug.Log("?");
-					moveDirection *= DashSpeed;
+					SteminaManager.Instance.MinusStemina(0.01f);
+					//ï¿½ï¿½ï¿½â¿¡ Run_Speedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					moveDirection *= runMovementSpeed;
 					ani.SetBool("IsMove", false);
-					ani.SetBool("IsRun", false);
-					ani.SetBool("IsDash", true);
+					ani.SetBool("IsRun", true);
 				}
-				else
-				{
-					//¹æÇâ¿¡ Speed¸¦ °öÇÔ
-					moveDirection *= movementSpeed;
-					ani.SetBool("IsMove", true);
-					ani.SetBool("IsRun", false);
-				}
+
+			}
+			else if (isDash)
+			{
+				Debug.Log("?");
+				moveDirection *= DashSpeed;
+				ani.SetBool("IsMove", false);
+				ani.SetBool("IsRun", false);
+				ani.SetBool("IsDash", true);
 			}
 			else
 			{
-				ani.SetBool("IsMove", false);
+				//ï¿½ï¿½ï¿½â¿¡ Speedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				moveDirection *= movementSpeed;
+				ani.SetBool("IsMove", true);
 				ani.SetBool("IsRun", false);
 			}
 		}
+		else
+		{
+			ani.SetBool("IsMove", false);
+			ani.SetBool("IsRun", false);
+		}
 
-		//¹æÇâ¿¡ Speed¸¦ °öÇÔ
+		//ï¿½ï¿½ï¿½â¿¡ Speedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		//moveDirection *= movementSpeed;
 
-		//normalVectorÀÇ ¹ý¼± Æò¸éÀ¸·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î°¡ ¿òÁ÷ÀÌ·Á´Â ¹æÇâº¤ÅÍ·Î Åõ¿µ
-		if (ani.GetInteger("AttackCount") == 0)
-		{
-			Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-			//ÀÌµ¿
-			rigidbody.velocity = projectedVelocity;
+		//normalVectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½
+		Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+		//ï¿½Ìµï¿½
+		rigidbody.velocity = projectedVelocity;
 
 			transform.LookAt(transform.position + moveDirection);
 		}
@@ -213,7 +214,7 @@ public class PlayerMovement : Character
 	}
 
 	/// <summary>
-	/// ÆÄ±«µÇ¸é ´õ ÀÌ»ó ¿òÁ÷ÀÓÀ» µèÁö ¾Ê´Â´Ù.
+	/// ï¿½Ä±ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	/// </summary>
 	private void OnDestroy()
 	{
@@ -224,7 +225,7 @@ public class PlayerMovement : Character
 	Vector3 normalVector;
 
 	/// <summary>
-	/// ListeningÀ» À§ÇÑ Setting
+	/// Listeningï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Setting
 	/// </summary>
 	/// <param name="eventParam"></param>
 	private void SetMovement(EventParam eventParam)

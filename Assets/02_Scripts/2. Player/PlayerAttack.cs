@@ -42,6 +42,7 @@ public class PlayerAttack : Character
 		{
 			attacking = true;
 			ani.SetInteger("AttackCount", 1);
+			OnParticle(true);
 			CountAttack = 1;
 		}
 		if (ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f && ani.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
@@ -86,6 +87,7 @@ public class PlayerAttack : Character
 	{
 		CountAttack = 0;
 		ani.SetInteger("AttackCount", 0);
+		OnParticle(false);
 		attacking = false;
 	}
 

@@ -13,7 +13,6 @@ public class EnemyHP : MonoBehaviour
     MonsterDying dieState;
     EnemyKilled killed;
     Collider collider;
-    
 
     private void Awake()
     {

@@ -30,6 +30,8 @@ public class PlayerAttackCheck : MonoBehaviour
         {
             isfirst = true;
             other.GetComponent<EnemyHP>().Damage(1);
+            ParticlePool hitParticle = PoolManager.Instance.Pop("CFX_Hit_C White") as ParticlePool;
+            hitParticle.transform.position = other.transform.position + Vector3.up * 25;
             Debug.Log("??");
         }
     }

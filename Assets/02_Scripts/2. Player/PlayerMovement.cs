@@ -55,7 +55,7 @@ public class PlayerMovement : Character
 		EventManager.StartListening("PLAYER_MOVEMENT", SetMovement);
 		EventManager.StartListening("ISDASH", IsDash);
 		EventManager.StartListening("ISMOVE", IsMove);
-		//��� ȣ�� �ϴ� ���� ����(����ȭ)
+		//���?ȣ�� �ϴ� ���� ����(����ȭ)
 		cameraObject = Camera.main.transform;
 		myTransform = transform;
 		isGrounded = true;
@@ -92,7 +92,7 @@ public class PlayerMovement : Character
 			moveDirection = cameraObject.forward * inputZ;
 			//ĳ���� ������(inputZ = 1) �Ǵ� ����(inputZ = -1)�� vector�� ����
 			moveDirection += cameraObject.right * inputX;
-			//vector�� ����ȭ��(���̸� 1�� ����� ���⸸ ����)
+			//vector�� ����ȭ��(���̸� 1�� �����?���⸸ ����)
 		}
 
 		//moveDirection.y = 0;
@@ -145,13 +145,12 @@ public class PlayerMovement : Character
 		//���⿡ Speed�� ����
 		//moveDirection *= movementSpeed;
 
-		//normalVector�� ���� ������κ��� �÷��̾ �����̷��� ���⺤�ͷ� ����
+		//normalVector�� ���� ������κ���?�÷��̾ �����̷��� ���⺤�ͷ� ����
 		Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
 		//�̵�
 		rigidbody.velocity = projectedVelocity;
 
-			transform.LookAt(transform.position + moveDirection);
-		}
+		transform.LookAt(transform.position + moveDirection);
 
 	}
 

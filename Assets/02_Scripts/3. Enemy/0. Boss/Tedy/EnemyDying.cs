@@ -21,9 +21,9 @@ public class EnemyDying : FsmState
     }
     public override void OnStateEnter()
 	{
-		GetComponent<Chase>().enabled = false;
-		GetComponent<Jump_Attack>().enabled = false;
-		GetComponent<EnemyAttack>().enabled = false;
+		//GetComponent<Chase>().enabled = false;
+		//GetComponent<Jump_Attack>().enabled = false;
+		//GetComponent<EnemyAttack>().enabled = false;
 		sound.Stop();
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		if (agent != null)
@@ -37,7 +37,7 @@ public class EnemyDying : FsmState
 
     private void Update()
     {
-		transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
+		//transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
 		if (timer >= 1)
 		{
 			renderer.material.SetFloat("_Dissolve", renderer.material.GetFloat("_Dissolve") + Time.deltaTime * 0.5f);

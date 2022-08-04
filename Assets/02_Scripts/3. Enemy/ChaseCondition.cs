@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class ChaseCondition : FsmState, ChaseInterface
+public class ChaseCondition : FsmState
 {
 	//public Transform Player;
 
@@ -20,11 +20,6 @@ public class ChaseCondition : FsmState, ChaseInterface
 
 	// Update is called once per frame
 	void Update()
-	{
-		Chase();
-	}
-
-	public void Chase()
 	{
 		agent.destination = lastKnownLoc = Define.Player.transform.position;
 	}

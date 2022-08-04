@@ -117,7 +117,10 @@ public class HP : MonoBehaviour
         else if (eventParam.stringParam == "BOSS")
         {
             //EventManager.TriggerEvent("AttackParticle", eventParam);
-            StartCoroutine(CreateHitParticiel(0.7f));
+            //StartCoroutine(CreateHitParticiel(0.7f));
+            ParticlePool particle = PoolManager.Instance.Pop("CFX3_Hit_SmokePuff") as ParticlePool;
+            Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+            particle.transform.position = bossHitParticlePos.position + offset;
             bossHP -= eventParam.intParam;
             Debug.Log(bossHP);
             if (bossHP <= 0)

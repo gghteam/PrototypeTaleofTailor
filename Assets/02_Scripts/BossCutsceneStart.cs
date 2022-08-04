@@ -10,12 +10,16 @@ public class BossCutsceneStart : MonoBehaviour
 
     EventParam eventParam = new EventParam();
 
+    private StageInfo stageInfo;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            eventParam.boolParam = true;
-            EventManager.TriggerEvent("Rest", eventParam);
+            stageInfo = Gamemanager.Instance.LoadJsonFile<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName);
+            stageInfo.isBoss = true;
+            Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
+            //EventManager.TriggerEvent("Rest", eventParam);
             StartCoroutine(Action());
         }
     }

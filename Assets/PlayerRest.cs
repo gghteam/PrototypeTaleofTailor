@@ -51,6 +51,10 @@ public class PlayerRest : MonoBehaviour
                 transform.position = savePoint;
                 Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
             }
+            else
+            {
+                transform.position = savePoint;
+            }
             bossCutsceneCol.gameObject.SetActive(true);
             OnNotBossAction?.Invoke();
         }
@@ -70,7 +74,6 @@ public class PlayerRest : MonoBehaviour
         EffectSave();
         savePoint = transform.position;
         stageInfo.pos = savePoint;
-        stageInfo.isBoss = eventParam.boolParam;
         Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
     }
 
@@ -79,6 +82,11 @@ public class PlayerRest : MonoBehaviour
         EffectSpawn();
         stageInfo = Gamemanager.Instance.LoadJsonFile<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName);
         savePoint = stageInfo.pos;
+        if(savePoint == Vector3.zero)
+        {
+            savePoint = defaulPosition.position;
+            Gamemanager.Instance.SaveJson<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName, stageInfo);
+        }
         transform.position = savePoint;
     }
 

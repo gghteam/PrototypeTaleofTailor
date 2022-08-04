@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Map/Scenes/Map.unity
     guid: 7fa8e95f542e9524a82444d30d7555a5
+  - enabled: 1
+    path: Assets/01_Scenes/StartCutScene.unity
+    guid: 84de1c70dd2aa634bb2a4191f1971775
   m_configObjects: {}

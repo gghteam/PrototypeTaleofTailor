@@ -37,5 +37,6 @@ public class EnemyHP : MonoBehaviour
     void DamageEffect()
     {
         anim.ChangeAnimation(FsmLegacyAni.ClipState.Damage, 0.25f);
+        EventManager.TriggerEvent("TimeFreeze", new EventParam());
     }
 }

@@ -12,7 +12,17 @@ public class TimeFreezeEffect : MonoBehaviour
     [SerializeField, Tooltip("시간을 얼마만큼 느리게 할 건지?")]
     private float timeFreezeValue = 0.2f;
 
-    public void TimeFreeze()
+    public void Start()
+    {
+        EventManager.StartListening("TimeFreeze", TimeFreeze);
+    }
+
+    public void OnDestroy()
+    {
+        EventManager.StopListening("TimeFreeze", TimeFreeze);
+    }
+
+    public void TimeFreeze(EventParam eventParam)
     {
         Debug.Log("시간 느려짐");
         TimeManager.Instance.ModifyTimeScale(timeFreezeValue, freezeTimeDelay, () =>

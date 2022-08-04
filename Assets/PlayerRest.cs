@@ -84,20 +84,28 @@ public class PlayerRest : MonoBehaviour
 
     void EffectSpawn()
     {
-        // ½ºÆù ÀÌÆåÆ®
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         spawnParticle.Play();
     }
     void EffectSave()
     {
         if (isRest) return;
         isRest = true;
-        // ½ºÆù ÀúÀå ÀÌÆåÆ®
-        // ÇÃ·¹ÀÌ¾î Â÷ ¸¶½Ã´Â ¾Ö´Ï¸ÞÀÌ¼Ç Ãß°¡
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ã´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ß°ï¿½
         cup.SetActive(true);
         MoveStop();
         anim.SetTrigger(hashDrink);
-        Invoke("MoveStart", 5f);
+        StartCoroutine(Effect());
         //spawnParticle.Play();
+    }
+
+    IEnumerator Effect()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(5f);
+        Time.timeScale = 1f;
+        MoveStart();
     }
 
     void MoveStop()

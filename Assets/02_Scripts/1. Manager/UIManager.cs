@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -73,6 +74,11 @@ public class UIManager : MonoBehaviour
     public void UseSteminaFailedEffect()
     {
         bar.transform.DOShakePosition(2);
+    }
+
+    public void ChangeScene(string sc)
+    {
+        SceneManager.LoadScene(sc);
     }
 
     public void Quit()

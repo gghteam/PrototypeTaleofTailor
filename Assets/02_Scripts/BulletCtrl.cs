@@ -11,7 +11,7 @@ public class BulletCtrl : MonoBehaviour
     private void Start()
     {
         eventParam.stringParam = "PLAYER";
-        eventParam.intParam = 20;
+        eventParam.intParam = 100;
     }
     private void Update()
     {

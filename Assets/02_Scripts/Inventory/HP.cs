@@ -41,7 +41,7 @@ public class HP : MonoBehaviour
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
-    GameObject textObject;
+    GameObject bossCanvas;
     [SerializeField]
     Image halfButtonImage;
     [SerializeField]
@@ -65,6 +65,7 @@ public class HP : MonoBehaviour
 
     private void Awake()
     {
+        EventManager.StartListening("Rest", ResetHPDanchu);
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StartListening("DAMAGE", DamageSlider);
     }
@@ -76,6 +77,7 @@ public class HP : MonoBehaviour
     }
     private void OnDestroy()
     {
+        EventManager.StopListening("Rest", ResetHPDanchu);
         EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StopListening("DAMAGE", DamageSlider);
     }
@@ -129,7 +131,7 @@ public class HP : MonoBehaviour
                 Debug.Log("º¸½º Á×À½");
                 killed.Dead = true;
                 bossHpSlider.gameObject.SetActive(false);
-                textObject.SetActive(false);
+                bossCanvas.SetActive(false);
             }
         }
 
@@ -248,4 +250,11 @@ public class HP : MonoBehaviour
         isDead = false;
     }
 
+    private void ResetHPDanchu(EventParam eventParam)
+    {
+        eventParam.intParam = 6;
+        EventManager.TriggerEvent("ResetDanchu", eventParam);
+        ResetHP();
+        ResetClothesButton();
+    }
 }

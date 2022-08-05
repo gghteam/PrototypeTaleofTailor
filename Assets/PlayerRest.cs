@@ -28,6 +28,16 @@ public class PlayerRest : MonoBehaviour
     EventParam eventParam = new EventParam();
     private StageInfo stageInfo;
 
+    [SerializeField]
+    private FsmCore bossFsmCore;
+    [SerializeField]
+    private EnemyIdle bossIdle;
+    [SerializeField]
+    private GameObject boss;
+    [SerializeField]
+    private Transform bossDefaulPos;
+
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -79,6 +89,9 @@ public class PlayerRest : MonoBehaviour
 
     void Spawn(EventParam eventParam)
     {
+        bossFsmCore.ChangeState(bossIdle);
+        boss.transform.position = bossDefaulPos.position;
+
         EffectSpawn();
         stageInfo = Gamemanager.Instance.LoadJsonFile<StageInfo>(Gamemanager.Instance.SavePath, Gamemanager.Instance.SaveFileName);
         savePoint = stageInfo.pos;

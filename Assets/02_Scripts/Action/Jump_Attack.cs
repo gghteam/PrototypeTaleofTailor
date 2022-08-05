@@ -86,6 +86,9 @@ public class Jump_Attack : FsmState
                 pos.y = 0;
                 transform.position = pos; // 여기 버구 추정
                 isPlay = false;
+                this.GetComponent<AudioSource>().Stop();
+                this.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Stomp];
+                this.GetComponent<AudioSource>().Play();
             }
         }
 

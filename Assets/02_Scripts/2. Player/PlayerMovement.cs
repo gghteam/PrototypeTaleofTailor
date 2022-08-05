@@ -275,12 +275,12 @@ public class PlayerMovement : Character
 		origin.y += StartPoint;
 
 		Debug.DrawRay(origin, -transform.up * 10f, Color.blue, 0.3f);
-		if (Physics.Raycast(origin, -transform.up, out hit, 10f,ignoreForGroundCHeck))
+		if (Physics.Raycast(origin, -transform.up, out hit, 10f, ignoreForGroundCHeck))
 		{
 			isGrounded = true;
 		}
-        else
-        {
+		else
+		{
 			isGrounded = false;
 			rigidbody.AddForce(-Vector3.up * fallingSpeed);
 			//rigidbody.AddForce(moveDirection * fallingSpeed / 10f);

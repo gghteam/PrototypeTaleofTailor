@@ -106,6 +106,7 @@ public class HP : MonoBehaviour
     // 플레이어가 데미지 입었을 때 피 마이너스
     public void DamageSlider(EventParam eventParam)
     {
+        VFXSet.Instance.PlayerVFXSet((int)PlayerVFXs.Hit);
         if (isDead) return;
         if (eventParam.stringParam == "PLAYER")
         {
@@ -184,6 +185,7 @@ public class HP : MonoBehaviour
     // 단추 추가와 마이너스
     void MinusClothesButton(int minus)
     {
+        VFXSet.Instance.PlayerVFXSet((int)PlayerVFXs.ButtonCrush);
         danchuCount -= minus; // 단추 수 빼기
         if (danchuCount <= 0)
         {

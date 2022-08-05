@@ -22,6 +22,7 @@ public class CallChaseCondition : FsmState, ChaseInterface
 
     void Update()
     {
+        Debug.Log("부르는 중");
         Chase();
     }
 

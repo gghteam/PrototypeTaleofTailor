@@ -18,6 +18,8 @@ public class PlayerAttack : Character
 	private int CountAttack;
 	public bool IsAttacking { get { return attacking; } }
 
+	public bool isfirst = false;
+
 	private void Start()
 	{
 		EventManager.StartListening("InputAttack", IsInputAttack);
@@ -33,7 +35,6 @@ public class PlayerAttack : Character
 	private void PlayerAttackAnimationEnd()
 	{
 		CheckAttackPhase();
-		EventManager.TriggerEvent("Attack", eventParam);
 	}
 
 	private void Attack()

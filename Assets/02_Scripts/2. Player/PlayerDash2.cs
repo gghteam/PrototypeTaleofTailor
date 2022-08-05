@@ -27,7 +27,7 @@ public class PlayerDash2 : Character
 	}
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && !eventParam.boolParam && !ani.GetBool("IsAttack"))
+		if (Input.GetKeyDown(KeyCode.Space) && !eventParam.boolParam && ani.GetInteger("AttackCount") == 0)
 		{
 			if (SteminaManager.Instance.CheckStemina(1))
 			{

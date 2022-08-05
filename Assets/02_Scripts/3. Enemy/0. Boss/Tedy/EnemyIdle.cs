@@ -38,6 +38,7 @@ public class EnemyIdle : FsmState
             ani = GetComponent<Animator>();
         ani.SetBool(isMove, false);
         ani.SetBool(attack, false);
+        EventManager.TriggerEvent("ResetBossHP", new EventParam());
         Debug.Log("IDLE ป๓ลย");
     }
 

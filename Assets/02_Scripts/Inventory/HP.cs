@@ -67,6 +67,7 @@ public class HP : MonoBehaviour
     {
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StartListening("DAMAGE", DamageSlider);
+        EventManager.StartListening("ResetBossHP", ResetBossHP);
     }
     private void Start()
     {
@@ -78,6 +79,7 @@ public class HP : MonoBehaviour
     {
         EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StopListening("DAMAGE", DamageSlider);
+        EventManager.StopListening("ResetBossHP", ResetBossHP);
     }
 
     void Update()
@@ -248,4 +250,9 @@ public class HP : MonoBehaviour
         isDead = false;
     }
 
+    public void ResetBossHP(EventParam eventParam)
+    {
+        bossHP = maxBossHP;
+        bossHpSlider.value = bossHP / maxBossHP;
+    }
 }

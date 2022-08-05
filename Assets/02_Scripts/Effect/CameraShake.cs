@@ -32,15 +32,15 @@ public class CameraShake : MonoBehaviour
 
     public void CameraShakeEffect(EventParam eventParam)
     {
-        StartCoroutine(ShakeCoroutine());
+        StartCoroutine(ShakeCoroutine(eventParam.floatParam, eventParam.floatParam2));
     }
 
-    private IEnumerator ShakeCoroutine()
+    private IEnumerator ShakeCoroutine(float value, float time)
     {
-        noise1.m_AmplitudeGain = shakeValue;
-        noise2.m_AmplitudeGain = shakeValue;
-        noise3.m_AmplitudeGain = shakeValue;
-        yield return new WaitForSeconds(shakeTime);
+        noise1.m_AmplitudeGain = value;
+        noise2.m_AmplitudeGain = value;
+        noise3.m_AmplitudeGain = value;
+        yield return new WaitForSeconds(time);
         noise1.m_AmplitudeGain = 0;
         noise2.m_AmplitudeGain = 0;
         noise3.m_AmplitudeGain = 0;

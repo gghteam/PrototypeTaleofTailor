@@ -114,6 +114,8 @@ public class HP : MonoBehaviour
         if (eventParam.stringParam == "PLAYER")
         {
             playerHP -= eventParam.intParam;
+            eventParam.floatParam = 4f;
+            eventParam.floatParam2 = 0.3f;
             EventManager.TriggerEvent("CameraShake", eventParam);
             Invoke("SliderHit", 0.5f);
             damaged = true;
@@ -245,7 +247,7 @@ public class HP : MonoBehaviour
     // HP ���� �Լ�
     void ResetHP()
     {
-        whiteSlider.fillAmount = playerHP / maxPlayerHP; // ��� �����̴� �ٽ� ä���
+        whiteSlider.fillAmount = playerHP / maxPlayerHP; // ���?�����̴� �ٽ� ä���?
         bossHpSlider.value = bossHP / maxBossHP;
         playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //������ ��
         playerHP = maxPlayerHP; // HP�� �ʱ�ȭ

@@ -57,5 +57,7 @@ public struct EventParam
     public bool boolParam2;
     public int intParam;
     public string stringParam;
+    public float floatParam;
+    public float floatParam2;
 }
 

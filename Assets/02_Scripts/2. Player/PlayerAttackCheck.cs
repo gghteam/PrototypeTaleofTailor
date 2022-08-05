@@ -25,13 +25,19 @@ public class PlayerAttackCheck : MonoBehaviour
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
 			EventManager.TriggerEvent("DAMAGE", eventParam); // µ¥¹ÌÁö
-		}
+            eventParam.floatParam = 2f;
+            eventParam.floatParam2 = 0.3f;
+            EventManager.TriggerEvent("CameraShake", eventParam);
+        }
         else if(other.CompareTag("ENEMY") && playerAttack.IsAttacking && !isfirst)
         {
             isfirst = true;
             other.GetComponent<EnemyHP>().Damage(1);
             ParticlePool hitParticle = PoolManager.Instance.Pop("CFX_Hit_C White") as ParticlePool;
             hitParticle.transform.position = other.transform.position + Vector3.up * 25;
+            eventParam.floatParam = 2f;
+            eventParam.floatParam2 = 0.3f;
+            EventManager.TriggerEvent("CameraShake", eventParam);
             Debug.Log("??");
         }
     }

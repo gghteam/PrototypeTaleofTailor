@@ -113,4 +113,9 @@ public class PlayerDash : Character
 	{
 		input = eventParam.vectorParam;
 	}
+
+	private void OnDestroy()
+	{
+		EventManager.StopListening("INPUT", getInput);
+	}
 }

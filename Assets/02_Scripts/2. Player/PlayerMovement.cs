@@ -218,6 +218,8 @@ public class PlayerMovement : Character
 	private void OnDestroy()
 	{
 		EventManager.StopListening("PLAYER_MOVEMENT", SetMovement);
+		EventManager.StopListening("ISDASH", IsDash);
+		EventManager.StopListening("ISMOVE", IsMove);
 	}
 
 	#region Movement

@@ -21,4 +21,9 @@ public class startParticle : MonoBehaviour
 	{
 		particle.Play();
 	}
+
+	private void OnDestroy()
+	{
+		EventManager.StopListening("AttackParticle", Particle);
+	}
 }

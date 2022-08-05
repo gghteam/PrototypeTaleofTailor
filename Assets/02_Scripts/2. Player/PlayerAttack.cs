@@ -108,4 +108,10 @@ public class PlayerAttack : Character
 	{
 		attackParticle.gameObject.SetActive(On);
 	}
+
+	private void OnDestroy()
+	{
+		EventManager.StopListening("InputAttack", IsInputAttack);
+		EventManager.StopListening("PLUS_ATTACKPOWER", PlusAttackPower);
+	}
 }

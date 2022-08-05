@@ -19,9 +19,9 @@ public class PlayerAttackCheck : MonoBehaviour
         if ((other.CompareTag("BOSS") && !playerAttack.isfirst) && playerAttack.IsAttacking)
         {
             playerAttack.isfirst = true;
-            other.GetComponent<AudioSource>().Stop();
-            other.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Hit];
-            other.GetComponent<AudioSource>().Play();
+            //other.GetComponent<AudioSource>().Stop();
+            //other.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Hit];
+            //other.GetComponent<AudioSource>().Play();
             eventParam.intParam = (int)playerAttack.PlayerDamage;
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
@@ -46,5 +46,10 @@ public class PlayerAttackCheck : MonoBehaviour
     private void Re(EventParam eventParam)
     {
         playerAttack.isfirst = false;
+    }
+
+    private void OnDestroy()
+	{
+        EventManager.StopListening("Attack", Re);
     }
 }

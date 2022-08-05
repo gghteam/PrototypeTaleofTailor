@@ -18,4 +18,9 @@ public class Enemy : MonoBehaviour
     {
         hp -= eventParam.intParam;
     }
+
+    private void OnDestroy()
+	{
+        EventManager.StopListening("ENEMYDAMAGE", Damaged);
+    }
 }

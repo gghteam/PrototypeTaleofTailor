@@ -9,7 +9,7 @@ public class VFXSet : MonoSingleton<VFXSet>
 
     public AudioMixer audioMixer;
 
-    public AudioSource PlayerSource;
+    public static AudioSource PlayerSource;
     public AudioClip[] playerAudioClip;
     private void Awake()
 	{
@@ -17,6 +17,7 @@ public class VFXSet : MonoSingleton<VFXSet>
 	}
 	private void Start()
     {
+        PlayerSource = GameObject.Find("PlayerSource").GetComponent<AudioSource>();
         EventManager.StartListening("Start", StartBM);
     }
     private void Update()
@@ -43,6 +44,11 @@ public class VFXSet : MonoSingleton<VFXSet>
         PlayerSource.Stop();
         PlayerSource.clip = playerAudioClip[a];
         PlayerSource.Play();
+    }
+
+    private void OnDestroy()
+	{
+        EventManager.StartListening("Start", StartBM);
     }
 }
 

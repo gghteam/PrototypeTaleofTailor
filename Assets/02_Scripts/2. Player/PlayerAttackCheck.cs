@@ -7,8 +7,6 @@ public class PlayerAttackCheck : MonoBehaviour
     [SerializeField]
     private PlayerAttack playerAttack;
 
-    public bool isfirst = false;
-
     EventParam eventParam;
 
 	private void Start()
@@ -18,32 +16,32 @@ public class PlayerAttackCheck : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("BOSS") && playerAttack.IsAttacking && !isfirst)
+        if ((other.CompareTag("BOSS") && !playerAttack.isfirst) && playerAttack.IsAttacking)
         {
-            isfirst = true;
+            playerAttack.isfirst = true;
+            other.GetComponent<AudioSource>().Stop();
+            other.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Hit];
+            other.GetComponent<AudioSource>().Play();
             eventParam.intParam = (int)playerAttack.PlayerDamage;
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
-			EventManager.TriggerEvent("DAMAGE", eventParam); // µ¥¹ÌÁö
+			EventManager.TriggerEvent("DAMAGE", eventParam); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             eventParam.floatParam = 2f;
             eventParam.floatParam2 = 0.3f;
             EventManager.TriggerEvent("CameraShake", eventParam);
         }
         else if(other.CompareTag("ENEMY") && playerAttack.IsAttacking && !isfirst)
         {
-            isfirst = true;
+            playerAttack.isfirst = true;
             other.GetComponent<EnemyHP>().Damage(1);
             ParticlePool hitParticle = PoolManager.Instance.Pop("CFX_Hit_C White") as ParticlePool;
             hitParticle.transform.position = other.transform.position + Vector3.up * 25;
             eventParam.floatParam = 2f;
             eventParam.floatParam2 = 0.3f;
-            EventManager.TriggerEvent("CameraShake", eventParam);
-            Debug.Log("??");
-        }
+            other.GetComponent<AudioSource>().Stop();
+            other.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Hit];
+            other.GetComponent<AudioSource>().Play();
     }
-
     private void Re(EventParam eventParam)
-	{
-        isfirst = false;
-	}
-}
+        playerAttack.isfirst = false;
+    }

@@ -110,6 +110,7 @@ public class HP : MonoBehaviour
     // �÷��̾ ������ �Ծ��� �� �� ���̳ʽ�
     public void DamageSlider(EventParam eventParam)
     {
+        VFXSet.Instance.PlayerVFXSet((int)PlayerVFXs.Hit);
         if (isDead) return;
         if (eventParam.stringParam == "PLAYER")
         {
@@ -193,6 +194,7 @@ public class HP : MonoBehaviour
     // ���� �߰��� ���̳ʽ�
     void MinusClothesButton(int minus)
     {
+        VFXSet.Instance.PlayerVFXSet((int)PlayerVFXs.ButtonCrush);
         danchuCount -= minus; // ���� �� ����
         if (danchuCount <= 0)
         {
@@ -247,7 +249,7 @@ public class HP : MonoBehaviour
     // HP ���� �Լ�
     void ResetHP()
     {
-        whiteSlider.fillAmount = playerHP / maxPlayerHP; // ���?�����̴� �ٽ� ä���?
+        whiteSlider.fillAmount = playerHP / maxPlayerHP; // ���?�����̴� �ٽ� ä���?
         bossHpSlider.value = bossHP / maxBossHP;
         playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //������ ��
         playerHP = maxPlayerHP; // HP�� �ʱ�ȭ

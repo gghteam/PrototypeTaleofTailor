@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class VFXSet : MonoBehaviour
+public class VFXSet : MonoSingleton<VFXSet>
 {
     private static AudioSource VFXaudioSource;
 
+    public AudioMixer audioMixer;
 
-	private void Awake()
+    public AudioSource PlayerSource;
+    public AudioClip[] playerAudioClip;
+    private void Awake()
 	{
         VFXaudioSource = GetComponent<AudioSource>();
 	}
@@ -17,16 +21,37 @@ public class VFXSet : MonoBehaviour
     }
     private void Update()
     {
-        VFXaudioSource.volume = UIManager.Instance.GetSfxVolume();
+        audioMixer.SetFloat("Effect", UIManager.Instance.GetBgmVolume());
+        float a;
+        audioMixer.GetFloat("Effect", out a);
+        if (a == -40f)
+            audioMixer.SetFloat("Effect", -80f);
     }
 
-    public void SrartBGM()
+    public void StopPlayerEffect()
     {
-        VFXaudioSource.Play();
+        PlayerSource.Stop();
     }
 
     public void StartBM(EventParam eventParam)
     {
-        VFXaudioSource.Play();
+        PlayerVFXSet((int)PlayerVFXs.Attack);
     }
+
+    public void PlayerVFXSet(int a)
+    {
+        PlayerSource.Stop();
+        PlayerSource.clip = playerAudioClip[a];
+        PlayerSource.Play();
+    }
+}
+
+public enum PlayerVFXs
+{
+    Walk,
+    Run,
+    Attack,
+    Hit,
+    ButtonCrush,
+    Stomp
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BombChase : FsmState,ChaseInterface
+public class BombChase : FsmState
 {
     [SerializeField, Header("ÂÑ¾Æ°¡´Â Å¸°Ù(ÇÃ·¹ÀÌ¾î)")]
     Transform target;
@@ -24,17 +24,12 @@ public class BombChase : FsmState,ChaseInterface
     {
         if(isChase)
         {
-            Chase();
+            ChangeStop(false);
+            agent.destination = lastKnownLoc = target.position;
         }
         else
             ChangeStop(true);
 
-    }
-
-    public void Chase()
-	{
-        ChangeStop(false);
-        agent.destination = lastKnownLoc = target.position;
     }
 
     public void ChangeStop(bool value)

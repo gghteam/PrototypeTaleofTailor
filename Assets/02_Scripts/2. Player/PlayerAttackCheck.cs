@@ -9,12 +9,12 @@ public class PlayerAttackCheck : MonoBehaviour
 
     EventParam eventParam;
 
-	private void Start()
-	{
+    private void Start()
+    {
         EventManager.StartListening("Attack", Re);
-	}
+    }
 
-	private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if ((other.CompareTag("BOSS") && !playerAttack.isfirst) && playerAttack.IsAttacking)
         {
@@ -25,12 +25,12 @@ public class PlayerAttackCheck : MonoBehaviour
             eventParam.intParam = (int)playerAttack.PlayerDamage;
             Debug.Log($"BOSS HP: {(int)playerAttack.PlayerDamage}");
             eventParam.stringParam = "BOSS";
-			EventManager.TriggerEvent("DAMAGE", eventParam); // ������
+            EventManager.TriggerEvent("DAMAGE", eventParam); // ������
             eventParam.floatParam = 2f;
             eventParam.floatParam2 = 0.3f;
             EventManager.TriggerEvent("CameraShake", eventParam);
         }
-        else if(other.CompareTag("ENEMY") && playerAttack.IsAttacking && !isfirst)
+        else if ((other.CompareTag("ENEMY") && !playerAttack.isfirst) && playerAttack.IsAttacking)
         {
             playerAttack.isfirst = true;
             other.GetComponent<EnemyHP>().Damage(1);
@@ -41,7 +41,10 @@ public class PlayerAttackCheck : MonoBehaviour
             other.GetComponent<AudioSource>().Stop();
             other.GetComponent<AudioSource>().clip = VFXSet.Instance.playerAudioClip[(int)PlayerVFXs.Hit];
             other.GetComponent<AudioSource>().Play();
+        }
     }
     private void Re(EventParam eventParam)
+    {
         playerAttack.isfirst = false;
     }
+}

@@ -64,7 +64,7 @@ public class PlayerMovement : Character
 	public void Update()
 	{
 		HandleFalling(Time.deltaTime, moveDirection);
-		if (!isMove || !isGrounded) return;
+		if (!isMove) return;
 
 		if (isDash)
 		{

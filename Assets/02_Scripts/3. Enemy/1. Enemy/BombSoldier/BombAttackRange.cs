@@ -11,7 +11,6 @@ public class BombAttackRange : FsmCondition
 
     public override bool IsSatisfied(FsmState curr, FsmState next)
     {
-        if (Vector3.Distance(transform.position, Player.position) < Range) Debug.Log("Attack");
         return Vector3.Distance(transform.position, Player.position) < Range;
     }
 

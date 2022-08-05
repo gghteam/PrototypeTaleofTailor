@@ -8,26 +8,26 @@ using UnityEngine.SceneManagement;
 public class HP : MonoBehaviour
 {
     [Header("HP")]
-    [Header("ÇÃ·¹ÀÌ¾î")]
+    [Header("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½")]
     [SerializeField]
     float maxPlayerHP = 3000;
     [SerializeField]
     public float playerHP = 3000;
-    [Header("º¸½º")]
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     float maxBossHP = 3000;
     [SerializeField]
     public float bossHP = 3000;
-    [SerializeField, Header("HP ½½¶óÀÌ´õ ¼Óµµ")]
+    [SerializeField, Header("HP ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Óµï¿½")]
     float sliderSpeed = 5f;
 
-    [Header("´ÜÃß °¹¼ö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     int danchuCount;
     [SerializeField]
     int maxDanchuCount;
 
-    [Header("HP ½½¶óÀÌ´õ")]
+    [Header("HP ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½")]
     [SerializeField]
     Image playerHpSlider;
     //Slider playerHpSlider;
@@ -37,11 +37,11 @@ public class HP : MonoBehaviour
     [SerializeField]
     Slider bossHpSlider;
 
-    [Header("´ÜÃß UI")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ UI")]
     [SerializeField]
     Image[] clothesButtonImage;
     [SerializeField]
-    GameObject textObject;
+    GameObject bossCanvas;
     [SerializeField]
     Image halfButtonImage;
     [SerializeField]
@@ -65,6 +65,7 @@ public class HP : MonoBehaviour
 
     private void Awake()
     {
+        EventManager.StartListening("Rest", ResetHPDanchu);
         EventManager.StartListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StartListening("DAMAGE", DamageSlider);
         EventManager.StartListening("ResetBossHP", ResetBossHP);
@@ -77,6 +78,7 @@ public class HP : MonoBehaviour
     }
     private void OnDestroy()
     {
+        EventManager.StopListening("Rest", ResetHPDanchu);
         EventManager.StopListening("PLUSCLOTHESBUTTON", PlusClothesButton);
         EventManager.StopListening("DAMAGE", DamageSlider);
         EventManager.StopListening("ResetBossHP", ResetBossHP);
@@ -84,7 +86,7 @@ public class HP : MonoBehaviour
 
     void Update()
     {
-        // µ¥¹ÌÁö ÀÔÈ÷±â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         UpdateSlider();
 
         if (damaged)
@@ -98,14 +100,14 @@ public class HP : MonoBehaviour
         damaged = false;
     }
 
-    // ´ÜÃß ¸®¼Â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     void ResetClothesButton()
     {
         danchuCount = maxDanchuCount;
         ClothesButtonOnOff(maxDanchuCount);
     }
 
-    // ÇÃ·¹ÀÌ¾î°¡ µ¥¹ÌÁö ÀÔ¾úÀ» ¶§ ÇÇ ¸¶ÀÌ³Ê½º
+    // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³Ê½ï¿½
     public void DamageSlider(EventParam eventParam)
     {
         if (isDead) return;
@@ -127,11 +129,11 @@ public class HP : MonoBehaviour
             Debug.Log(bossHP);
             if (bossHP <= 0)
             {
-                // º¸½º Á×À½
-                Debug.Log("º¸½º Á×À½");
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 killed.Dead = true;
                 bossHpSlider.gameObject.SetActive(false);
-                textObject.SetActive(false);
+                bossCanvas.SetActive(false);
             }
         }
 
@@ -145,7 +147,7 @@ public class HP : MonoBehaviour
         Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
         particle.transform.position = bossHitParticlePos.position + offset;
     }
-    // HP °ÔÀÌÁö UI Update
+    // HP ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI Update
     void UpdateSlider()
     {
         float hp = playerHP / maxPlayerHP;
@@ -172,7 +174,7 @@ public class HP : MonoBehaviour
         isDamage = true;
     }
 
-    // Á×¾úÀ» ¶§ ½ÇÇà
+    // ï¿½×¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     void Dead()
     {
         isDead = true;
@@ -186,10 +188,10 @@ public class HP : MonoBehaviour
 
     }
 
-    // ´ÜÃß Ãß°¡¿Í ¸¶ÀÌ³Ê½º
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³Ê½ï¿½
     void MinusClothesButton(int minus)
     {
-        danchuCount -= minus; // ´ÜÃß ¼ö »©±â
+        danchuCount -= minus; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (danchuCount <= 0)
         {
             RealDead();
@@ -212,11 +214,11 @@ public class HP : MonoBehaviour
 
     void PlusClothesButton(EventParam eventParam)
     {
-        danchuCount++; //°¡Áø ´ÜÃß ¼ö +1
+        danchuCount++; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ +1
         ClothesButtonOnOff(danchuCount);
     }
 
-    //UI ´ÜÃß ²ô°í Å°±â
+    //UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½
     void ClothesButtonOnOff(int index)
     {
         int cIndex = 0;
@@ -224,10 +226,10 @@ public class HP : MonoBehaviour
         if (index % 2 != 0) cIndex = (index - 1) / 2 - 1;
         else cIndex = index / 2 - 1;
 
-        //ÀüºÎ ²ô±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < maxDanchuCount/2; i++)
             clothesButtonImage[i].gameObject.SetActive(false);
-        //ÀÎµ¦½º±îÁö¸¸ Å°±â
+        //ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½
         for (int i = 0; i < cIndex + 1; i++)
             clothesButtonImage[i].gameObject.SetActive(true);
 
@@ -240,13 +242,13 @@ public class HP : MonoBehaviour
 
     }
 
-    // HP ¸®¼Â ÇÔ¼ö
+    // HP ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     void ResetHP()
     {
-        whiteSlider.fillAmount = playerHP / maxPlayerHP; // Èò»ö ½½¶óÀÌ´õ ´Ù½Ã Ã¤¿ì±â
+        whiteSlider.fillAmount = playerHP / maxPlayerHP; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ù½ï¿½ Ã¤ï¿½ï¿½ï¿½
         bossHpSlider.value = bossHP / maxBossHP;
-        playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //¼­¼­È÷ Âü
-        playerHP = maxPlayerHP; // HPµµ ÃÊ±âÈ­
+        playerHpSlider.fillAmount = Mathf.Lerp(playerHpSlider.fillAmount, 1, Time.deltaTime * sliderSpeed + 2); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        playerHP = maxPlayerHP; // HPï¿½ï¿½ ï¿½Ê±ï¿½È­
         isDead = false;
     }
 
@@ -254,5 +256,13 @@ public class HP : MonoBehaviour
     {
         bossHP = maxBossHP;
         bossHpSlider.value = bossHP / maxBossHP;
+    }
+
+    private void ResetHPDanchu(EventParam eventParam)
+    {
+        eventParam.intParam = 6;
+        EventManager.TriggerEvent("ResetDanchu", eventParam);
+        ResetHP();
+        ResetClothesButton();
     }
 }

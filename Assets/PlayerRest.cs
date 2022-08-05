@@ -112,8 +112,6 @@ public class PlayerRest : MonoBehaviour
     {
         if (isRest) return;
         isRest = true;
-        // ���� ���� ����Ʈ
-        // �÷��̾� �� ���ô� �ִϸ��̼� �߰�
         cup.SetActive(true);
         MoveStop();
         anim.SetTrigger(hashDrink);
@@ -124,7 +122,7 @@ public class PlayerRest : MonoBehaviour
     IEnumerator Effect()
     {
         Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1f;
         MoveStart();
     }

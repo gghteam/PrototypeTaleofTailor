@@ -15,6 +15,6 @@ MonoBehaviour:
   attackDelay: 2
   isAttackDelayRandomness: 0
   attackDelayRandomness: 1
-  attackRange: 30
+  attackRange: 50
   viewAngle: 60
-  attackDamage: 30
+  attackDamage: 120
